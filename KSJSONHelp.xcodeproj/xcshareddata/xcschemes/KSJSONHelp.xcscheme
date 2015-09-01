@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3CD3C4411B9216DD00CE1FBF"
-               BuildableName = "KSJSONHelp.app"
+               BlueprintIdentifier = "3C808CB51B95FF4D008F0ED7"
+               BuildableName = "KSJSONHelp.framework"
                BlueprintName = "KSJSONHelp"
                ReferencedContainer = "container:KSJSONHelp.xcodeproj">
             </BuildableReference>
@@ -32,19 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3CD3C4551B9216DD00CE1FBF"
+               BlueprintIdentifier = "3C808CBE1B95FF4D008F0ED7"
                BuildableName = "KSJSONHelpTests.xctest"
                BlueprintName = "KSJSONHelpTests"
-               ReferencedContainer = "container:KSJSONHelp.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3CD3C4601B9216DD00CE1FBF"
-               BuildableName = "KSJSONHelpUITests.xctest"
-               BlueprintName = "KSJSONHelpUITests"
                ReferencedContainer = "container:KSJSONHelp.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -52,8 +42,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3CD3C4411B9216DD00CE1FBF"
-            BuildableName = "KSJSONHelp.app"
+            BlueprintIdentifier = "3C808CB51B95FF4D008F0ED7"
+            BuildableName = "KSJSONHelp.framework"
             BlueprintName = "KSJSONHelp"
             ReferencedContainer = "container:KSJSONHelp.xcodeproj">
          </BuildableReference>
@@ -71,16 +61,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3CD3C4411B9216DD00CE1FBF"
-            BuildableName = "KSJSONHelp.app"
+            BlueprintIdentifier = "3C808CB51B95FF4D008F0ED7"
+            BuildableName = "KSJSONHelp.framework"
             BlueprintName = "KSJSONHelp"
             ReferencedContainer = "container:KSJSONHelp.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -90,16 +79,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3CD3C4411B9216DD00CE1FBF"
-            BuildableName = "KSJSONHelp.app"
+            BlueprintIdentifier = "3C808CB51B95FF4D008F0ED7"
+            BuildableName = "KSJSONHelp.framework"
             BlueprintName = "KSJSONHelp"
             ReferencedContainer = "container:KSJSONHelp.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
