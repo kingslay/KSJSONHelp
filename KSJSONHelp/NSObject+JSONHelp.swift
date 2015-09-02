@@ -56,21 +56,22 @@ extension NSObject {
     public func toDictionary() -> NSDictionary{
         return toDictionary(KSMirror(self))
     }
-    private func toDictionary(mirror: KSMirror) -> NSDictionary{
+    private func toDictionary(mirror: KSMirror) -> [String : AnyObject]{
         
-        let dict = NSMutableDictionary()
+        var dict = [String : AnyObject]()
         for item in mirror {
             if item.name == "super" {
                 if let superMirror = item.superMirror {
-                    dict.addEntriesFromDictionary(toDictionary(superMirror) as [NSObject : AnyObject])
+                    let superDict = toDictionary(superMirror);
+                    for (k,v) in superDict{
+                        dict[k] = v
+                    }
                 }
                 continue
             }
             var value = item.value
             if item.isOptional {
-                //狂吐槽apple的Optional。用item.value不行，要用valueForKeyPath这个方法才行
-                //                let a = (item.value as! Any?) as? AnyObject?
-                let valueOptional = self.valueForKeyPath(item.name)
+                let valueOptional = value as Any?
                 if valueOptional == nil {
                     continue
                 }else{
@@ -91,7 +92,7 @@ extension NSObject {
         let clsString = "\(item.type)".replacingOccurrencesOfString("Array<", withString: "").replacingOccurrencesOfString("Optional<", withString: "").replacingOccurrencesOfString(">", withString: "")
         return NSClassFromString(clsString)!
     }
-   
+    
     
     private class func transformValue(type: Any.Type,value: Any) -> AnyObject{
         if type is Int.Type || type is Optional<Int>.Type {
@@ -147,6 +148,6 @@ extension NSObject {
         }else if value is UInt64 {
             return NSNumber(unsignedLongLong: value as! UInt64)
         }
-        return value as! AnyObject
+        return "\(value)"
     }
 }

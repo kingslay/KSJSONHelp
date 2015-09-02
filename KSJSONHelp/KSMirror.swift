@@ -19,7 +19,7 @@ public struct KSMirrorItem {
         return disposition == _MirrorDisposition.Class
     }
     public var isArray: Bool {
-        return disposition == _MirrorDisposition.Container || disposition == _MirrorDisposition.IndexContainer || disposition == _MirrorDisposition.KeyContainer || disposition == _MirrorDisposition.MembershipContainer
+        return disposition == _MirrorDisposition.IndexContainer
     }
     public var isOptional: Bool {
         return disposition == _MirrorDisposition.Optional
@@ -27,8 +27,17 @@ public struct KSMirrorItem {
     init(_ tup: (String, _MirrorType)) {
         self.name = tup.0
         self.type = tup.1.valueType
-        self.value = tup.1.value
         self.disposition = tup.1.disposition
+        if(tup.1.disposition == _MirrorDisposition.Optional){
+            //取出可选值
+            if tup.1.count == 1 {
+                self.value = tup.1[0].1.value
+            }else{
+                self.value = tup.1.value
+            }
+        }else{
+            self.value = tup.1.value
+        }
         if tup.0 == "super" && tup.1.count > 0{
             superMirror = KSMirror(tup.1)
         }

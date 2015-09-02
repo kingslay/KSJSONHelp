@@ -1,26 +1,32 @@
 //: Playground - noun: a place where people can play
 
 import UIKit
-@objc(Person)
-class Person: NSObject {
-    var name: String?
-    var age: Int
-    override init(){
-        age = 1
-    }
-    init(name: String,age: Int) {
-        self.name = name
-        self.age = age
-    }
+
+var a: Any = 12
+var b: Any = a as? Any
+print(b)
+var c = b as? Any
+print(c)
+var d: Any? = b
+print(d)
+var e: Optional = b
+print(e!)
+let someValue = 5
+let someOptional: Int? = nil
+
+switch c {
+//case .Some(c):
+//    print("the value is \(c)")
+case .Some(let val):
+    print("the value is \(val)")
+default:
+    print("nil")
 }
-var str = "Hello, playground"
-let a = NSStringFromClass(Person)
-NSStringFromClass(Person)
-NSStringFromClass(Person)
-
-
-NSClassFromString("Person")
-
-
+//switch c {
+//case let val where val == a:
+//    print(val)
+//default:
+//    break
+//}
 
 

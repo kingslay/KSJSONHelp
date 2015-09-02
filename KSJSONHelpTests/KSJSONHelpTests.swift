@@ -7,7 +7,11 @@
 //
 
 import XCTest
+
 @testable import KSJSONHelp
+struct Country {
+    var country = "Chinese"
+}
 @objc(Person)
 class Person: NSObject {
     var name: String
@@ -29,7 +33,7 @@ class Person: NSObject {
     }
 }
 class Person1: NSObject {
-    var name: NSString?
+    var name: String?
     var age: NSNumber?
     override init(){
         name = ""
