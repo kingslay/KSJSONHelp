@@ -67,7 +67,7 @@ let dict = person.toDictionary()
 
 ## Contact
 
-Follow and contact me on [Twitter ](https://twitter.com/kingslay01)Twitter or [Sina Weibo](http://weibo.com/p/1005051702286027/home?from=page_100505&mod=TAB#place)Sina Weibo[](http://weibo.com/p/1005051702286027/home?from=page_100505&mod=TAB#place). If you find an issue, just open a ticket on it. Pull requests are warmly welcome as well.
+Follow and contact me on [Twitter ](https://twitter.com/kingslay01)or [Sina Weibo](http://weibo.com/p/1005051702286027/home?from=page_100505&mod=TAB#place)[](http://weibo.com/p/1005051702286027/home?from=page_100505&mod=TAB#place). If you find an issue, just open a ticket on it. Pull requests are warmly welcome as well.
 
 
 
