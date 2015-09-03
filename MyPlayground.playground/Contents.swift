@@ -2,31 +2,51 @@
 
 import UIKit
 
-var a: Any = 12
-var b: Any = a as? Any
-print(b)
-var c = b as? Any
-print(c)
-var d: Any? = b
-print(d)
-var e: Optional = b
-print(e!)
-let someValue = 5
-let someOptional: Int? = nil
-
-switch c {
-//case .Some(c):
-//    print("the value is \(c)")
-case .Some(let val):
-    print("the value is \(val)")
-default:
-    print("nil")
+@objc(Person)
+class Person: NSObject {
+    var name: String
+    var weight: CGFloat
+    var height: NSInteger
+    var age: Int64
+    var sex: Bool = false
+    override init(){
+        name = ""
+        age = 1
+        height = 11
+        weight = 11.111
+    }
+    init(name: String,age: Int64,height: NSInteger = 11,weight: CGFloat = 11.1111) {
+        self.name = name
+        self.age = age
+        self.height = height
+        self.weight = weight
+    }
 }
-//switch c {
-//case let val where val == a:
-//    print(val)
-//default:
-//    break
-//}
+class Person1: NSObject {
+    var name: String?
+    var age: NSNumber?
+    override init(){
+        name = ""
+        age = 1
+    }
+    init(name: String,age: Int) {
+        self.name = name
+        self.age = age
+    }
+}
+class Person2: Person {
+    var books: [NSString] = []
+    var child: [Person] = []
+}
+class Person3: Person {
+    var books: [NSString]?
+    var child: [Person]?
+}
 
+let person = Person(name: "wang", age: 30)
+person.sex = true
+let dic = person.toDictionary()
+let personNew = Person.toModel(dic)
+assert(dic == personNew.toDictionary())
+print(dic)
 
