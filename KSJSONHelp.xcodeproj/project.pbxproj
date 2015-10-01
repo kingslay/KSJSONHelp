@@ -7,17 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3C808CB91B95FF4D008F0ED7 /* KSJSONHelp.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C808CB81B95FF4D008F0ED7 /* KSJSONHelp.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3C808CC01B95FF4D008F0ED7 /* KSJSONHelp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C808CB61B95FF4D008F0ED7 /* KSJSONHelp.framework */; };
-		3C808CD41B960000008F0ED7 /* NSObject+JSONHelp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD3C4781B921A2300CE1FBF /* NSObject+JSONHelp.swift */; };
-		3C808CD51B960000008F0ED7 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD3C4761B9217D800CE1FBF /* Helpers.swift */; };
-		3C808CD61B960000008F0ED7 /* KSMirror.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD3C4741B92178600CE1FBF /* KSMirror.swift */; };
 		3C808CD71B960049008F0ED7 /* KSJSONHelpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD3C45A1B9216DD00CE1FBF /* KSJSONHelpTests.swift */; };
 		3C808CE11B9601B7008F0ED7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C808CD91B9601B7008F0ED7 /* AppDelegate.swift */; };
 		3C808CE21B9601B7008F0ED7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C808CDA1B9601B7008F0ED7 /* Assets.xcassets */; };
 		3C808CE31B9601B7008F0ED7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C808CDB1B9601B7008F0ED7 /* LaunchScreen.storyboard */; };
 		3C808CE41B9601B7008F0ED7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C808CDD1B9601B7008F0ED7 /* Main.storyboard */; };
 		3C808CE61B9601B7008F0ED7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C808CE01B9601B7008F0ED7 /* ViewController.swift */; };
+		3CBC20AF1BBD95C40007DC65 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC20AA1BBD95C40007DC65 /* Helpers.swift */; settings = {ASSET_TAGS = (); }; };
+		3CBC20B11BBD95C40007DC65 /* KSJSONHelp.h in Headers */ = {isa = PBXBuildFile; fileRef = 3CBC20AC1BBD95C40007DC65 /* KSJSONHelp.h */; settings = {ASSET_TAGS = (); }; };
+		3CBC20B21BBD95C40007DC65 /* KSMirror.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC20AD1BBD95C40007DC65 /* KSMirror.swift */; settings = {ASSET_TAGS = (); }; };
+		3CBC20B31BBD95C40007DC65 /* NSObject+JSONHelp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC20AE1BBD95C40007DC65 /* NSObject+JSONHelp.swift */; settings = {ASSET_TAGS = (); }; };
+		3CBC20B71BBD95EB0007DC65 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3CBC20B61BBD95EB0007DC65 /* Info.plist */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,18 +34,18 @@
 /* Begin PBXFileReference section */
 		3C0936941B93054400F05323 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 		3C808CB61B95FF4D008F0ED7 /* KSJSONHelp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KSJSONHelp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3C808CB81B95FF4D008F0ED7 /* KSJSONHelp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KSJSONHelp.h; sourceTree = "<group>"; };
 		3C808CBF1B95FF4D008F0ED7 /* KSJSONHelpTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KSJSONHelpTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3C808CD91B9601B7008F0ED7 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3C808CDA1B9601B7008F0ED7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3C808CD91B9601B7008F0ED7 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "KSJSONHelp-Demo/AppDelegate.swift"; sourceTree = SOURCE_ROOT; };
+		3C808CDA1B9601B7008F0ED7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "KSJSONHelp-Demo/Assets.xcassets"; sourceTree = SOURCE_ROOT; };
 		3C808CDC1B9601B7008F0ED7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3C808CDE1B9601B7008F0ED7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		3C808CE01B9601B7008F0ED7 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		3C808CE71B96022D008F0ED7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3C808CE01B9601B7008F0ED7 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = "KSJSONHelp-Demo/ViewController.swift"; sourceTree = SOURCE_ROOT; };
+		3CBC20AA1BBD95C40007DC65 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Helpers.swift; path = Source/Helpers.swift; sourceTree = SOURCE_ROOT; };
+		3CBC20AC1BBD95C40007DC65 /* KSJSONHelp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KSJSONHelp.h; path = Source/KSJSONHelp.h; sourceTree = SOURCE_ROOT; };
+		3CBC20AD1BBD95C40007DC65 /* KSMirror.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KSMirror.swift; path = Source/KSMirror.swift; sourceTree = SOURCE_ROOT; };
+		3CBC20AE1BBD95C40007DC65 /* NSObject+JSONHelp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSObject+JSONHelp.swift"; path = "Source/NSObject+JSONHelp.swift"; sourceTree = SOURCE_ROOT; };
+		3CBC20B61BBD95EB0007DC65 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		3CD3C45A1B9216DD00CE1FBF /* KSJSONHelpTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KSJSONHelpTests.swift; sourceTree = "<group>"; };
-		3CD3C4741B92178600CE1FBF /* KSMirror.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSMirror.swift; sourceTree = "<group>"; };
-		3CD3C4761B9217D800CE1FBF /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
-		3CD3C4781B921A2300CE1FBF /* NSObject+JSONHelp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+JSONHelp.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,11 +70,6 @@
 		3C808CD81B9601B7008F0ED7 /* KSJSONHelp-Demo */ = {
 			isa = PBXGroup;
 			children = (
-				3C808CD91B9601B7008F0ED7 /* AppDelegate.swift */,
-				3C808CDA1B9601B7008F0ED7 /* Assets.xcassets */,
-				3C808CDB1B9601B7008F0ED7 /* LaunchScreen.storyboard */,
-				3C808CDD1B9601B7008F0ED7 /* Main.storyboard */,
-				3C808CE01B9601B7008F0ED7 /* ViewController.swift */,
 			);
 			path = "KSJSONHelp-Demo";
 			sourceTree = SOURCE_ROOT;
@@ -81,16 +77,23 @@
 		3C808CE91B96023A008F0ED7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				3C808CE71B96022D008F0ED7 /* Info.plist */,
+				3C808CD91B9601B7008F0ED7 /* AppDelegate.swift */,
+				3C808CDA1B9601B7008F0ED7 /* Assets.xcassets */,
+				3C808CDB1B9601B7008F0ED7 /* LaunchScreen.storyboard */,
+				3C808CDD1B9601B7008F0ED7 /* Main.storyboard */,
+				3C808CE01B9601B7008F0ED7 /* ViewController.swift */,
+				3CBC20B61BBD95EB0007DC65 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			path = KSJSONHelp;
 			sourceTree = "<group>";
 		};
 		3CD3C4391B9216DD00CE1FBF = {
 			isa = PBXGroup;
 			children = (
 				3C0936941B93054400F05323 /* MyPlayground.playground */,
-				3CD3C4441B9216DD00CE1FBF /* KSJSONHelp */,
+				3CD3C4441B9216DD00CE1FBF /* Source */,
+				3C808CE91B96023A008F0ED7 /* Supporting Files */,
 				3C808CD81B9601B7008F0ED7 /* KSJSONHelp-Demo */,
 				3CD3C4591B9216DD00CE1FBF /* KSJSONHelpTests */,
 				3CD3C4431B9216DD00CE1FBF /* Products */,
@@ -106,15 +109,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		3CD3C4441B9216DD00CE1FBF /* KSJSONHelp */ = {
+		3CD3C4441B9216DD00CE1FBF /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				3C808CB81B95FF4D008F0ED7 /* KSJSONHelp.h */,
-				3CD3C4781B921A2300CE1FBF /* NSObject+JSONHelp.swift */,
-				3CD3C4761B9217D800CE1FBF /* Helpers.swift */,
-				3CD3C4741B92178600CE1FBF /* KSMirror.swift */,
-				3C808CE91B96023A008F0ED7 /* Supporting Files */,
+				3CBC20AA1BBD95C40007DC65 /* Helpers.swift */,
+				3CBC20AC1BBD95C40007DC65 /* KSJSONHelp.h */,
+				3CBC20AD1BBD95C40007DC65 /* KSMirror.swift */,
+				3CBC20AE1BBD95C40007DC65 /* NSObject+JSONHelp.swift */,
 			);
+			name = Source;
 			path = KSJSONHelp;
 			sourceTree = "<group>";
 		};
@@ -133,7 +136,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C808CB91B95FF4D008F0ED7 /* KSJSONHelp.h in Headers */,
+				3CBC20B11BBD95C40007DC65 /* KSJSONHelp.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,6 +222,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CBC20B71BBD95EB0007DC65 /* Info.plist in Resources */,
 				3C808CE41B9601B7008F0ED7 /* Main.storyboard in Resources */,
 				3C808CE21B9601B7008F0ED7 /* Assets.xcassets in Resources */,
 				3C808CE31B9601B7008F0ED7 /* LaunchScreen.storyboard in Resources */,
@@ -239,11 +243,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CBC20B31BBD95C40007DC65 /* NSObject+JSONHelp.swift in Sources */,
 				3C808CE61B9601B7008F0ED7 /* ViewController.swift in Sources */,
+				3CBC20B21BBD95C40007DC65 /* KSMirror.swift in Sources */,
+				3CBC20AF1BBD95C40007DC65 /* Helpers.swift in Sources */,
 				3C808CE11B9601B7008F0ED7 /* AppDelegate.swift in Sources */,
-				3C808CD41B960000008F0ED7 /* NSObject+JSONHelp.swift in Sources */,
-				3C808CD51B960000008F0ED7 /* Helpers.swift in Sources */,
-				3C808CD61B960000008F0ED7 /* KSMirror.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,7 +276,8 @@
 				3C808CDC1B9601B7008F0ED7 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
+			path = "KSJSONHelp-Demo";
+			sourceTree = SOURCE_ROOT;
 		};
 		3C808CDD1B9601B7008F0ED7 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -280,7 +285,8 @@
 				3C808CDE1B9601B7008F0ED7 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
+			path = "KSJSONHelp-Demo";
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXVariantGroup section */
 
