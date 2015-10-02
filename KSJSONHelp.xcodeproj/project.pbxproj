@@ -7,22 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3C808CC01B95FF4D008F0ED7 /* KSJSONHelp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C808CB61B95FF4D008F0ED7 /* KSJSONHelp.framework */; };
-		3C808CD71B960049008F0ED7 /* KSJSONHelpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD3C45A1B9216DD00CE1FBF /* KSJSONHelpTests.swift */; };
 		3C808CE11B9601B7008F0ED7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C808CD91B9601B7008F0ED7 /* AppDelegate.swift */; };
-		3C808CE21B9601B7008F0ED7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C808CDA1B9601B7008F0ED7 /* Assets.xcassets */; };
-		3C808CE31B9601B7008F0ED7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C808CDB1B9601B7008F0ED7 /* LaunchScreen.storyboard */; };
-		3C808CE41B9601B7008F0ED7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C808CDD1B9601B7008F0ED7 /* Main.storyboard */; };
 		3C808CE61B9601B7008F0ED7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C808CE01B9601B7008F0ED7 /* ViewController.swift */; };
+		3C85C8201BBE66E600E2F488 /* AppDelegate.swift in Resources */ = {isa = PBXBuildFile; fileRef = 3C808CD91B9601B7008F0ED7 /* AppDelegate.swift */; };
+		3C85C8211BBE66E600E2F488 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C808CDA1B9601B7008F0ED7 /* Assets.xcassets */; };
+		3C85C8221BBE66E600E2F488 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C808CDB1B9601B7008F0ED7 /* LaunchScreen.storyboard */; };
+		3C85C8231BBE66E600E2F488 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C808CDD1B9601B7008F0ED7 /* Main.storyboard */; };
+		3C85C8241BBE66E600E2F488 /* ViewController.swift in Resources */ = {isa = PBXBuildFile; fileRef = 3C808CE01B9601B7008F0ED7 /* ViewController.swift */; };
+		3C85C8251BBE66E600E2F488 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3CBC20B61BBD95EB0007DC65 /* Info.plist */; };
+		3C85C83E1BBE6B2600E2F488 /* KSJSONHelp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C808CB61B95FF4D008F0ED7 /* KSJSONHelp.framework */; settings = {ASSET_TAGS = (); ATTRIBUTES = (Required, ); }; };
+		3C85C8441BBE6C3500E2F488 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C85C81D1BBE659100E2F488 /* Info.plist */; settings = {ASSET_TAGS = (); }; };
+		3C85C84F1BBE6DF500E2F488 /* KSJSONHelpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C85C83B1BBE6B2600E2F488 /* KSJSONHelpTests.swift */; };
 		3CBC20AF1BBD95C40007DC65 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC20AA1BBD95C40007DC65 /* Helpers.swift */; settings = {ASSET_TAGS = (); }; };
-		3CBC20B11BBD95C40007DC65 /* KSJSONHelp.h in Headers */ = {isa = PBXBuildFile; fileRef = 3CBC20AC1BBD95C40007DC65 /* KSJSONHelp.h */; settings = {ASSET_TAGS = (); }; };
+		3CBC20B11BBD95C40007DC65 /* KSJSONHelp.h in Headers */ = {isa = PBXBuildFile; fileRef = 3CBC20AC1BBD95C40007DC65 /* KSJSONHelp.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3CBC20B21BBD95C40007DC65 /* KSMirror.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC20AD1BBD95C40007DC65 /* KSMirror.swift */; settings = {ASSET_TAGS = (); }; };
 		3CBC20B31BBD95C40007DC65 /* NSObject+JSONHelp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC20AE1BBD95C40007DC65 /* NSObject+JSONHelp.swift */; settings = {ASSET_TAGS = (); }; };
-		3CBC20B71BBD95EB0007DC65 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3CBC20B61BBD95EB0007DC65 /* Info.plist */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3C808CC11B95FF4D008F0ED7 /* PBXContainerItemProxy */ = {
+		3C85C84D1BBE6D8100E2F488 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3CD3C43A1B9216DD00CE1FBF /* Project object */;
 			proxyType = 1;
@@ -34,18 +37,20 @@
 /* Begin PBXFileReference section */
 		3C0936941B93054400F05323 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 		3C808CB61B95FF4D008F0ED7 /* KSJSONHelp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KSJSONHelp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3C808CBF1B95FF4D008F0ED7 /* KSJSONHelpTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KSJSONHelpTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C808CD91B9601B7008F0ED7 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "KSJSONHelp-Demo/AppDelegate.swift"; sourceTree = SOURCE_ROOT; };
 		3C808CDA1B9601B7008F0ED7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "KSJSONHelp-Demo/Assets.xcassets"; sourceTree = SOURCE_ROOT; };
 		3C808CDC1B9601B7008F0ED7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3C808CDE1B9601B7008F0ED7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3C808CE01B9601B7008F0ED7 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = "KSJSONHelp-Demo/ViewController.swift"; sourceTree = SOURCE_ROOT; };
+		3C85C81D1BBE659100E2F488 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Source/Info.plist; sourceTree = SOURCE_ROOT; };
+		3C85C8391BBE6B2600E2F488 /* KSJSONHelpTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KSJSONHelpTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C85C83B1BBE6B2600E2F488 /* KSJSONHelpTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KSJSONHelpTests.swift; sourceTree = "<group>"; };
+		3C85C83D1BBE6B2600E2F488 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3CBC20AA1BBD95C40007DC65 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Helpers.swift; path = Source/Helpers.swift; sourceTree = SOURCE_ROOT; };
 		3CBC20AC1BBD95C40007DC65 /* KSJSONHelp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KSJSONHelp.h; path = Source/KSJSONHelp.h; sourceTree = SOURCE_ROOT; };
 		3CBC20AD1BBD95C40007DC65 /* KSMirror.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KSMirror.swift; path = Source/KSMirror.swift; sourceTree = SOURCE_ROOT; };
 		3CBC20AE1BBD95C40007DC65 /* NSObject+JSONHelp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSObject+JSONHelp.swift"; path = "Source/NSObject+JSONHelp.swift"; sourceTree = SOURCE_ROOT; };
 		3CBC20B61BBD95EB0007DC65 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
-		3CD3C45A1B9216DD00CE1FBF /* KSJSONHelpTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KSJSONHelpTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,24 +61,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3C808CBC1B95FF4D008F0ED7 /* Frameworks */ = {
+		3C85C8361BBE6B2600E2F488 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C808CC01B95FF4D008F0ED7 /* KSJSONHelp.framework in Frameworks */,
+				3C85C83E1BBE6B2600E2F488 /* KSJSONHelp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3C808CD81B9601B7008F0ED7 /* KSJSONHelp-Demo */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "KSJSONHelp-Demo";
-			sourceTree = SOURCE_ROOT;
-		};
 		3C808CE91B96023A008F0ED7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -88,14 +86,22 @@
 			path = KSJSONHelp;
 			sourceTree = "<group>";
 		};
+		3C85C83A1BBE6B2600E2F488 /* KSJSONHelpTests */ = {
+			isa = PBXGroup;
+			children = (
+				3C85C83B1BBE6B2600E2F488 /* KSJSONHelpTests.swift */,
+				3C85C83D1BBE6B2600E2F488 /* Info.plist */,
+			);
+			path = KSJSONHelpTests;
+			sourceTree = "<group>";
+		};
 		3CD3C4391B9216DD00CE1FBF = {
 			isa = PBXGroup;
 			children = (
 				3C0936941B93054400F05323 /* MyPlayground.playground */,
 				3CD3C4441B9216DD00CE1FBF /* Source */,
 				3C808CE91B96023A008F0ED7 /* Supporting Files */,
-				3C808CD81B9601B7008F0ED7 /* KSJSONHelp-Demo */,
-				3CD3C4591B9216DD00CE1FBF /* KSJSONHelpTests */,
+				3C85C83A1BBE6B2600E2F488 /* KSJSONHelpTests */,
 				3CD3C4431B9216DD00CE1FBF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -104,7 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				3C808CB61B95FF4D008F0ED7 /* KSJSONHelp.framework */,
-				3C808CBF1B95FF4D008F0ED7 /* KSJSONHelpTests.xctest */,
+				3C85C8391BBE6B2600E2F488 /* KSJSONHelpTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -113,20 +119,13 @@
 			isa = PBXGroup;
 			children = (
 				3CBC20AA1BBD95C40007DC65 /* Helpers.swift */,
-				3CBC20AC1BBD95C40007DC65 /* KSJSONHelp.h */,
 				3CBC20AD1BBD95C40007DC65 /* KSMirror.swift */,
 				3CBC20AE1BBD95C40007DC65 /* NSObject+JSONHelp.swift */,
+				3CBC20AC1BBD95C40007DC65 /* KSJSONHelp.h */,
+				3C85C81D1BBE659100E2F488 /* Info.plist */,
 			);
 			name = Source;
 			path = KSJSONHelp;
-			sourceTree = "<group>";
-		};
-		3CD3C4591B9216DD00CE1FBF /* KSJSONHelpTests */ = {
-			isa = PBXGroup;
-			children = (
-				3CD3C45A1B9216DD00CE1FBF /* KSJSONHelpTests.swift */,
-			);
-			path = KSJSONHelpTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,22 +160,22 @@
 			productReference = 3C808CB61B95FF4D008F0ED7 /* KSJSONHelp.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		3C808CBE1B95FF4D008F0ED7 /* KSJSONHelpTests */ = {
+		3C85C8381BBE6B2600E2F488 /* KSJSONHelpTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3C808CD11B95FF4D008F0ED7 /* Build configuration list for PBXNativeTarget "KSJSONHelpTests" */;
+			buildConfigurationList = 3C85C8411BBE6B2600E2F488 /* Build configuration list for PBXNativeTarget "KSJSONHelpTests" */;
 			buildPhases = (
-				3C808CBB1B95FF4D008F0ED7 /* Sources */,
-				3C808CBC1B95FF4D008F0ED7 /* Frameworks */,
-				3C808CBD1B95FF4D008F0ED7 /* Resources */,
+				3C85C8351BBE6B2600E2F488 /* Sources */,
+				3C85C8361BBE6B2600E2F488 /* Frameworks */,
+				3C85C8371BBE6B2600E2F488 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				3C808CC21B95FF4D008F0ED7 /* PBXTargetDependency */,
+				3C85C84E1BBE6D8100E2F488 /* PBXTargetDependency */,
 			);
 			name = KSJSONHelpTests;
 			productName = KSJSONHelpTests;
-			productReference = 3C808CBF1B95FF4D008F0ED7 /* KSJSONHelpTests.xctest */;
+			productReference = 3C85C8391BBE6B2600E2F488 /* KSJSONHelpTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -192,9 +191,8 @@
 					3C808CB51B95FF4D008F0ED7 = {
 						CreatedOnToolsVersion = 7.0;
 					};
-					3C808CBE1B95FF4D008F0ED7 = {
+					3C85C8381BBE6B2600E2F488 = {
 						CreatedOnToolsVersion = 7.0;
-						TestTargetID = 3CD3C4411B9216DD00CE1FBF;
 					};
 				};
 			};
@@ -212,7 +210,7 @@
 			projectRoot = "";
 			targets = (
 				3C808CB51B95FF4D008F0ED7 /* KSJSONHelp */,
-				3C808CBE1B95FF4D008F0ED7 /* KSJSONHelpTests */,
+				3C85C8381BBE6B2600E2F488 /* KSJSONHelpTests */,
 			);
 		};
 /* End PBXProject section */
@@ -222,14 +220,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3CBC20B71BBD95EB0007DC65 /* Info.plist in Resources */,
-				3C808CE41B9601B7008F0ED7 /* Main.storyboard in Resources */,
-				3C808CE21B9601B7008F0ED7 /* Assets.xcassets in Resources */,
-				3C808CE31B9601B7008F0ED7 /* LaunchScreen.storyboard in Resources */,
+				3C85C8201BBE66E600E2F488 /* AppDelegate.swift in Resources */,
+				3C85C8211BBE66E600E2F488 /* Assets.xcassets in Resources */,
+				3C85C8221BBE66E600E2F488 /* LaunchScreen.storyboard in Resources */,
+				3C85C8231BBE66E600E2F488 /* Main.storyboard in Resources */,
+				3C85C8241BBE66E600E2F488 /* ViewController.swift in Resources */,
+				3C85C8251BBE66E600E2F488 /* Info.plist in Resources */,
+				3C85C8441BBE6C3500E2F488 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3C808CBD1B95FF4D008F0ED7 /* Resources */ = {
+		3C85C8371BBE6B2600E2F488 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -251,21 +252,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3C808CBB1B95FF4D008F0ED7 /* Sources */ = {
+		3C85C8351BBE6B2600E2F488 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C808CD71B960049008F0ED7 /* KSJSONHelpTests.swift in Sources */,
+				3C85C84F1BBE6DF500E2F488 /* KSJSONHelpTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		3C808CC21B95FF4D008F0ED7 /* PBXTargetDependency */ = {
+		3C85C84E1BBE6D8100E2F488 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3C808CB51B95FF4D008F0ED7 /* KSJSONHelp */;
-			targetProxy = 3C808CC11B95FF4D008F0ED7 /* PBXContainerItemProxy */;
+			targetProxy = 3C85C84D1BBE6D8100E2F488 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -299,7 +300,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = KSJSONHelp/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -320,7 +321,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = KSJSONHelp/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -333,7 +334,7 @@
 			};
 			name = Release;
 		};
-		3C808CD21B95FF4D008F0ED7 /* Debug */ = {
+		3C85C8421BBE6B2600E2F488 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = KSJSONHelpTests/Info.plist;
@@ -341,11 +342,10 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = king.KSJSONHelpTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KSJSONHelp1.app/KSJSONHelp1";
 			};
 			name = Debug;
 		};
-		3C808CD31B95FF4D008F0ED7 /* Release */ = {
+		3C85C8431BBE6B2600E2F488 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = KSJSONHelpTests/Info.plist;
@@ -353,7 +353,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = king.KSJSONHelpTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KSJSONHelp1.app/KSJSONHelp1";
 			};
 			name = Release;
 		};
@@ -450,14 +449,13 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3C808CD11B95FF4D008F0ED7 /* Build configuration list for PBXNativeTarget "KSJSONHelpTests" */ = {
+		3C85C8411BBE6B2600E2F488 /* Build configuration list for PBXNativeTarget "KSJSONHelpTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3C808CD21B95FF4D008F0ED7 /* Debug */,
-				3C808CD31B95FF4D008F0ED7 /* Release */,
+				3C85C8421BBE6B2600E2F488 /* Debug */,
+				3C85C8431BBE6B2600E2F488 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 		3CD3C43D1B9216DD00CE1FBF /* Build configuration list for PBXProject "KSJSONHelp" */ = {
 			isa = XCConfigurationList;
