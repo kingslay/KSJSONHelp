@@ -8,7 +8,7 @@
   "authors": {"kingslay": "kingslay@icloud.com"},
   "source": {
 	  "git": "https://github.com/kingslay/KSJSONHelp.git",
-	  "tag": "03"
+	  "tag": "0.3"
 	  },
  "platforms": {
     "ios": "8.0"
