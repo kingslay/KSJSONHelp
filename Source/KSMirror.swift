@@ -14,16 +14,7 @@ public struct KSMirrorItem {
     public let value: Any
     public let disposition: _MirrorDisposition
     public var superMirror: KSMirror?
-
-    public var isClass: Bool {
-        return disposition == _MirrorDisposition.Class
-    }
-    public var isArray: Bool {
-        return disposition == _MirrorDisposition.IndexContainer
-    }
-    public var isOptional: Bool {
-        return disposition == _MirrorDisposition.Optional
-    }
+    
     init(_ tup: (String, _MirrorType)) {
         self.name = tup.0
         self.type = tup.1.valueType
@@ -49,9 +40,17 @@ extension KSMirrorItem : CustomStringConvertible {
         return "\(name): \(type) = \(value)"
     }
 }
-
-//MARK: -
-
+extension KSMirrorItem  {
+    public var isClass: Bool {
+        return disposition == _MirrorDisposition.Class
+    }
+    public var isArray: Bool {
+        return disposition == _MirrorDisposition.IndexContainer
+    }
+    public var isOptional: Bool {
+        return disposition == _MirrorDisposition.Optional
+    }
+}
 public struct KSMirror {
     
     private let mirror: _MirrorType
@@ -62,7 +61,6 @@ public struct KSMirror {
     public init (_ mirror: _MirrorType) {
         self.mirror = mirror
     }
-    
     
     public var isClass: Bool {
         return mirror.objectIdentifier != nil
@@ -76,9 +74,9 @@ public struct KSMirror {
     public var childrenCount: Int {
         return mirror.count
     }
-    
-    //MARK: - Children Inpection
-    
+}
+//MARK: - Children Inpection
+extension KSMirror {
     /// Properties Names
     public var names: [String] {
         return map { $0.name }
@@ -103,9 +101,9 @@ public struct KSMirror {
     public var children: [KSMirrorItem] {
         return map { $0 }
     }
-    
-    //MARK: - Quering
-    
+}
+//MARK: - Quering
+extension KSMirror {
     /// Returns a property value for a property name
     public subscript (key: String) -> Any? {
         let res = findFirst(self) { $0.name == key }
@@ -118,7 +116,10 @@ public struct KSMirror {
         let res = findFirst(self) { $0.name == key }
         return res.flatMap { $0.value as? U }
     }
-    
+
+}
+// MARK: - Converting
+extension KSMirror {
     /// Convert to a dicitonary with [PropertyName : PropertyValue] notation
     public var toDictionary: [String : Any] {
         
@@ -142,7 +143,6 @@ public struct KSMirror {
         return result
     }
 }
-
 extension KSMirror : CollectionType, SequenceType {
     
     public func generate() -> IndexingGenerator<[KSMirrorItem]> {

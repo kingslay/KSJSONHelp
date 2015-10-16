@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C09B7221BD15F2C000D3273 /* KSJSONHelp_OSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C09B7181BD15F2C000D3273 /* KSJSONHelp_OSX.framework */; settings = {ASSET_TAGS = (); }; };
+		3C09B72F1BD15F50000D3273 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC20AA1BBD95C40007DC65 /* Helpers.swift */; settings = {ASSET_TAGS = (); }; };
+		3C09B7301BD15F53000D3273 /* KSMirror.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC20AD1BBD95C40007DC65 /* KSMirror.swift */; settings = {ASSET_TAGS = (); }; };
+		3C09B7311BD15F57000D3273 /* NSObject+JSONHelp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC20AE1BBD95C40007DC65 /* NSObject+JSONHelp.swift */; settings = {ASSET_TAGS = (); }; };
+		3C09B7321BD15F5A000D3273 /* KSJSONHelp.h in Headers */ = {isa = PBXBuildFile; fileRef = 3CBC20AC1BBD95C40007DC65 /* KSJSONHelp.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3C808CE11B9601B7008F0ED7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C808CD91B9601B7008F0ED7 /* AppDelegate.swift */; };
 		3C808CE61B9601B7008F0ED7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C808CE01B9601B7008F0ED7 /* ViewController.swift */; };
 		3C85C8201BBE66E600E2F488 /* AppDelegate.swift in Resources */ = {isa = PBXBuildFile; fileRef = 3C808CD91B9601B7008F0ED7 /* AppDelegate.swift */; };
@@ -25,6 +30,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		3C09B7231BD15F2C000D3273 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3CD3C43A1B9216DD00CE1FBF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3C09B7171BD15F2C000D3273;
+			remoteInfo = "KSJSONHelp-OSX";
+		};
 		3C85C84D1BBE6D8100E2F488 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3CD3C43A1B9216DD00CE1FBF /* Project object */;
@@ -36,6 +48,8 @@
 
 /* Begin PBXFileReference section */
 		3C0936941B93054400F05323 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
+		3C09B7181BD15F2C000D3273 /* KSJSONHelp_OSX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KSJSONHelp_OSX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C09B7211BD15F2C000D3273 /* KSJSONHelp_OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KSJSONHelp_OSXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C808CB61B95FF4D008F0ED7 /* KSJSONHelp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KSJSONHelp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C808CD91B9601B7008F0ED7 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "KSJSONHelp-Demo/AppDelegate.swift"; sourceTree = SOURCE_ROOT; };
 		3C808CDA1B9601B7008F0ED7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "KSJSONHelp-Demo/Assets.xcassets"; sourceTree = SOURCE_ROOT; };
@@ -54,6 +68,21 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3C09B7141BD15F2C000D3273 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3C09B71E1BD15F2C000D3273 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C09B7221BD15F2C000D3273 /* KSJSONHelp_OSX.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3C808CB21B95FF4D008F0ED7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -111,6 +140,8 @@
 			children = (
 				3C808CB61B95FF4D008F0ED7 /* KSJSONHelp.framework */,
 				3C85C8391BBE6B2600E2F488 /* KSJSONHelpTests.xctest */,
+				3C09B7181BD15F2C000D3273 /* KSJSONHelp_OSX.framework */,
+				3C09B7211BD15F2C000D3273 /* KSJSONHelp_OSXTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -131,6 +162,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		3C09B7151BD15F2C000D3273 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C09B7321BD15F5A000D3273 /* KSJSONHelp.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3C808CB31B95FF4D008F0ED7 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -142,6 +181,42 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		3C09B7171BD15F2C000D3273 /* KSJSONHelp_OSX */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3C09B72D1BD15F2C000D3273 /* Build configuration list for PBXNativeTarget "KSJSONHelp_OSX" */;
+			buildPhases = (
+				3C09B7131BD15F2C000D3273 /* Sources */,
+				3C09B7141BD15F2C000D3273 /* Frameworks */,
+				3C09B7151BD15F2C000D3273 /* Headers */,
+				3C09B7161BD15F2C000D3273 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KSJSONHelp_OSX;
+			productName = "KSJSONHelp-OSX";
+			productReference = 3C09B7181BD15F2C000D3273 /* KSJSONHelp_OSX.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		3C09B7201BD15F2C000D3273 /* KSJSONHelp_OSXTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3C09B72E1BD15F2C000D3273 /* Build configuration list for PBXNativeTarget "KSJSONHelp_OSXTests" */;
+			buildPhases = (
+				3C09B71D1BD15F2C000D3273 /* Sources */,
+				3C09B71E1BD15F2C000D3273 /* Frameworks */,
+				3C09B71F1BD15F2C000D3273 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3C09B7241BD15F2C000D3273 /* PBXTargetDependency */,
+			);
+			name = KSJSONHelp_OSXTests;
+			productName = "KSJSONHelp-OSXTests";
+			productReference = 3C09B7211BD15F2C000D3273 /* KSJSONHelp_OSXTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		3C808CB51B95FF4D008F0ED7 /* KSJSONHelp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3C808CCD1B95FF4D008F0ED7 /* Build configuration list for PBXNativeTarget "KSJSONHelp" */;
@@ -188,6 +263,12 @@
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = king;
 				TargetAttributes = {
+					3C09B7171BD15F2C000D3273 = {
+						CreatedOnToolsVersion = 7.0;
+					};
+					3C09B7201BD15F2C000D3273 = {
+						CreatedOnToolsVersion = 7.0;
+					};
 					3C808CB51B95FF4D008F0ED7 = {
 						CreatedOnToolsVersion = 7.0;
 					};
@@ -211,11 +292,27 @@
 			targets = (
 				3C808CB51B95FF4D008F0ED7 /* KSJSONHelp */,
 				3C85C8381BBE6B2600E2F488 /* KSJSONHelpTests */,
+				3C09B7171BD15F2C000D3273 /* KSJSONHelp_OSX */,
+				3C09B7201BD15F2C000D3273 /* KSJSONHelp_OSXTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3C09B7161BD15F2C000D3273 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3C09B71F1BD15F2C000D3273 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3C808CB41B95FF4D008F0ED7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -240,6 +337,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3C09B7131BD15F2C000D3273 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C09B7301BD15F53000D3273 /* KSMirror.swift in Sources */,
+				3C09B72F1BD15F50000D3273 /* Helpers.swift in Sources */,
+				3C09B7311BD15F57000D3273 /* NSObject+JSONHelp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3C09B71D1BD15F2C000D3273 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3C808CB11B95FF4D008F0ED7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -263,6 +377,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3C09B7241BD15F2C000D3273 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3C09B7171BD15F2C000D3273 /* KSJSONHelp_OSX */;
+			targetProxy = 3C09B7231BD15F2C000D3273 /* PBXContainerItemProxy */;
+		};
 		3C85C84E1BBE6D8100E2F488 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3C808CB51B95FF4D008F0ED7 /* KSJSONHelp */;
@@ -292,6 +411,78 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		3C09B7291BD15F2C000D3273 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "king.KSJSONHelp-OSX";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		3C09B72A1BD15F2C000D3273 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "king.KSJSONHelp-OSX";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		3C09B72B1BD15F2C000D3273 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "KSJSONHelp-OSXTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "king.KSJSONHelp-OSXTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		3C09B72C1BD15F2C000D3273 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "KSJSONHelp-OSXTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "king.KSJSONHelp-OSXTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 		3C808CCE1B95FF4D008F0ED7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -440,6 +631,22 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3C09B72D1BD15F2C000D3273 /* Build configuration list for PBXNativeTarget "KSJSONHelp_OSX" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3C09B7291BD15F2C000D3273 /* Debug */,
+				3C09B72A1BD15F2C000D3273 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		3C09B72E1BD15F2C000D3273 /* Build configuration list for PBXNativeTarget "KSJSONHelp_OSXTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3C09B72B1BD15F2C000D3273 /* Debug */,
+				3C09B72C1BD15F2C000D3273 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		3C808CCD1B95FF4D008F0ED7 /* Build configuration list for PBXNativeTarget "KSJSONHelp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -456,6 +663,7 @@
 				3C85C8431BBE6B2600E2F488 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3CD3C43D1B9216DD00CE1FBF /* Build configuration list for PBXProject "KSJSONHelp" */ = {
 			isa = XCConfigurationList;
