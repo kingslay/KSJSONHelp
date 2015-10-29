@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3C09B7221BD15F2C000D3273 /* KSJSONHelp_OSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C09B7181BD15F2C000D3273 /* KSJSONHelp_OSX.framework */; settings = {ASSET_TAGS = (); }; };
-		3C09B72F1BD15F50000D3273 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC20AA1BBD95C40007DC65 /* Helpers.swift */; settings = {ASSET_TAGS = (); }; };
-		3C09B7301BD15F53000D3273 /* KSMirror.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC20AD1BBD95C40007DC65 /* KSMirror.swift */; settings = {ASSET_TAGS = (); }; };
-		3C09B7311BD15F57000D3273 /* NSObject+JSONHelp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC20AE1BBD95C40007DC65 /* NSObject+JSONHelp.swift */; settings = {ASSET_TAGS = (); }; };
+		3C09B7221BD15F2C000D3273 /* KSJSONHelp_OSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C09B7181BD15F2C000D3273 /* KSJSONHelp_OSX.framework */; };
+		3C09B72F1BD15F50000D3273 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC20AA1BBD95C40007DC65 /* Helpers.swift */; };
+		3C09B7301BD15F53000D3273 /* KSMirror.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC20AD1BBD95C40007DC65 /* KSMirror.swift */; };
+		3C09B7311BD15F57000D3273 /* NSObject+JSONHelp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC20AE1BBD95C40007DC65 /* NSObject+JSONHelp.swift */; };
 		3C09B7321BD15F5A000D3273 /* KSJSONHelp.h in Headers */ = {isa = PBXBuildFile; fileRef = 3CBC20AC1BBD95C40007DC65 /* KSJSONHelp.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3C808CE11B9601B7008F0ED7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C808CD91B9601B7008F0ED7 /* AppDelegate.swift */; };
 		3C808CE61B9601B7008F0ED7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C808CE01B9601B7008F0ED7 /* ViewController.swift */; };
@@ -20,13 +20,16 @@
 		3C85C8231BBE66E600E2F488 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C808CDD1B9601B7008F0ED7 /* Main.storyboard */; };
 		3C85C8241BBE66E600E2F488 /* ViewController.swift in Resources */ = {isa = PBXBuildFile; fileRef = 3C808CE01B9601B7008F0ED7 /* ViewController.swift */; };
 		3C85C8251BBE66E600E2F488 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3CBC20B61BBD95EB0007DC65 /* Info.plist */; };
-		3C85C83E1BBE6B2600E2F488 /* KSJSONHelp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C808CB61B95FF4D008F0ED7 /* KSJSONHelp.framework */; settings = {ASSET_TAGS = (); ATTRIBUTES = (Required, ); }; };
-		3C85C8441BBE6C3500E2F488 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C85C81D1BBE659100E2F488 /* Info.plist */; settings = {ASSET_TAGS = (); }; };
+		3C85C83E1BBE6B2600E2F488 /* KSJSONHelp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C808CB61B95FF4D008F0ED7 /* KSJSONHelp.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		3C85C8441BBE6C3500E2F488 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C85C81D1BBE659100E2F488 /* Info.plist */; };
 		3C85C84F1BBE6DF500E2F488 /* KSJSONHelpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C85C83B1BBE6B2600E2F488 /* KSJSONHelpTests.swift */; };
-		3CBC20AF1BBD95C40007DC65 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC20AA1BBD95C40007DC65 /* Helpers.swift */; settings = {ASSET_TAGS = (); }; };
+		3CBC20AF1BBD95C40007DC65 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC20AA1BBD95C40007DC65 /* Helpers.swift */; };
 		3CBC20B11BBD95C40007DC65 /* KSJSONHelp.h in Headers */ = {isa = PBXBuildFile; fileRef = 3CBC20AC1BBD95C40007DC65 /* KSJSONHelp.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3CBC20B21BBD95C40007DC65 /* KSMirror.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC20AD1BBD95C40007DC65 /* KSMirror.swift */; settings = {ASSET_TAGS = (); }; };
-		3CBC20B31BBD95C40007DC65 /* NSObject+JSONHelp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC20AE1BBD95C40007DC65 /* NSObject+JSONHelp.swift */; settings = {ASSET_TAGS = (); }; };
+		3CBC20B21BBD95C40007DC65 /* KSMirror.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC20AD1BBD95C40007DC65 /* KSMirror.swift */; };
+		3CBC20B31BBD95C40007DC65 /* NSObject+JSONHelp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC20AE1BBD95C40007DC65 /* NSObject+JSONHelp.swift */; };
+		CBC633D61BE1B8D0003F9F8F /* NSObject+JSONHelp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC20AE1BBD95C40007DC65 /* NSObject+JSONHelp.swift */; };
+		CBC633D71BE1B8DC003F9F8F /* KSMirror.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC20AD1BBD95C40007DC65 /* KSMirror.swift */; };
+		CBC633D81BE1B8DF003F9F8F /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC20AA1BBD95C40007DC65 /* Helpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -370,7 +373,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBC633D61BE1B8D0003F9F8F /* NSObject+JSONHelp.swift in Sources */,
+				CBC633D71BE1B8DC003F9F8F /* KSMirror.swift in Sources */,
 				3C85C84F1BBE6DF500E2F488 /* KSJSONHelpTests.swift in Sources */,
+				CBC633D81BE1B8DF003F9F8F /* Helpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -638,6 +644,7 @@
 				3C09B72A1BD15F2C000D3273 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3C09B72E1BD15F2C000D3273 /* Build configuration list for PBXNativeTarget "KSJSONHelp_OSXTests" */ = {
 			isa = XCConfigurationList;
@@ -646,6 +653,7 @@
 				3C09B72C1BD15F2C000D3273 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3C808CCD1B95FF4D008F0ED7 /* Build configuration list for PBXNativeTarget "KSJSONHelp" */ = {
 			isa = XCConfigurationList;
