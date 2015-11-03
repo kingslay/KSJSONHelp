@@ -151,3 +151,21 @@ extension NSObject {
         return "\(value)"
     }
 }
+///保存数组数据到NSUserDefaults
+extension NSObject {
+    public class func objectArrayForKey(defaultName: String) -> [NSObject]? {
+        if let objectArray = NSUserDefaults.standardUserDefaults().arrayForKey(defaultName) {
+            var object :[NSObject] = []
+            objectArray.forEach{object.append(toModel($0 as! NSDictionary))}
+            return object
+        }else{
+            return nil
+        }
+    }
+    public class func setObjectArray(objectArray: [NSObject], forKey defaultName: String) {
+        var object :[NSDictionary] = []
+        objectArray.forEach{object.append($0.toDictionary())}
+        NSUserDefaults.standardUserDefaults().setValue(object, forKey: defaultName)
+    }
+}
+

@@ -107,6 +107,18 @@ class KSJSONHelpTests: XCTestCase {
         print(dic)
         
     }
+    func testNSUserDefault() {
+        // This is an example of a functional test case.
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        let person = Person3(name: "wang", age: 30)
+        person.books = ["a","b"]
+        person.child = [ Person(name: "xiaowang", age: 1) ]
+        Person3.setObjectArray([person], forKey: "person")
+        let personArray = Person3.objectArrayForKey("person")
+        assert(personArray![0].toDictionary() == person.toDictionary())
+        print(personArray![0].toDictionary())
+        
+    }
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measureBlock {

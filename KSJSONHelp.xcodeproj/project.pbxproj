@@ -30,6 +30,8 @@
 		CBC633D61BE1B8D0003F9F8F /* NSObject+JSONHelp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC20AE1BBD95C40007DC65 /* NSObject+JSONHelp.swift */; };
 		CBC633D71BE1B8DC003F9F8F /* KSMirror.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC20AD1BBD95C40007DC65 /* KSMirror.swift */; };
 		CBC633D81BE1B8DF003F9F8F /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC20AA1BBD95C40007DC65 /* Helpers.swift */; };
+		CBE9E7C71BE89B6100CE922B /* NSUserDefaults+JSONHelp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE9E7C61BE89B6100CE922B /* NSUserDefaults+JSONHelp.swift */; };
+		CBE9E7C81BE89DC900CE922B /* NSUserDefaults+JSONHelp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE9E7C61BE89B6100CE922B /* NSUserDefaults+JSONHelp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +70,7 @@
 		3CBC20AD1BBD95C40007DC65 /* KSMirror.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KSMirror.swift; path = Source/KSMirror.swift; sourceTree = SOURCE_ROOT; };
 		3CBC20AE1BBD95C40007DC65 /* NSObject+JSONHelp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSObject+JSONHelp.swift"; path = "Source/NSObject+JSONHelp.swift"; sourceTree = SOURCE_ROOT; };
 		3CBC20B61BBD95EB0007DC65 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
+		CBE9E7C61BE89B6100CE922B /* NSUserDefaults+JSONHelp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSUserDefaults+JSONHelp.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +158,7 @@
 				3CBC20AA1BBD95C40007DC65 /* Helpers.swift */,
 				3CBC20AD1BBD95C40007DC65 /* KSMirror.swift */,
 				3CBC20AE1BBD95C40007DC65 /* NSObject+JSONHelp.swift */,
+				CBE9E7C61BE89B6100CE922B /* NSUserDefaults+JSONHelp.swift */,
 				3CBC20AC1BBD95C40007DC65 /* KSJSONHelp.h */,
 				3C85C81D1BBE659100E2F488 /* Info.plist */,
 			);
@@ -365,6 +369,7 @@
 				3C808CE61B9601B7008F0ED7 /* ViewController.swift in Sources */,
 				3CBC20B21BBD95C40007DC65 /* KSMirror.swift in Sources */,
 				3CBC20AF1BBD95C40007DC65 /* Helpers.swift in Sources */,
+				CBE9E7C71BE89B6100CE922B /* NSUserDefaults+JSONHelp.swift in Sources */,
 				3C808CE11B9601B7008F0ED7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -376,6 +381,7 @@
 				CBC633D61BE1B8D0003F9F8F /* NSObject+JSONHelp.swift in Sources */,
 				CBC633D71BE1B8DC003F9F8F /* KSMirror.swift in Sources */,
 				3C85C84F1BBE6DF500E2F488 /* KSJSONHelpTests.swift in Sources */,
+				CBE9E7C81BE89DC900CE922B /* NSUserDefaults+JSONHelp.swift in Sources */,
 				CBC633D81BE1B8DF003F9F8F /* Helpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
