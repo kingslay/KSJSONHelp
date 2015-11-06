@@ -28,6 +28,9 @@ extension NSObject {
             var key = item.name
             key = mappingDict?[key] ?? key
             if let value = dict[key] {
+                if value is NSNull {
+                    continue
+                }
                 if value is NSArray {
                     let genericType = NSObject.genericType(item)
                     let arrM = NSMutableArray()
@@ -148,7 +151,7 @@ extension NSObject {
         }else if value is UInt64 {
             return NSNumber(unsignedLongLong: value as! UInt64)
         }
-        return "\(value)"
+        return value as! AnyObject
     }
 }
 ///保存数组数据到NSUserDefaults
