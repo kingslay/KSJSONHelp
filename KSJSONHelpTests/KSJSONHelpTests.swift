@@ -69,7 +69,7 @@ class KSJSONHelpTests: XCTestCase {
         person.sex = true
         let dic = person.toDictionary()
         let personNew = Person.toModel(dic)
-        assert(dic == personNew.toDictionary())
+        assert(dic == personNew.toDictionary() as NSDictionary)
         print(dic)
     }
     func testOptionalAggregate() {
@@ -78,7 +78,7 @@ class KSJSONHelpTests: XCTestCase {
         let person = Person1(name: "wang", age: 30)
         let dic = person.toDictionary()
         let personNew = Person1.toModel(dic)
-        assert(dic == personNew.toDictionary())
+        assert(dic == personNew.toDictionary() as NSDictionary)
         print(dic)
     }
     
@@ -91,7 +91,7 @@ class KSJSONHelpTests: XCTestCase {
         person.child = [ Person(name: "xiaowang", age: 1) ]
         let dic = person.toDictionary()
         let personNew = Person2.toModel(dic)
-        assert(dic == personNew.toDictionary())
+        assert(dic == personNew.toDictionary() as NSDictionary)
         print(dic)
 
     }
@@ -103,7 +103,7 @@ class KSJSONHelpTests: XCTestCase {
         person.child = [ Person(name: "xiaowang", age: 1) ]
         let dic = person.toDictionary()
         let personNew = Person3.toModel(dic)
-        assert(dic == personNew.toDictionary())
+        assert(dic == personNew.toDictionary() as NSDictionary)
         print(dic)
         
     }
@@ -115,7 +115,7 @@ class KSJSONHelpTests: XCTestCase {
         person.child = [ Person(name: "xiaowang", age: 1) ]
         Person3.setObjectArray([person], forKey: "person")
         let personArray = Person3.objectArrayForKey("person")
-        assert(personArray![0].toDictionary() == person.toDictionary())
+        assert(personArray![0].toDictionary() == person.toDictionary() as NSDictionary)
         print(personArray![0].toDictionary())
         
     }

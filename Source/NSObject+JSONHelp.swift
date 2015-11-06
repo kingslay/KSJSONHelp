@@ -10,13 +10,13 @@ import Foundation
 
 extension NSObject {
     /**  一键字典转模型  */
-    public class func toModel(dict: NSDictionary) -> Self{
+    public class func toModel(dict: [String : AnyObject]) -> Self{
         let model = self.init()
         let mirror = KSMirror(model)
         model.toModel(mirror,dict: dict)
         return model
     }
-    private func toModel(mirror: KSMirror,dict: NSDictionary){
+    private func toModel(mirror: KSMirror,dict: [String : AnyObject]){
         let mappingDict = self.mappingDict()
         for item in mirror {
             if item.name == "super" {
@@ -43,17 +43,17 @@ extension NSObject {
     }
     
     
-    public class func toModels(array: NSArray) -> [NSObject]{
+    public class func toModels(array: [[String : AnyObject]]) -> [NSObject]{
         var models: [NSObject] = []
         
         for value in array {
-            models.append(self.toModel(value as! NSDictionary))
+            models.append(self.toModel(value))
         }
         return models
     }
     
     /**  一键模型转字典  */
-    public func toDictionary() -> NSDictionary{
+    public func toDictionary() -> [String : AnyObject]{
         return toDictionary(KSMirror(self))
     }
     private func toDictionary(mirror: KSMirror) -> [String : AnyObject]{
@@ -112,8 +112,8 @@ extension NSObject {
             return value as! Double
         }else if type is String.Type || type is Optional<String>.Type || type is NSString.Type || type is Optional<NSString>.Type  {
             return value as! String
-        }else if value is NSDictionary {
-            return (type as! NSObject.Type).toModel(value as! NSDictionary)
+        }else if value is [String : AnyObject] {
+            return (type as! NSObject.Type).toModel(value as! [String : AnyObject])
         }
         return value as! AnyObject
     }
@@ -156,7 +156,7 @@ extension NSObject {
     public class func objectArrayForKey(defaultName: String) -> [NSObject]? {
         if let objectArray = NSUserDefaults.standardUserDefaults().arrayForKey(defaultName) {
             var object :[NSObject] = []
-            objectArray.forEach{object.append(toModel($0 as! NSDictionary))}
+            objectArray.forEach{object.append(toModel($0 as! [String : AnyObject]))}
             return object
         }else{
             return nil
