@@ -72,13 +72,10 @@ extension NSObject {
                 }
                 continue
             }
-            var value = item.value
+            let value = item.value
             if item.isOptional {
-                let valueOptional = value as Any?
-                if valueOptional == nil {
+                if "\(value)" == "nil" {
                     continue
-                }else{
-                    value = valueOptional!
                 }
             }
             dict[item.name] = NSObject.transformValue(value)

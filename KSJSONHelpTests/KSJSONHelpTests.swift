@@ -33,9 +33,8 @@ class Person: NSObject {
 class Person1: NSObject {
     var name: String?
     var age: NSNumber?
+    var city: String?
     override init(){
-        name = ""
-        age = 1
     }
     init(name: String,age: Int) {
         self.name = name
