@@ -28,7 +28,7 @@ extension NSObject {
             var key = item.name
             key = mappingDict?[key] ?? key
             if let value = dict[key] {
-                if value is NSNull {
+                if value is NSNull || "\(value)" == "nil" {
                     continue
                 }
                 if value is NSArray {
@@ -74,7 +74,7 @@ extension NSObject {
             }
             let value = item.value
             if item.isOptional {
-                if "\(value)" == "nil" {
+                if value is NSNull || "\(value)" == "nil" {
                     continue
                 }
             }
