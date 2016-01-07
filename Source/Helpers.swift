@@ -6,14 +6,24 @@
 //
 //
 import Foundation
-func findFirst<S : SequenceType> (s: S, condition: (S.Generator.Element) -> Bool) -> S.Generator.Element? {
-  
-  for value in s {
-    if condition(value) {
-      return value
+internal func findFirst<S : SequenceType> (s: S, condition: (S.Generator.Element) -> Bool) -> S.Generator.Element? {
+    for value in s where condition(value) {
+        return value
     }
-  }
-  return nil
+    return nil
+}
+
+public extension Dictionary where Key: StringLiteralConvertible {
+    /// Initialize from mirror with [PropertyName : PropertyValue] notation.
+    public init(mirror: KSMirror) {
+        self = [:]
+        for item in mirror {
+            guard let label = item.name as? Key,
+                value = item.value as? Value else { continue }
+            
+            self[label] = value
+        }
+    }
 }
 
 extension String{

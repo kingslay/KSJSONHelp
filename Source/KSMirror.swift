@@ -70,8 +70,21 @@ public struct KSMirror {
         return mirror.objectIdentifier == nil
     }
     
-    /// Type properties count
-    public var childrenCount: Int {
+    public subscript (i: Int) -> KSMirrorItem {
+        return KSMirrorItem(mirror[i])
+    }
+}
+extension KSMirror : CollectionType {
+    
+    public func generate() -> IndexingGenerator<KSMirror> {
+        return IndexingGenerator(self)
+    }
+    
+    public var startIndex: Int {
+        return 0
+    }
+    
+    public var endIndex: Int {
         return mirror.count
     }
 }
@@ -96,11 +109,6 @@ extension KSMirror {
     public var typesShortName: [String] {
         return map { ("\($0.type)" as NSString).pathExtension }
     }
-    
-    /// KSMirror types for every children property
-    public var children: [KSMirrorItem] {
-        return map { $0 }
-    }
 }
 //MARK: - Quering
 extension KSMirror {
@@ -117,47 +125,4 @@ extension KSMirror {
         return res.flatMap { $0.value as? U }
     }
 
-}
-// MARK: - Converting
-extension KSMirror {
-    /// Convert to a dicitonary with [PropertyName : PropertyValue] notation
-    public var toDictionary: [String : Any] {
-        
-        var result: [String : Any] = [ : ]
-        for item in self {
-            result[item.name] = item.value
-        }
-        
-        return result
-    }
-    
-    /// Convert to NSDictionary.
-    /// Useful for saving it to Plist
-    public var toNSDictionary: NSDictionary {
-        
-        var result: [String : AnyObject] = [ : ]
-        for item in self {
-            result[item.name] = item.value as? AnyObject
-        }
-        
-        return result
-    }
-}
-extension KSMirror : CollectionType, SequenceType {
-    
-    public func generate() -> IndexingGenerator<[KSMirrorItem]> {
-        return children.generate()
-    }
-    
-    public var startIndex: Int {
-        return 0
-    }
-    
-    public var endIndex: Int {
-        return mirror.count
-    }
-    
-    public subscript (i: Int) -> KSMirrorItem {
-        return KSMirrorItem(mirror[i])
-    }
 }
