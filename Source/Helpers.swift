@@ -40,4 +40,12 @@ extension String{
     
     var floatValue: Float? {return NSNumberFormatter().numberFromString(self)?.floatValue}
     var doubleValue: Double? {return NSNumberFormatter().numberFromString(self)?.doubleValue}
+    
+    
+    @warn_unused_result func quote(mark: Character = "\"") -> String {
+        let escaped = characters.reduce("") { string, character in
+            string + (character == mark ? "\(mark)\(mark)" : "\(character)")
+        }
+        return "\(mark)\(escaped)\(mark)"
+    }
 }

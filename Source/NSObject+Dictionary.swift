@@ -17,7 +17,7 @@ extension NSObject {
         return model
     }
     private func toModel(mirror: KSMirror,dict: [String : AnyObject]){
-        let mappingDict = self.mappingDict()
+        let mappingDict = self.dynamicType.mappingDict()
         for item in mirror {
             if item.name == "super" {
                 if let superMirror = item.superMirror {
@@ -84,7 +84,7 @@ extension NSObject {
     }
     
     /**  字段映射  */
-    public func mappingDict() -> [String: String]? {
+    public class func mappingDict() -> [String: String]? {
         return nil
     }
     /**  数组Element类型截取：截取字符串并返回一个类型  */

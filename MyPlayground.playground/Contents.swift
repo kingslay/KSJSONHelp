@@ -1,7 +1,7 @@
 //: Playground - noun: a place where people can play
 
 import Foundation
-
+import KSJSONHelp_OSX
 @objc(Person)
 class Person: NSObject {
     var name: String
@@ -47,6 +47,7 @@ let person = Person(name: "wang", age: 30)
 person.sex = true
 let dic = person.toDictionary()
 let personNew = Person.toModel(dic)
-assert(dic == personNew.toDictionary())
 print(dic)
+let a = _reflect(person.dynamicType)
+print(a.count)
 
