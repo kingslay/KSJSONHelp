@@ -51,3 +51,27 @@ print(dic)
 let a = _reflect(person.dynamicType)
 print(a.count)
 
+extension SequenceType where Generator.Element : Hashable {
+    func frequencies() -> [Generator.Element:Int] {
+        var results : [Generator.Element:Int] = [:]
+        for element in self {
+            results[element] = (results[element] ?? 0) + 1
+        }
+        return results
+    }
+}
+
+let alpha = [2,8,2,6,1,8,2,6,6]
+let beta = [6,6,6,2,2,2,8,8,1]
+
+let sorted = alpha.frequencies().sort {
+    if $0.1 > $1.1 { // if the frequency is higher, return true
+        return true
+    } else if $0.1 == $1.1 { // if the frequency is equal
+        return $0.0 > $1.0 // return value is higher
+    } else {
+        return false // else return false
+    }
+}
+print(sorted)
+

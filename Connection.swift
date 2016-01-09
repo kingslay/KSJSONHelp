@@ -22,7 +22,7 @@
 // THE SOFTWARE.
 //
 
-import Dispatch
+import Foundation
 import sqlite3
 
 /// A connection to SQLite.
