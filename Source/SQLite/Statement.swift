@@ -102,12 +102,8 @@ public final class Statement {
             sqlite3_bind_int64(handle, Int32(idx), value)
         } else if let value = value as? String {
             sqlite3_bind_text(handle, Int32(idx), value, -1, SQLITE_TRANSIENT)
-        } else if let value = value as? Int {
-            self.bind(value.datatypeValue, atIndex: idx)
-        } else if let value = value as? Bool {
-            self.bind(value.datatypeValue, atIndex: idx)
         } else if let value = value {
-            fatalError("tried to bind unexpected value \(value)")
+            self.bind(value.datatypeValue, atIndex: idx)
         }
     }
 
