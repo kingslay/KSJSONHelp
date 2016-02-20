@@ -21,7 +21,7 @@ class MemoryDriver: Driver {
 		]
 
 
-	func fetchOne(table table: String, filters: [Filter]) -> [String: String]? {
+	func fetchOne(table table: String, filters: [Filter]) -> [String: Binding?]? {
 		print("fetch one \(filters.count) filters on \(table)")
 
 		var id: String?
@@ -29,7 +29,7 @@ class MemoryDriver: Driver {
 		for filter in filters {
 			if let filter = filter as? CompareFilter {
 				if filter.key == "id" { //only working for id
-					id = filter.value
+					id = "\(filter.value)"
 				}
 			}
 		}
@@ -43,11 +43,11 @@ class MemoryDriver: Driver {
 		return nil
 	}
 
-	func fetch(table table: String, filters: [Filter]) -> [[String: String]] {
+	func fetch(table table: String, filters: [Filter]) -> [[String: Binding?]]? {
 		print("fetch \(filters.count) filters on \(table)")
 
 		if let data = self.memory[table] {
-			var all: [[String: String]] = []
+			var all: [[String: Binding?]] = []
 
 			for (key, entity) in data {
 				if key != "metadata" { //hack
@@ -77,19 +77,19 @@ class MemoryDriver: Driver {
 		}
 	}
 
-	func update(table table: String, filters: [Filter], data: [String: String]) {
+	func update(table table: String, filters: [Filter], data: [String: Binding?]) {
 		print("update \(filters.count) filters \(data.count) data points on \(table)")
 
 		//implement me
 	}
 
-	func insert(table table: String, items: [[String: String]]) {
+	func insert(table table: String, items: [[String: Binding?]]) {
 		print("insert \(items.count) items into \(table)")
 
 		//implement me
 	}
 
-	func upsert(table table: String, items: [[String: String]]) {
+	func upsert(table table: String, items: [[String: Binding?]]) {
 		//check if object exists
 		// if does - update
 		// if not - insert
@@ -130,52 +130,12 @@ class MemoryDriver: Driver {
 
 		return count
 	}
-
-	/*func query(query: Query) -> Any? {
-		print("Query")
-
-		switch query.operation {
-		case .Get:
-			print("Get")
-			if let id = query.id {
-				print("id = \(id)")
-				if let data = self.memory[query.table]?[id] {
-					return data
-				}
-			} else {
-				print("all")
-				var data = self.memory[query.table]
-				data?.removeValueForKey("metadata")
-				return data
-			}
-		case .Save:
-			print("Save")
-			if let data = query.data {
-				if let id = query.id {
-					print("id = \(id)")
-					self.memory[query.table]?[id] = data
-				} else {
-					if 
-						let incString = self.memory[query.table]?["metadata"]?["increment"],
-						let inc = Int(incString)
-					{
-						let next = "\(inc + 1)"
-						print("next = \(next)")
-						self.memory[query.table]?["metadata"]?["increment"] = next
-						self.memory[query.table]?[next] = data
-						self.memory[query.table]?[next]?["id"] = next
-					}
-				}
-			}
-		case .Delete:
-			print("Delete")
-			if let id = query.id {
-				print("id = \(id)")
-				self.memory[query.table]?.removeValueForKey(id)
-			}
-		}
-
-		return nil
-	}*/
-
+    func containsTable(table table: String) -> Bool {
+        return true
+    }
+    func createTable(table table: String, sql: String) {
+    }
+    func execute(SQL: String) {
+        
+    }
 }

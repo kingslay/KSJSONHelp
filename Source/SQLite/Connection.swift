@@ -128,7 +128,7 @@ public final class Connection {
     ///
     /// - Throws: `Result.Error` if query execution fails.
     public func execute(SQL: String) throws {
-        try sync { try self.check(sqlite3_exec(self.handle, SQL, nil, nil, nil)) }
+        try Statement(self, SQL).run()
     }
 
     // MARK: - Prepare
@@ -142,22 +142,8 @@ public final class Connection {
     ///   - bindings: A list of parameters to bind to the statement.
     ///
     /// - Returns: A prepared statement.
-    @warn_unused_result public func prepare(statement: String, _ bindings: Binding?...) throws -> Statement {
-        if !bindings.isEmpty { return try prepare(statement, bindings) }
-        return try Statement(self, statement)
-    }
-
-    /// Prepares a single SQL statement and binds parameters to it.
-    ///
-    /// - Parameters:
-    ///
-    ///   - statement: A single SQL statement.
-    ///
-    ///   - bindings: A list of parameters to bind to the statement.
-    ///
-    /// - Returns: A prepared statement.
-    @warn_unused_result public func prepare(statement: String, _ bindings: [Binding?]) throws -> Statement {
-        return try prepare(statement).bind(bindings)
+    @warn_unused_result public func prepare(statement: String, _ bindings: [Binding?] = []) throws -> Statement {
+        return try Statement(self, statement).bind(bindings)
     }
 
     /// Prepares a single SQL statement and binds parameters to it.
@@ -169,101 +155,13 @@ public final class Connection {
     ///   - bindings: A dictionary of named parameters to bind to the statement.
     ///
     /// - Returns: A prepared statement.
-    @warn_unused_result public func prepare(statement: String, _ bindings: [String: Binding?]) throws -> Statement {
-        return try prepare(statement).bind(bindings)
+    @warn_unused_result public func prepare(statement: String, _ bindings: [String: Binding?]?) throws -> Statement {
+        let statement = try prepare(statement)
+        if let bindings = bindings {
+            statement.bind(bindings)
+        }
+        return statement
     }
-
-    // MARK: - Run
-
-    /// Runs a single SQL statement (with optional parameter bindings).
-    ///
-    /// - Parameters:
-    ///
-    ///   - statement: A single SQL statement.
-    ///
-    ///   - bindings: A list of parameters to bind to the statement.
-    ///
-    /// - Throws: `Result.Error` if query execution fails.
-    ///
-    /// - Returns: The statement.
-    public func run(statement: String, _ bindings: Binding?...) throws -> Statement {
-        return try run(statement, bindings)
-    }
-
-    /// Prepares, binds, and runs a single SQL statement.
-    ///
-    /// - Parameters:
-    ///
-    ///   - statement: A single SQL statement.
-    ///
-    ///   - bindings: A list of parameters to bind to the statement.
-    ///
-    /// - Throws: `Result.Error` if query execution fails.
-    ///
-    /// - Returns: The statement.
-    public func run(statement: String, _ bindings: [Binding?]) throws -> Statement {
-        return try prepare(statement).run(bindings)
-    }
-
-    /// Prepares, binds, and runs a single SQL statement.
-    ///
-    /// - Parameters:
-    ///
-    ///   - statement: A single SQL statement.
-    ///
-    ///   - bindings: A dictionary of named parameters to bind to the statement.
-    ///
-    /// - Throws: `Result.Error` if query execution fails.
-    ///
-    /// - Returns: The statement.
-    public func run(statement: String, _ bindings: [String: Binding?]) throws -> Statement {
-        return try prepare(statement).run(bindings)
-    }
-
-    // MARK: - Scalar
-
-    /// Runs a single SQL statement (with optional parameter bindings),
-    /// returning the first value of the first row.
-    ///
-    /// - Parameters:
-    ///
-    ///   - statement: A single SQL statement.
-    ///
-    ///   - bindings: A list of parameters to bind to the statement.
-    ///
-    /// - Returns: The first value of the first row returned.
-    @warn_unused_result public func scalar(statement: String, _ bindings: Binding?...) -> Binding? {
-        return scalar(statement, bindings)
-    }
-
-    /// Runs a single SQL statement (with optional parameter bindings),
-    /// returning the first value of the first row.
-    ///
-    /// - Parameters:
-    ///
-    ///   - statement: A single SQL statement.
-    ///
-    ///   - bindings: A list of parameters to bind to the statement.
-    ///
-    /// - Returns: The first value of the first row returned.
-    @warn_unused_result public func scalar(statement: String, _ bindings: [Binding?]) -> Binding? {
-        return try! prepare(statement).scalar(bindings)
-    }
-
-    /// Runs a single SQL statement (with optional parameter bindings),
-    /// returning the first value of the first row.
-    ///
-    /// - Parameters:
-    ///
-    ///   - statement: A single SQL statement.
-    ///
-    ///   - bindings: A dictionary of named parameters to bind to the statement.
-    ///
-    /// - Returns: The first value of the first row returned.
-    @warn_unused_result public func scalar(statement: String, _ bindings: [String: Binding?]) -> Binding? {
-        return try! prepare(statement).scalar(bindings)
-    }
-
     // MARK: - Transactions
 
     /// The mode in which a transaction acquires a lock.
@@ -326,14 +224,14 @@ public final class Connection {
 
     private func transaction(begin: String, _ block: () throws -> Void, _ commit: String, or rollback: String) throws {
         return try sync {
-            try self.run(begin)
+            try self.execute(begin)
             do {
                 try block()
             } catch {
-                try self.run(rollback)
+                try self.execute(rollback)
                 throw error
             }
-            try self.run(commit)
+            try self.execute(commit)
         }
     }
 
@@ -613,6 +511,20 @@ extension Connection : CustomStringConvertible {
         return String.fromCString(sqlite3_db_filename(handle, nil))!
     }
 
+}
+extension Connection {
+    
+    /**
+     Check if a table exists
+     
+     - parameter tableName:  name of the table
+     
+     - returns:              boolean indicating whether the table exists, or not
+     */
+    public func containsTable(tableName: String) throws -> Bool {
+        let query = "SELECT name FROM sqlite_master WHERE type='table' AND name=?"
+        return try prepare(query, [tableName]).scalar() != nil
+    }
 }
 
 extension Connection.Location : CustomStringConvertible {

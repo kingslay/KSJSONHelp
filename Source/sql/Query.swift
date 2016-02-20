@@ -16,32 +16,32 @@ public class Query<T: Model> {
 	public var results: [T] {
 		var models: [T] = []
 
-		let serializeds = Database.driver.fetch(table: self.table, filters: self.filters)
-		for serialized in serializeds {
-			let model = T(serialized: serialized)
-			models.append(model)
-		}
-
+        if let serializeds = Database.driver.fetch(table: self.table, filters: self.filters) {
+            for serialized in serializeds {
+                let model = T(serialized: serialized)
+                models.append(model)
+            }
+        }
 		return models
 	}
 
-	public func update(data: [String: String]) {
+	public func update(data: [String: Binding?]) {
 		Database.driver.update(table: self.table, filters: self.filters, data: data)
 	}
 
-	public func insert(data: [String: String]) {
+	public func insert(data: [String: Binding?]) {
 		Database.driver.insert(table: self.table, items: [data])
 	}
 
-	public func upsert(data: [[String: String]]) {
+	public func upsert(data: [[String: Binding?]]) {
 		Database.driver.upsert(table: self.table, items: data)
 	}
 
-	public func upsert(data: [String: String]) {
+	public func upsert(data: [String: Binding?]) {
 		Database.driver.upsert(table: self.table, items: [data])
 	}
 
-	public func insert(data: [[String: String]]) {
+	public func insert(data: [[String: Binding?]]) {
 		Database.driver.insert(table: self.table, items: data)
 	}
 
@@ -66,8 +66,16 @@ public class Query<T: Model> {
 	/* Internal Casts */
 	///Inserts or updates the entity in the database.
 	func save(model: T) {
-		let data = model.serialize()
-
+        var data: [String: Binding?] = [:]
+        if Database.driver.containsTable(table: self.table){
+            data = model.serialize
+        }else{
+            let propertyData = PropertyData.validPropertyDataForObject(model)
+            Database.driver.createTable(table: self.table, sql: createTableStatementByPropertyData(propertyData))
+            for propertyData in propertyData{
+                data[propertyData.name!] = propertyData.value
+            }
+        }
 		if let id = model.id {
 			self.filter("id", id).update(data)
 		} else {
@@ -85,37 +93,50 @@ public class Query<T: Model> {
 	}
 
 	//continues
-	public func filter(key: String, _ value: String) -> Query {
-		let filter = CompareFilter(key: key, value: value, comparison: .Equals)
+	public func filter(key: String, _ value: Binding) -> Query {
+		let filter = CompareFilter(key: key, value: value, comparison: .Equal)
 		self.filters.append(filter)
-
 		return self
 	}
 
-	public func filter(key: String, _ comparison: CompareFilter.Comparison, _ value: String) -> Query {
+	public func filter(key: String, _ comparison: CompareFilter.Comparison, _ value: Binding) -> Query {
 		let filter = CompareFilter(key: key, value: value, comparison: comparison)
 		self.filters.append(filter)
-
 		return self
 	}
 
-	public func filter(key: String, contains superSet: [String]) -> Query {
+	public func filter(key: String, contains superSet: [Binding]) -> Query {
 		let filter = SubsetFilter(key: key, superSet: superSet, comparison: .In)
 		self.filters.append(filter)
-
 		return self
 	}
 
-	public func filter(key: String, notContains superSet: [String]) -> Query {
+	public func filter(key: String, notContains superSet: [Binding]) -> Query {
 		let filter = SubsetFilter(key: key, superSet: superSet, comparison: .NotIn)
 		self.filters.append(filter)
-
 		return self
 	}
 
 	public init() {
 		self.table = T.table
 	}
+    internal func createTableStatementByPropertyData(propertyDatas: [PropertyData]) -> String {
+        var statement = "CREATE TABLE \(self.table) ("
+        
+        for propertyData in propertyDatas {
+            statement += "\(propertyData.name!) \(propertyData.type!.declaredDatatype))"
+            statement += propertyData.isOptional ? "" : " NOT NULL"
+            statement += ", "
+        }
+        
+        if T.self is PrimaryKeys.Type {
+            let primaryKeysType = T.self as! PrimaryKeys.Type
+            statement += "PRIMARY KEY (\(primaryKeysType.primaryKeys().joinWithSeparator(", ")))"
+        }
+        statement += ")"
+        return statement
+    }
+
 
 	public let table: String
 }

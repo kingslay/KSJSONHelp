@@ -21,7 +21,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 //
-
+import Foundation
 public struct Blob {
 
     public let bytes: [UInt8]
@@ -54,6 +54,57 @@ extension Blob : CustomStringConvertible {
 
 extension Blob : Equatable {
 
+}
+
+extension Blob : Binding, Value {
+    
+    public static let declaredDatatype = "BLOB"
+    
+    public static func fromDatatypeValue(datatypeValue: Binding) -> Blob {
+        return datatypeValue as! Blob
+    }
+}
+extension NSData : Value {
+    
+    public class var declaredDatatype: String {
+        return Blob.declaredDatatype
+    }
+    
+    public class func fromDatatypeValue(dataValue: Binding) -> NSData {
+        return NSData(bytes: (dataValue as! Blob).bytes, length: (dataValue as! Blob).bytes.count)
+    }
+    
+    public var datatypeValue: Blob {
+        return Blob(bytes: bytes, length: length)
+    }
+}
+extension NSArray : Value {
+    
+    public class var declaredDatatype: String {
+        return Blob.declaredDatatype
+    }
+    
+    public class func fromDatatypeValue(dataValue: Binding) -> NSArray {
+        return NSKeyedUnarchiver.unarchiveObjectWithData(NSData(bytes: (dataValue as! Blob).bytes, length: (dataValue as! Blob).bytes.count)) as! NSArray
+    }
+    
+    public var datatypeValue: NSData {
+        return NSKeyedArchiver.archivedDataWithRootObject(self)
+    }
+}
+
+extension NSDictionary : Value {
+    
+    public class var declaredDatatype: String {
+        return Blob.declaredDatatype
+    }
+    public class func fromDatatypeValue(dataValue: Binding) -> NSDictionary {
+        return NSKeyedUnarchiver.unarchiveObjectWithData(NSData(bytes: (dataValue as! Blob).bytes, length: (dataValue as! Blob).bytes.count)) as! NSDictionary
+    }
+    
+    public var datatypeValue: NSData {
+        return NSKeyedArchiver.archivedDataWithRootObject(self)
+    }
 }
 
 public func ==(lhs: Blob, rhs: Blob) -> Bool {

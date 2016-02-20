@@ -1,6 +1,6 @@
 class PrintDriver: Driver {
 
-	func fetchOne(table table: String, filters: [Filter]) -> [String: String]? {
+	func fetchOne(table table: String, filters: [Filter]) -> [String: Binding?]? {
 		print("Fetch One")
 		print("\ttable: \(table)")
 		self.printFilters(filters)
@@ -8,11 +8,10 @@ class PrintDriver: Driver {
 		return nil
 	}
 
-	func fetch(table table: String, filters: [Filter]) -> [[String: String]] {
+	func fetch(table table: String, filters: [Filter]) -> [[String: Binding?]]? {
 		print("Fetch")
 		print("\ttable: \(table)")
 		self.printFilters(filters)
-
 		return []
 	}
 
@@ -22,7 +21,7 @@ class PrintDriver: Driver {
 		self.printFilters(filters)
 	}
 
-	func update(table table: String, filters: [Filter], data: [String: String]) {
+	func update(table table: String, filters: [Filter], data: [String: Binding?]) {
 		print("Update")
 		print("\ttable: \(table)")
 		self.printFilters(filters)
@@ -32,7 +31,7 @@ class PrintDriver: Driver {
 		}
 	}
 
-	func insert(table table: String, items: [[String: String]]) {
+	func insert(table table: String, items: [[String: Binding?]]) {
 		print("Insert")
 		print("\ttable: \(table)")
 		print("\t\(items.count) items")
@@ -44,7 +43,7 @@ class PrintDriver: Driver {
 		}
 	}
 
-	func upsert(table table: String, items: [[String: String]]) {
+	func upsert(table table: String, items: [[String: Binding?]]) {
 		print("Upsert")
 		print("\ttable: \(table)")
 		print("\t\(items.count) items")
@@ -71,39 +70,18 @@ class PrintDriver: Driver {
 
 		return 0
 	}
-
+    public func containsTable(table table: String) -> Bool {
+        return true
+    }
+    func createTable(table table: String, sql: String) {
+    }
+    public func execute(SQL: String) {
+        
+    }
 	func printFilters(filters: [Filter]) {
 		print("\t\(filters.count) filter(s)")
 		for filter in filters {
-			if let filter = filter as? CompareFilter {
-				let symbol: String
-				switch filter.comparison {
-					case .Equals:
-						symbol = "="
-					case .NotEquals:
-						symbol = "!="
-					case .GreaterThan:
-						symbol = ">"
-					case .LessThan:
-						symbol = "<"
-					case .GreaterThanOrEquals:
-						symbol = ">="
-					case .LessThanOrEquals:
-						symbol = "<="
-				}
-
-				print("\t\t\(filter.key) \(symbol) \(filter.value)")
-			} else if let filter = filter as? SubsetFilter {
-				let op: String
-				switch filter.comparison {
-					case .In:
-						op = "in"
-					case .NotIn:
-						op = "not in"
-				}
-
-				print("\t\t\(filter.key) \(op) \(filter.superSet.count) options")
-			}
+            print("\t\t\(filter.statement)")
 		}
 	}
 
