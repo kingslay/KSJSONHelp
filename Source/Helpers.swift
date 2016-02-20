@@ -13,19 +13,6 @@ internal func findFirst<S : SequenceType> (s: S, condition: (S.Generator.Element
     return nil
 }
 
-public extension Dictionary where Key: StringLiteralConvertible {
-    /// Initialize from mirror with [PropertyName : PropertyValue] notation.
-    public init(mirror: KSMirror) {
-        self = [:]
-        for item in mirror {
-            guard let label = item.name as? Key,
-                value = item.value as? Value else { continue }
-            
-            self[label] = value
-        }
-    }
-}
-
 extension String{
     
     func contain(subStr: String) -> Bool {return (self as NSString).rangeOfString(subStr).length > 0}

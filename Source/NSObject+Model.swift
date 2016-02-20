@@ -9,18 +9,76 @@
 import Foundation
 
 extension Model where Self: NSObject {
-    public init(serialized: [String: Binding?]){
-        self.init()
-        let propertyDatas = PropertyData.validPropertyDataForObject(self)
-//        for propertyData in propertyDatas {
-//            propertyData.type!.fromDatatypeValue(serialized[propertyData.name!])
-//        }
-        var validData: [String: AnyObject] = [:]
-        serialized.forEach { (name, value) -> () in
-            if let validValue = value as? AnyObject {
-                validData[name] = validValue
-            }
-        }
-        self.setValuesForKeysWithDictionary(validData)
+    public static var table: String {
+        return String(self)
     }
 }
+extension NSObject {
+    public var dictionary: [String: AnyObject] {
+        var data: [String: AnyObject] = [:]
+        PropertyData.validPropertyDataForObject(self).forEach { (var propertyData) -> () in
+            if !(propertyData.value is NSNull || "\(propertyData.value)" == "nil"){
+                data[propertyData.name!] = propertyData.objectValue
+            }
+        }
+        return data
+    }
+    public class func fromDictionary(dic: [String: AnyObject]) -> Self {
+        let model = self.init()
+        PropertyData.validPropertyDataForObject(model).forEach{ (propertyData) -> () in
+            if let name = propertyData.name, let value = dic[name] {
+                if !(value is NSNull || "\(value)" == "nil"){
+                    model.setValue(propertyData.objectValue(propertyData.type,value:value), forKey: name)
+                }
+            }
+        }
+        return model
+    }
+ 
+    public class func objectArrayForKey(defaultName: String) -> [NSObject]? {
+        if let objectArray = NSUserDefaults.standardUserDefaults().arrayForKey(defaultName) {
+            return objectArray.map {
+                fromDictionary($0 as! [String : AnyObject])
+            }
+        }else{
+            return nil
+        }
+    }
+    public class func setObjectArray(objectArray: [NSObject], forKey defaultName: String) {
+        NSUserDefaults.standardUserDefaults().setObjectArray(objectArray, forKey: defaultName)
+    }
+}
+extension NSUserDefaults {
+    
+    public func setObjectArray(objectArray: [NSObject], forKey defaultName: String) {
+        var object :[NSDictionary] = []
+        objectArray.forEach{object.append($0.dictionary)}
+        setValue(object, forKey: defaultName)
+    }
+   
+}
+
+//extension Dictionary {
+//    public func toModel <D where D: Model, D: Storable> () -> D {
+//        let model = D.init()
+//        var validData: [String: AnyObject] = [:]
+//        self.forEach { (key, value) -> () in
+//            if let name = key as? String, let validValue = value as? AnyObject {
+//                validData[name] = validValue
+//            }
+//        }
+//        model.setValuesForKeysWithDictionary(validData)
+//        return model
+//    }
+//}
+//extension Array {
+//    public func toModels <D where D: NSObject> () -> [D] {
+//        var array: [D] = []
+//        self.forEach { (element) -> () in
+//            if let dic = element as? Dictionary<String,AnyObject> {
+//                array.append(D.fromDictionary(dic))
+//            }
+//        }
+//        return array
+//    }
+//}

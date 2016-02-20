@@ -11,13 +11,13 @@ import XCTest
 @testable import KSJSONHelp
 
 @objc(Person)
-class Person: NSObject {
+class Person: NSObject, Storable, Model {
     var name: String
     var weight: CGFloat
     var height: NSInteger
     var age: Int64
     var sex: Bool = false
-    override init(){
+    override required init() {
         name = ""
         age = 1
         height = 11
@@ -29,12 +29,13 @@ class Person: NSObject {
         self.height = height
         self.weight = weight
     }
+
 }
-class Person1: NSObject {
+class Person1: NSObject, Storable, Model {
     var name: String?
     var age: NSNumber?
     var city: String?
-    override init(){
+    override required init(){
     }
     init(name: String,age: Int) {
         self.name = name
@@ -60,24 +61,26 @@ class KSJSONHelpTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-    
+    func dicEqual(dic1: [String: AnyObject], _ dic2: [String: AnyObject]){
+        assert((dic1 as NSDictionary) == (dic2 as NSDictionary))
+    }
     func testAggregate() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         let person = Person(name: "wang", age: 30)
         person.sex = true
-        let dic = person.toDictionary()
-        let personNew = Person.toModel(dic)
-        assert(dic == personNew.toDictionary() as NSDictionary)
+        let dic = person.dictionary
+        let personNew = Person.fromDictionary(dic)
         print(dic)
+        dicEqual(dic, personNew.dictionary)
     }
     func testOptionalAggregate() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         let person = Person1(name: "wang", age: 30)
-        let dic = person.toDictionary()
-        let personNew = Person1.toModel(dic)
-        assert(dic == personNew.toDictionary() as NSDictionary)
+        let dic = person.dictionary
+        let personNew = Person1.fromDictionary(dic)
+        dicEqual(dic, personNew.dictionary)
         print(dic)
     }
     
@@ -88,10 +91,10 @@ class KSJSONHelpTests: XCTestCase {
         let person = Person2(name: "wang", age: 30)
         person.books = ["a","b"]
         person.child = [ Person(name: "xiaowang", age: 1) ]
-        let dic = person.toDictionary()
-        let personNew = Person2.toModel(dic)
-        assert(dic == personNew.toDictionary() as NSDictionary)
+        let dic = person.dictionary
         print(dic)
+        let personNew = Person2.fromDictionary(dic)
+        dicEqual(dic, personNew.dictionary)
 
     }
     func testOptionalArray() {
@@ -100,9 +103,9 @@ class KSJSONHelpTests: XCTestCase {
         let person = Person3(name: "wang", age: 30)
         person.books = ["a","b"]
         person.child = [ Person(name: "xiaowang", age: 1) ]
-        let dic = person.toDictionary()
-        let personNew = Person3.toModel(dic)
-        assert(dic == personNew.toDictionary() as NSDictionary)
+        let dic = person.dictionary
+        let personNew = Person3.fromDictionary(dic)
+        dicEqual(dic, personNew.dictionary)
         print(dic)
         
     }
@@ -112,10 +115,10 @@ class KSJSONHelpTests: XCTestCase {
         let person = Person3(name: "wang", age: 30)
         person.books = ["a","b"]
         person.child = [ Person(name: "xiaowang", age: 1) ]
-        Person3.setObjectArray([person], forKey: "person")
+        NSUserDefaults.standardUserDefaults().setObjectArray([person], forKey: "person")
         let personArray = Person3.objectArrayForKey("person")
-        assert(personArray![0].toDictionary() == person.toDictionary() as NSDictionary)
-        print(personArray![0].toDictionary())
+        dicEqual(personArray![0].dictionary, person.dictionary)
+        print(personArray![0].dictionary)
         
     }
     func testPerformanceExample() {

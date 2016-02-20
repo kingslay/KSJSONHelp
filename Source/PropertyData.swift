@@ -10,22 +10,33 @@ import Foundation
 internal struct PropertyData {
     
     internal let isOptional: Bool
-    internal var type:       Binding.Type?  = nil
-    internal var name:       String?
-    internal var value:      Binding?               = nil
-    
+    internal var type: Any.Type
+    internal var bindingType: Binding.Type?
+
+    internal var name: String?
+    lazy internal var bindingValue: Binding? = self.toBinding(self.value)
+    internal let value: Any
+    lazy internal var objectValue: AnyObject = self.toAnyObject(self.value)
+
     internal var isValid: Bool {
-        return type != nil && name != nil
+        return name != nil
     }
     
     internal init(property: Mirror.Child) {
         self.name = property.label
-        
         let mirror = Mirror(reflecting: property.value)
+        self.type = mirror.subjectType
         isOptional = mirror.displayStyle == .Optional
-        value = unwrap(property.value) as? Binding
-        
-        type = typeForMirror(mirror)
+        if isOptional {
+            if mirror.children.count == 1 {
+                self.value = mirror.children.first!.value
+            }else{
+                self.value = property.value
+            }
+        }else{
+            self.value = property.value
+        }
+        bindingType = typeForMirror(mirror)
     }
     
     internal func typeForMirror(mirror: Mirror) -> Binding.Type? {
@@ -82,7 +93,7 @@ internal struct PropertyData {
      
      */
     
-    internal func unwrap(value: Any) -> Any? {
+    private func toBinding(value: Any) -> Binding? {
         let mirror = Mirror(reflecting: value)
         
         if mirror.displayStyle == .Collection {
@@ -94,15 +105,83 @@ internal struct PropertyData {
 
         /* Raw value */
         if mirror.displayStyle != .Optional {
-            return value
+            return value as? Binding
         }
         
         /* The encapsulated optional value if not nil, otherwise nil */
         if let value = mirror.children.first?.value {
-            return unwrap(value)
+            return toBinding(value)
         }else{
             return nil
         }
+    }
+    internal func objectValue(type: Any.Type, value: Any) -> AnyObject {
+        if value is NSArray {
+            let arrM = NSMutableArray()
+            let genericType = generic(type)
+            for  genericValue in value as! NSArray {
+                arrM.addObject(objectValue(genericType, value: genericValue))
+            }
+            return arrM
+        }else if value is [String : AnyObject] {
+            return (type as! NSObject.Type).fromDictionary((value as! [String : AnyObject]))
+        }else if type is Int.Type || type is Optional<Int>.Type {
+            if value is String {
+                return Int(value as! String)!
+            }
+            return value as! Int
+        }else if type is Float.Type || type is Optional<Float>.Type {
+            if value is String {
+                return Float(value as! String)!
+            }
+            return value as! Float
+        }else if type is Double.Type || type is Optional<Double>.Type {
+            if value is String {
+                return Double(value as! String)!
+            }
+            return value as! Double
+        }else if type is String.Type || type is Optional<String>.Type || type is NSString.Type || type is Optional<NSString>.Type  {
+            return value as! String
+        }
+        return value as! AnyObject
+    }
+    private func generic(type: Any.Type) -> Any.Type {
+        let clsString = "\(type)".replacingOccurrencesOfString("Array<", withString: "").replacingOccurrencesOfString("Optional<", withString: "").replacingOccurrencesOfString(">", withString: "")
+        return NSClassFromString(clsString)!
+    }
+
+    private  func toAnyObject(value: Any) -> AnyObject {
+        if value is NSArray {
+            var dictM: [AnyObject] = []
+            let valueArray = value as! NSArray
+            for item in valueArray {
+                dictM.append(toAnyObject(item))
+            }
+            return dictM
+        }else if value is NSNumber {
+            return value as! NSNumber
+        }else if value is NSString {
+            return value as! NSString
+        }else if value is NSObject {
+            return (value as! NSObject).dictionary
+        }else if value is Int8 {
+            return NSNumber(char: value as! Int8)
+        }else if value is UInt8 {
+            return NSNumber(unsignedChar: value as! UInt8)
+        }else if value is Int16 {
+            return NSNumber(short: value as! Int16)
+        }else if value is UInt16 {
+            return NSNumber(unsignedShort: value as! UInt16)
+        }else if value is Int32 {
+            return NSNumber(int: value as! Int32)
+        }else if value is UInt32 {
+            return NSNumber(unsignedInt: value as! UInt32)
+        }else if value is Int64 {
+            return NSNumber(longLong: value as! Int64)
+        }else if value is UInt64 {
+            return NSNumber(unsignedLongLong: value as! UInt64)
+        }
+        return value as! AnyObject
     }
 }
 

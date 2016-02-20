@@ -61,7 +61,7 @@ public class SQLiteDriver: Driver {
         sql.filters = filters
         sql.limit = 1
         if let value = execute(sql)?.scalar() {
-            return Int.fromDatatypeValue(value)
+            return wrapValue(value)
         }else{
             return 0
         }

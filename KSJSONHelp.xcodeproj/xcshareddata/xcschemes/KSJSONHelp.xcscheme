@@ -11,7 +11,8 @@
             buildForRunning = "YES"
             buildForProfiling = "YES"
             buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
+            buildForAnalyzing = "YES"
+            hideIssues = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3C808CB51B95FF4D008F0ED7"
@@ -32,7 +33,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3C808CBE1B95FF4D008F0ED7"
+               BlueprintIdentifier = "3C85C8381BBE6B2600E2F488"
                BuildableName = "KSJSONHelpTests.xctest"
                BlueprintName = "KSJSONHelpTests"
                ReferencedContainer = "container:KSJSONHelp.xcodeproj">

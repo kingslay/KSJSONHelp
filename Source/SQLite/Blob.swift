@@ -56,21 +56,21 @@ extension Blob : Equatable {
 
 }
 
-extension Blob : Binding, Value {
+extension Blob : Binding {
     
     public static let declaredDatatype = "BLOB"
     
-    public static func fromDatatypeValue(datatypeValue: Binding) -> Blob {
+    public static func fromDatatypeValue(datatypeValue: Binding) -> Binding {
         return datatypeValue as! Blob
     }
 }
-extension NSData : Value {
+extension NSData : Binding {
     
     public class var declaredDatatype: String {
         return Blob.declaredDatatype
     }
     
-    public class func fromDatatypeValue(dataValue: Binding) -> NSData {
+    public class func fromDatatypeValue(dataValue: Binding) -> Binding {
         return NSData(bytes: (dataValue as! Blob).bytes, length: (dataValue as! Blob).bytes.count)
     }
     
@@ -78,13 +78,13 @@ extension NSData : Value {
         return Blob(bytes: bytes, length: length)
     }
 }
-extension NSArray : Value {
+extension NSArray : Binding {
     
     public class var declaredDatatype: String {
         return Blob.declaredDatatype
     }
     
-    public class func fromDatatypeValue(dataValue: Binding) -> NSArray {
+    public class func fromDatatypeValue(dataValue: Binding) -> Binding {
         return NSKeyedUnarchiver.unarchiveObjectWithData(NSData(bytes: (dataValue as! Blob).bytes, length: (dataValue as! Blob).bytes.count)) as! NSArray
     }
     
@@ -93,12 +93,12 @@ extension NSArray : Value {
     }
 }
 
-extension NSDictionary : Value {
+extension NSDictionary : Binding {
     
     public class var declaredDatatype: String {
         return Blob.declaredDatatype
     }
-    public class func fromDatatypeValue(dataValue: Binding) -> NSDictionary {
+    public class func fromDatatypeValue(dataValue: Binding) -> Binding {
         return NSKeyedUnarchiver.unarchiveObjectWithData(NSData(bytes: (dataValue as! Blob).bytes, length: (dataValue as! Blob).bytes.count)) as! NSDictionary
     }
     

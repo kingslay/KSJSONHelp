@@ -1,29 +1,26 @@
 public class Query<T: Model> {
 
 	public var filters: [Filter] = []
-
-	//ends
-	//var first: Model?
-	public var first: T? {
-		if let serialized = Database.driver.fetchOne(table: self.table, filters: self.filters) {
-			return T(serialized: serialized)
-		} else {
-			return nil
-		}
-	}
-
-	//var results: [Model]
-	public var results: [T] {
-		var models: [T] = []
-
-        if let serializeds = Database.driver.fetch(table: self.table, filters: self.filters) {
-            for serialized in serializeds {
-                let model = T(serialized: serialized)
-                models.append(model)
-            }
-        }
-		return models
-	}
+//	public var first: T? {
+//		if let serialized = Database.driver.fetchOne(table: self.table, filters: self.filters) where T.self is Storable.Type {
+//            serialized.toModel()
+//		} else {
+//			return nil
+//		}
+//	}
+//
+//	//var results: [Model]
+//	public var results: [T] {
+//		var models: [T] = []
+//
+//        if let serializeds = Database.driver.fetch(table: self.table, filters: self.filters) {
+//            for serialized in serializeds {
+//                let model = T(serialized: serialized)
+//                models.append(model)
+//            }
+//        }
+//		return models
+//	}
 
 	public func update(data: [String: Binding?]) {
 		Database.driver.update(table: self.table, filters: self.filters, data: data)
@@ -58,9 +55,9 @@ public class Query<T: Model> {
 	}
 
 	//model
-	public func find(id: Int) -> T? {
-		return self.filter("id", "\(id)").first
-	}
+//	public func find(id: Int) -> T? {
+//		return self.filter("id", "\(id)").first
+//	}
 
 
 	/* Internal Casts */
@@ -72,24 +69,28 @@ public class Query<T: Model> {
         }else{
             let propertyData = PropertyData.validPropertyDataForObject(model)
             Database.driver.createTable(table: self.table, sql: createTableStatementByPropertyData(propertyData))
-            for propertyData in propertyData{
-                data[propertyData.name!] = propertyData.value
-            }
+            propertyData.forEach({ (var propertyData) -> () in
+                data[propertyData.name!] = propertyData.bindingValue
+            })
         }
-		if let id = model.id {
-			self.filter("id", id).update(data)
-		} else {
-			self.insert(data)
-		}
+		self.upsert(data)
+		
 	}
 
 	///Deletes the entity from the database.
 	func delete(model: T) {
-		guard let id = model.id else {
-			return
-		}
-
-		self.filter("id", id).delete()
+        if T.self is PrimaryKeys.Type {
+            let primaryKeysType = T.self as! PrimaryKeys.Type
+            let data = model.serialize
+            for primaryKey in primaryKeysType.primaryKeys() {
+                if let optionalValue = data[primaryKey],let value = optionalValue  {
+                    self.filter(primaryKey, value)
+                }
+            }
+            self.delete()
+        }else{
+            return
+        }
 	}
 
 	//continues
@@ -124,7 +125,7 @@ public class Query<T: Model> {
         var statement = "CREATE TABLE \(self.table) ("
         
         for propertyData in propertyDatas {
-            statement += "\(propertyData.name!) \(propertyData.type!.declaredDatatype))"
+            statement += "\(propertyData.name!) \(propertyData.bindingType!.declaredDatatype))"
             statement += propertyData.isOptional ? "" : " NOT NULL"
             statement += ", "
         }

@@ -70,12 +70,12 @@ class PrintDriver: Driver {
 
 		return 0
 	}
-    public func containsTable(table table: String) -> Bool {
+    func containsTable(table table: String) -> Bool {
         return true
     }
     func createTable(table table: String, sql: String) {
     }
-    public func execute(SQL: String) {
+    func execute(SQL: String) {
         
     }
 	func printFilters(filters: [Filter]) {

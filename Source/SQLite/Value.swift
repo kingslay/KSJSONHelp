@@ -7,20 +7,24 @@ import Foundation
 public protocol Binding {
     static var declaredDatatype: String { get }
     var datatypeValue: Binding { get }
+    static func fromDatatypeValue(datatypeValue: Binding) -> Binding
 }
 extension Binding {
     public var datatypeValue: Binding {
         return self
     }
 }
+@warn_unused_result func wrapValue<A: Binding>(v: Binding) -> A {
+    return A.fromDatatypeValue(v) as! A
+}
+
+@warn_unused_result func wrapValue<A: Binding>(v: Binding?) -> A {
+    return wrapValue(v!)
+}
+
 
 public protocol Number : Binding {}
 
-public protocol Value : Binding { // extensions cannot have inheritance clauses
-    typealias ValueType = Self
-    static func fromDatatypeValue(datatypeValue: Binding) -> ValueType
-
-}
 
 //@warn_unused_result func value<A: Value>(v: Binding) -> A {
 //    return A.fromDatatypeValue(v as! A.Datatype) as! A
@@ -30,30 +34,30 @@ public protocol Value : Binding { // extensions cannot have inheritance clauses
 //    return value(v!)
 //}
 
-extension Double : Number, Value {
+extension Double : Number {
 
     public static let declaredDatatype = "REAL"
 
-    public static func fromDatatypeValue(datatypeValue: Binding) -> Double {
+    public static func fromDatatypeValue(datatypeValue: Binding) -> Binding {
         return datatypeValue as! Double
     }
 }
-extension Float : Number, Value {
+extension Float : Number {
     
     public static let declaredDatatype = "REAL"
     
-    public static func fromDatatypeValue(datatypeValue: Binding) -> Double {
+    public static func fromDatatypeValue(datatypeValue: Binding) -> Binding {
         return datatypeValue as! Double
     }
     public var datatypeValue: Double {
         return Double(self)
     }
 }
-extension Int : Number, Value {
+extension Int : Number {
     
     public static var declaredDatatype = Int64.declaredDatatype
     
-    public static func fromDatatypeValue(datatypeValue: Binding) -> Int {
+    public static func fromDatatypeValue(datatypeValue: Binding) -> Binding {
         return Int(datatypeValue as! Int64)
     }
     
@@ -63,11 +67,11 @@ extension Int : Number, Value {
     
 }
 
-extension UInt : Number, Value {
+extension UInt : Number {
     
     public static var declaredDatatype = Int64.declaredDatatype
     
-    public static func fromDatatypeValue(datatypeValue: Binding) -> UInt {
+    public static func fromDatatypeValue(datatypeValue: Binding) -> Binding {
         return UInt(datatypeValue as! Int64)
     }
     
@@ -76,96 +80,96 @@ extension UInt : Number, Value {
     }
     
 }
-extension Int64 : Number, Value {
+extension Int64 : Number {
 
     public static let declaredDatatype = "INTEGER"
 
-    public static func fromDatatypeValue(datatypeValue: Binding) -> Int64 {
+    public static func fromDatatypeValue(datatypeValue: Binding) -> Binding {
         return datatypeValue as! Int64
     }
 }
-extension UInt64 : Number, Value {
+extension UInt64 : Number {
     
     public static let declaredDatatype = "INTEGER"
     
-    public static func fromDatatypeValue(datatypeValue: Binding) -> UInt64 {
+    public static func fromDatatypeValue(datatypeValue: Binding) -> Binding {
         return UInt64(datatypeValue as! Int64)
     }
     public var datatypeValue: Int64 {
         return Int64(self)
     }
 }
-extension Int32 : Number, Value {
+extension Int32 : Number {
     
     public static let declaredDatatype = "INTEGER"
     
-    public static func fromDatatypeValue(datatypeValue: Binding) -> Int32 {
+    public static func fromDatatypeValue(datatypeValue: Binding) -> Binding {
         return Int32(datatypeValue as! Int64)
     }
     public var datatypeValue: Int64 {
         return Int64(self)
     }
 }
-extension UInt32 : Number, Value {
+extension UInt32 : Number {
     
     public static let declaredDatatype = "INTEGER"
     
-    public static func fromDatatypeValue(datatypeValue: Binding) -> Int32 {
+    public static func fromDatatypeValue(datatypeValue: Binding) -> Binding {
         return Int32(datatypeValue as! Int64)
     }
     public var datatypeValue: Int64 {
         return Int64(self)
     }
 }
-extension Int16 : Number, Value {
+extension Int16 : Number {
     
     public static let declaredDatatype = "INTEGER"
     
-    public static func fromDatatypeValue(datatypeValue: Binding) -> Int16 {
+    public static func fromDatatypeValue(datatypeValue: Binding) -> Binding {
         return Int16(datatypeValue as! Int64)
     }
     public var datatypeValue: Int64 {
         return Int64(self)
     }
 }
-extension UInt16 : Number, Value {
+extension UInt16 : Number {
     
     public static let declaredDatatype = "INTEGER"
     
-    public static func fromDatatypeValue(datatypeValue: Binding) -> UInt16 {
+    public static func fromDatatypeValue(datatypeValue: Binding) -> Binding {
         return UInt16(datatypeValue as! Int64)
     }
     public var datatypeValue: Int64 {
         return Int64(self)
     }
 }
-extension Int8 : Number, Value {
+extension Int8 : Number {
     
     public static let declaredDatatype = "INTEGER"
     
-    public static func fromDatatypeValue(datatypeValue: Binding) -> Int8 {
+    public static func fromDatatypeValue(datatypeValue: Binding) -> Binding {
         return Int8(datatypeValue as! Int64)
     }
     public var datatypeValue: Int64 {
         return Int64(self)
     }
 }
-extension UInt8 : Number, Value {
+extension UInt8 : Number {
     
     public static let declaredDatatype = "INTEGER"
     
-    public static func fromDatatypeValue(datatypeValue: Binding) -> UInt8 {
+    public static func fromDatatypeValue(datatypeValue: Binding) -> Binding {
         return UInt8(datatypeValue as! Int64)
     }
     public var datatypeValue: Int64 {
         return Int64(self)
     }
 }
-extension Bool : Binding, Value {
+extension Bool : Binding {
     
     public static var declaredDatatype = Int64.declaredDatatype
     
-    public static func fromDatatypeValue(datatypeValue: Binding) -> Bool {
+    public static func fromDatatypeValue(datatypeValue: Binding) -> Binding {
         return datatypeValue as! Int64 != 0
     }
     
@@ -173,22 +177,24 @@ extension Bool : Binding, Value {
         return self ? 1 : 0
     }
 }
-extension NSDate : Number, Value {
+extension NSDate : Number {
     
-    public static let declaredDatatype = "REAL"
-    
-    public static func fromDatatypeValue(datatypeValue: Binding) -> NSDate {
+    public class var declaredDatatype: String {
+        return "REAL"
+    }
+    public static func fromDatatypeValue(datatypeValue: Binding) -> Binding {
         return NSDate(timeIntervalSince1970: datatypeValue as! Double)
     }
     public var datatypeValue: Double {
         return self.timeIntervalSince1970
     }
 }
-extension NSNumber : Number, Value {
+extension NSNumber : Number {
     
-    public static let declaredDatatype = "REAL"
-    
-    public static func fromDatatypeValue(datatypeValue: Binding) -> NSNumber {
+    public class var declaredDatatype: String {
+        return "REAL"
+    }
+    public static func fromDatatypeValue(datatypeValue: Binding) -> Binding {
         if let double = datatypeValue as? Double {
             return NSNumber(double: double)
         }else if let longLong = datatypeValue as? Int64 {
@@ -230,35 +236,37 @@ extension NSNumber : Number, Value {
     }
 }
 
-extension String : Binding, Value {
+extension String : Binding {
 
     public static let declaredDatatype = "TEXT"
 
-    public static func fromDatatypeValue(datatypeValue: Binding) -> String {
+    public static func fromDatatypeValue(datatypeValue: Binding) -> Binding {
         return datatypeValue as! String
     }
 }
-extension NSString : Binding, Value {
-    
-    public static let declaredDatatype = "TEXT"
-    
-    public static func fromDatatypeValue(datatypeValue: Binding) -> NSString {
-        return datatypeValue as! String
-    }
-    public var datatypeValue: String {
-        return self as String
-    }
-}
 
-extension Character : Binding, Value {
+extension Character : Binding {
     
     public static let declaredDatatype = "TEXT"
     
-    public static func fromDatatypeValue(datatypeValue: Binding) -> Character {
+    public static func fromDatatypeValue(datatypeValue: Binding) -> Binding {
         return (datatypeValue as! String).characters.first!
     }
     public var datatypeValue: String {
         return String(self)
+    }
+}
+
+extension NSString : Binding {
+    
+    public class var declaredDatatype: String {
+        return String.declaredDatatype
+    }
+    public static func fromDatatypeValue(datatypeValue: Binding) -> Binding {
+        return datatypeValue as! String
+    }
+    public var datatypeValue: String {
+        return self as String
     }
 }
 
