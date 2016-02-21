@@ -113,23 +113,6 @@ internal struct PropertyData {
             return nil
         }
     }
-    internal func objectValue(type: Any.Type, value: Any) -> AnyObject? {
-        if value is NSArray {
-            let arrM = NSMutableArray()
-            let genericType = generic(type)
-            for  genericValue in value as! NSArray {
-                arrM.addObject(objectValue(genericType, value: genericValue)!)
-            }
-            return arrM
-        }else if value is [String : AnyObject] && type is Storable.Type {
-            return (type as! Storable.Type).fromDictionary((value as! [String : AnyObject])) as? AnyObject
-        }
-        return value as? AnyObject
-    }
-    private func generic(type: Any.Type) -> Any.Type {
-        let clsString = "\(type)".replacingOccurrencesOfString("Array<", withString: "").replacingOccurrencesOfString("Optional<", withString: "").replacingOccurrencesOfString(">", withString: "")
-        return NSClassFromString(clsString)!
-    }
 }
 
 extension PropertyData {

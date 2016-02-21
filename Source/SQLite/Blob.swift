@@ -81,7 +81,7 @@ extension NSData : Binding {
         return Blob(bytes: bytes, length: length)
     }
 }
-extension NSArray : Binding, Value{
+extension NSArray : Binding, Value, DatatypeValue{
     
     public class var declaredDatatype: String {
         return Blob.declaredDatatype
@@ -99,13 +99,24 @@ extension NSArray : Binding, Value{
             if value is Value {
                 return (value as! Value ).toAnyObject
             }else{
-                return value as! AnyObject
+                return value
             }
         }
     }
-
+    public func toAnyObject(type: Any.Type) -> AnyObject {
+        let genericType = generic(type)
+        return self.map { value -> AnyObject in
+            if value is DatatypeValue {
+                return (value as! DatatypeValue).toAnyObject(genericType)
+            }else{
+                return value
+            }
+        }
+    }
 }
+
 extension Array: Value {
+    
     public var toAnyObject: AnyObject {
         return self.map { value -> AnyObject in
             if value is Value {
@@ -115,10 +126,28 @@ extension Array: Value {
             }
         }
     }
+    
+//    public func toAnyObject(type: Any.Type) -> AnyObject {
+//        let genericType = generic(type)
+//        let array = NSMutableArray()
+//        self.forEach { value in
+//            if value is DatatypeValue {
+//                return array.addObject((value as! DatatypeValue).toAnyObject(genericType))
+//            }else {
+//                return array.addObject(value as! AnyObject)
+//            }
+//        }
+//        return array
+//    }
+}
+private func generic(type: Any.Type) -> Any.Type {
+    let clsString = "\(type)".replacingOccurrencesOfString("Array<", withString: "").replacingOccurrencesOfString("Optional<", withString: "").replacingOccurrencesOfString(">", withString: "")
+    return NSClassFromString(clsString)!
 }
 
-extension NSDictionary : Binding {
-    
+
+extension NSDictionary: Binding, DatatypeValue {
+
     public class var declaredDatatype: String {
         return Blob.declaredDatatype
     }
@@ -129,7 +158,16 @@ extension NSDictionary : Binding {
     public var datatypeValue: Binding {
         return NSKeyedArchiver.archivedDataWithRootObject(self)
     }
+    public func toAnyObject(type: Any.Type) -> AnyObject {
+        if self is [String : AnyObject] && type is Storable.Type {
+            return (type as! Storable.Type).fromDictionary((self as! [String : AnyObject])) as! AnyObject
+        }else {
+            return self
+        }
+    }
+   
 }
+
 
 public func ==(lhs: Blob, rhs: Blob) -> Bool {
     return lhs.bytes == rhs.bytes

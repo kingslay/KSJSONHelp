@@ -14,6 +14,10 @@ public protocol Value {
     var toAnyObject: AnyObject { get }
 }
 
+public protocol DatatypeValue {
+    func toAnyObject(type: Any.Type) -> AnyObject
+}
+
 @warn_unused_result func wrapValue<A: Binding>(v: Binding) -> A {
     return A.toAnyObject(v) as! A
 }

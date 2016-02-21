@@ -110,9 +110,13 @@ extension Storable {
     public static func fromDictionary(dic: [String: AnyObject]) -> Self {
         let model = self.init()
         PropertyData.validPropertyDataForObject(model).forEach{ (propertyData) -> () in
-            if let name = propertyData.name, let value = dic[name] {
+            if let name = propertyData.name, var value = dic[name] {
                 if !(value is NSNull || "\(value)" == "nil"){
-                    model.setValue(propertyData.objectValue(propertyData.type,value:value), forKey: name)
+                    if value is DatatypeValue {
+                        value = (value as! DatatypeValue).toAnyObject(propertyData.type)
+                    }
+                    model.setValue(value, forKey: name)
+                    
                 }
             }
         }
