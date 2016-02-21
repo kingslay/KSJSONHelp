@@ -4,18 +4,11 @@
 ///   Do not conform custom types to the Binding protocol. See the `Value`
 ///   protocol, instead.
 import Foundation
+///数据库绑定类型
 public protocol Binding {
     static var declaredDatatype: String { get }
     var datatypeValue: Binding { get }
     static func toAnyObject(datatypeValue: Binding) -> AnyObject
-}
-
-public protocol Value {
-    var toAnyObject: AnyObject { get }
-}
-
-public protocol DatatypeValue {
-    func toAnyObject(type: Any.Type) -> AnyObject
 }
 
 @warn_unused_result func wrapValue<A: Binding>(v: Binding) -> A {
@@ -25,20 +18,18 @@ public protocol DatatypeValue {
 @warn_unused_result func wrapValue<A: Binding>(v: Binding?) -> A {
     return wrapValue(v!)
 }
-
+///进行序列化如：把对象专为字典
+public protocol Serialization {
+    var serialization: AnyObject { get }
+}
+///进行反序列化：把字典转为对象
+public protocol Deserialization {
+    func deserialization(type: Any.Type) -> AnyObject
+}
 
 public protocol Number {
     
 }
-
-
-//@warn_unused_result func value<A: Value>(v: Binding) -> A {
-//    return A.toAnyObject(v as! A.Datatype) as! A
-//}
-//
-//@warn_unused_result func value<A: Value>(v: Binding?) -> A {
-//    return value(v!)
-//}
 
 extension Double : Binding, Number {
 
@@ -89,117 +80,117 @@ extension UInt : Binding, Number {
     }
     
 }
-extension Int64 : Binding, Number, Value {
+extension Int64 : Binding, Number, Serialization {
 
     public static let declaredDatatype = "INTEGER"
 
     public static func toAnyObject(datatypeValue: Binding) -> AnyObject {
-        return (datatypeValue as! Int64).toAnyObject
+        return (datatypeValue as! Int64).serialization
     }
     public var datatypeValue: Binding {
         return self
     }
-    public var toAnyObject: AnyObject {
+    public var serialization: AnyObject {
         return NSNumber(longLong: self)
     }
 
 }
-extension UInt64 : Binding, Number, Value {
+extension UInt64 : Binding, Number, Serialization {
     
     public static let declaredDatatype = "INTEGER"
     
     public static func toAnyObject(datatypeValue: Binding) -> AnyObject {
-        return UInt64(datatypeValue as! Int64).toAnyObject
+        return UInt64(datatypeValue as! Int64).serialization
     }
     public var datatypeValue: Binding {
         return Int64(self)
     }
-    public var toAnyObject: AnyObject {
+    public var serialization: AnyObject {
         return NSNumber(unsignedLongLong: self)
     }
 
 }
-extension Int32 : Binding, Number, Value {
+extension Int32 : Binding, Number, Serialization {
     
     public static let declaredDatatype = "INTEGER"
     
     public static func toAnyObject(datatypeValue: Binding) -> AnyObject {
-        return Int32(datatypeValue as! Int64).toAnyObject
+        return Int32(datatypeValue as! Int64).serialization
     }
     public var datatypeValue: Binding {
         return Int64(self)
     }
-    public var toAnyObject: AnyObject {
+    public var serialization: AnyObject {
         return NSNumber(int: self)
     }
 }
-extension UInt32 : Binding, Number, Value {
+extension UInt32 : Binding, Number, Serialization {
     
     public static let declaredDatatype = "INTEGER"
     
     public static func toAnyObject(datatypeValue: Binding) -> AnyObject {
-        return UInt32(datatypeValue as! Int64).toAnyObject
+        return UInt32(datatypeValue as! Int64).serialization
     }
     public var datatypeValue: Binding {
         return Int64(self)
     }
-    public var toAnyObject: AnyObject {
+    public var serialization: AnyObject {
         return NSNumber(unsignedInt: self)
     }
 }
-extension Int16 : Binding, Number, Value {
+extension Int16 : Binding, Number, Serialization {
     
     public static let declaredDatatype = "INTEGER"
     
     public static func toAnyObject(datatypeValue: Binding) -> AnyObject {
-        return Int16(datatypeValue as! Int64).toAnyObject
+        return Int16(datatypeValue as! Int64).serialization
     }
     public var datatypeValue: Binding {
         return Int64(self)
     }
-    public var toAnyObject: AnyObject {
+    public var serialization: AnyObject {
         return NSNumber(short: self)
     }
 }
-extension UInt16 : Binding, Number, Value {
+extension UInt16 : Binding, Number, Serialization {
     
     public static let declaredDatatype = "INTEGER"
     
     public static func toAnyObject(datatypeValue: Binding) -> AnyObject {
-        return UInt16(datatypeValue as! Int64).toAnyObject
+        return UInt16(datatypeValue as! Int64).serialization
     }
     public var datatypeValue: Binding {
         return Int64(self)
     }
-    public var toAnyObject: AnyObject {
+    public var serialization: AnyObject {
         return NSNumber(unsignedShort: self)
     }
 }
-extension Int8 : Binding, Number, Value {
+extension Int8 : Binding, Number, Serialization {
     
     public static let declaredDatatype = "INTEGER"
     
     public static func toAnyObject(datatypeValue: Binding) -> AnyObject {
-        return Int8(datatypeValue as! Int64).toAnyObject
+        return Int8(datatypeValue as! Int64).serialization
     }
     public var datatypeValue: Binding {
         return Int64(self)
     }
-    public var toAnyObject: AnyObject {
+    public var serialization: AnyObject {
         return NSNumber(char: self)
     }
 }
-extension UInt8 : Binding, Number, Value {
+extension UInt8 : Binding, Number, Serialization {
     
     public static let declaredDatatype = "INTEGER"
     
     public static func toAnyObject(datatypeValue: Binding) -> AnyObject {
-        return UInt8(datatypeValue as! Int64).toAnyObject
+        return UInt8(datatypeValue as! Int64).serialization
     }
     public var datatypeValue: Binding {
         return Int64(self)
     }
-    public var toAnyObject: AnyObject {
+    public var serialization: AnyObject {
         return NSNumber(unsignedChar: self)
     }
 }

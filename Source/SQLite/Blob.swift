@@ -81,7 +81,7 @@ extension NSData : Binding {
         return Blob(bytes: bytes, length: length)
     }
 }
-extension NSArray : Binding, Value, DatatypeValue{
+extension NSArray : Binding, Serialization, Deserialization{
     
     public class var declaredDatatype: String {
         return Blob.declaredDatatype
@@ -94,20 +94,20 @@ extension NSArray : Binding, Value, DatatypeValue{
     public var datatypeValue: Binding {
         return NSKeyedArchiver.archivedDataWithRootObject(self)
     }
-    public var toAnyObject: AnyObject {
+    public var serialization: AnyObject {
         return self.map { value -> AnyObject in
-            if value is Value {
-                return (value as! Value ).toAnyObject
+            if value is Serialization {
+                return (value as! Serialization ).serialization
             }else{
                 return value
             }
         }
     }
-    public func toAnyObject(type: Any.Type) -> AnyObject {
+    public func deserialization(type: Any.Type) -> AnyObject {
         let genericType = generic(type)
         return self.map { value -> AnyObject in
-            if value is DatatypeValue {
-                return (value as! DatatypeValue).toAnyObject(genericType)
+            if value is Deserialization {
+                return (value as! Deserialization).deserialization(genericType)
             }else{
                 return value
             }
@@ -119,12 +119,12 @@ extension NSArray : Binding, Value, DatatypeValue{
     }
 }
 
-extension Array: Value {
+extension Array: Serialization {
     
-    public var toAnyObject: AnyObject {
+    public var serialization: AnyObject {
         return self.map { value -> AnyObject in
-            if value is Value {
-                return (value as! Value ).toAnyObject
+            if value is Serialization {
+                return (value as! Serialization ).serialization
             }else{
                 return value as! AnyObject
             }
@@ -145,7 +145,7 @@ extension Array: Value {
 //    }
 }
 
-extension NSDictionary: Binding, DatatypeValue {
+extension NSDictionary: Binding, Deserialization {
 
     public class var declaredDatatype: String {
         return Blob.declaredDatatype
@@ -157,7 +157,7 @@ extension NSDictionary: Binding, DatatypeValue {
     public var datatypeValue: Binding {
         return NSKeyedArchiver.archivedDataWithRootObject(self)
     }
-    public func toAnyObject(type: Any.Type) -> AnyObject {
+    public func deserialization(type: Any.Type) -> AnyObject {
         if self is [String : AnyObject] && type is Storable.Type {
             return (type as! Storable.Type).fromDictionary((self as! [String : AnyObject])) as! AnyObject
         }else {

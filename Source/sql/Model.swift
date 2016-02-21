@@ -30,7 +30,7 @@ public protocol IgnoredProperties {
     static func ignoredProperties() -> Set<String>
 }
 
-public protocol Model: Value {
+public protocol Model: Serialization {
     
     ///The database table in which entities are stored.
     static var table: String { get }
@@ -70,8 +70,8 @@ extension Model {
         PropertyData.validPropertyDataForObject(self).forEach { propertyData -> () in
             let value = propertyData.value
             if !(value is NSNull || "\(value)" == "nil"){
-                if value is Value {
-                    data[propertyData.name!] = (value as! Value).toAnyObject
+                if value is Serialization {
+                    data[propertyData.name!] = (value as! Serialization).serialization
                 }else if let anyObject = value as? AnyObject {
                     data[propertyData.name!] = anyObject
                 }
@@ -85,7 +85,7 @@ extension Model {
         NSUserDefaults.standardUserDefaults().setValue(objectArray.map{$0.dictionary}, forKey: defaultName)
         
     }
-    public var toAnyObject: AnyObject {
+    public var serialization: AnyObject {
         return self.dictionary
     }
 }
@@ -112,8 +112,8 @@ extension Storable {
         PropertyData.validPropertyDataForObject(model).forEach{ (propertyData) -> () in
             if let name = propertyData.name, var value = dic[name] {
                 if !(value is NSNull || "\(value)" == "nil"){
-                    if value is DatatypeValue {
-                        value = (value as! DatatypeValue).toAnyObject(propertyData.type)
+                    if value is Deserialization {
+                        value = (value as! Deserialization).deserialization(propertyData.type)
                     }
                     model.setValue(value, forKey: name)
                     
