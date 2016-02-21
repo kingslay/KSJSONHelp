@@ -167,11 +167,11 @@ public struct Cursor {
     //    // MARK: -
     //
     //    public subscript(idx: Int) -> Bool {
-    //        return Bool.fromDatatypeValue(self[idx])
+    //        return Bool.toAnyObject(self[idx])
     //    }
     //
     //    public subscript(idx: Int) -> Int {
-    //        return Int.fromDatatypeValue(self[idx])
+    //        return Int.toAnyObject(self[idx])
     //    }
     
 }

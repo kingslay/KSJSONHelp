@@ -60,8 +60,8 @@ extension Blob : Binding {
     
     public static let declaredDatatype = "BLOB"
     
-    public static func fromDatatypeValue(datatypeValue: Binding) -> AnyObject {
-        return NSData.fromDatatypeValue(datatypeValue)
+    public static func toAnyObject(datatypeValue: Binding) -> AnyObject {
+        return NSData.toAnyObject(datatypeValue)
     }
     public var datatypeValue: Binding {
         return self
@@ -73,7 +73,7 @@ extension NSData : Binding {
         return Blob.declaredDatatype
     }
     
-    public class func fromDatatypeValue(dataValue: Binding) -> AnyObject {
+    public class func toAnyObject(dataValue: Binding) -> AnyObject {
         return NSData(bytes: (dataValue as! Blob).bytes, length: (dataValue as! Blob).bytes.count)
     }
     
@@ -81,18 +81,39 @@ extension NSData : Binding {
         return Blob(bytes: bytes, length: length)
     }
 }
-extension NSArray : Binding {
+extension NSArray : Binding, Value{
     
     public class var declaredDatatype: String {
         return Blob.declaredDatatype
     }
     
-    public class func fromDatatypeValue(dataValue: Binding) -> AnyObject {
+    public class func toAnyObject(dataValue: Binding) -> AnyObject {
         return NSKeyedUnarchiver.unarchiveObjectWithData(NSData(bytes: (dataValue as! Blob).bytes, length: (dataValue as! Blob).bytes.count)) as! NSArray
     }
     
     public var datatypeValue: Binding {
         return NSKeyedArchiver.archivedDataWithRootObject(self)
+    }
+    public var toAnyObject: AnyObject {
+        return self.map { value -> AnyObject in
+            if value is Value {
+                return (value as! Value ).toAnyObject
+            }else{
+                return value as! AnyObject
+            }
+        }
+    }
+
+}
+extension Array: Value {
+    public var toAnyObject: AnyObject {
+        return self.map { value -> AnyObject in
+            if value is Value {
+                return (value as! Value ).toAnyObject
+            }else{
+                return value as! AnyObject
+            }
+        }
     }
 }
 
@@ -101,7 +122,7 @@ extension NSDictionary : Binding {
     public class var declaredDatatype: String {
         return Blob.declaredDatatype
     }
-    public class func fromDatatypeValue(dataValue: Binding) -> AnyObject {
+    public class func toAnyObject(dataValue: Binding) -> AnyObject {
         return NSKeyedUnarchiver.unarchiveObjectWithData(NSData(bytes: (dataValue as! Blob).bytes, length: (dataValue as! Blob).bytes.count)) as! NSDictionary
     }
     

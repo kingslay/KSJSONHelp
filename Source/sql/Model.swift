@@ -30,7 +30,7 @@ public protocol IgnoredProperties {
     static func ignoredProperties() -> Set<String>
 }
 
-public protocol Model {
+public protocol Model: Value {
     
     ///The database table in which entities are stored.
     static var table: String { get }
@@ -67,21 +67,28 @@ extension Model {
     
     public var dictionary: [String: AnyObject] {
         var data: [String: AnyObject] = [:]
-        PropertyData.validPropertyDataForObject(self).forEach { (var propertyData) -> () in
-            if !(propertyData.value is NSNull || "\(propertyData.value)" == "nil"){
-                data[propertyData.name!] = propertyData.objectValue
+        PropertyData.validPropertyDataForObject(self).forEach { propertyData -> () in
+            let value = propertyData.value
+            if !(value is NSNull || "\(value)" == "nil"){
+                if value is Value {
+                    data[propertyData.name!] = (value as! Value).toAnyObject
+                }else if let anyObject = value as? AnyObject {
+                    data[propertyData.name!] = anyObject
+                }
             }
         }
         return data
     }
     
     public static func setObjectArray(objectArray: [Model], forKey defaultName: String) {
+        
         NSUserDefaults.standardUserDefaults().setValue(objectArray.map{$0.dictionary}, forKey: defaultName)
         
     }
-    
+    public var toAnyObject: AnyObject {
+        return self.dictionary
+    }
 }
-
 extension Storable {
     public typealias ValueType1 = Self
     
@@ -96,7 +103,7 @@ extension Storable {
         let propertyDatas = PropertyData.validPropertyDataForObject(self)
         for propertyData in propertyDatas {
             if let name = propertyData.name, let type = propertyData.bindingType, let optionalValue = serialized[name], let binding = optionalValue {
-                setValue(type.fromDatatypeValue(binding), forKey: name)
+                setValue(type.toAnyObject(binding), forKey: name)
             }
         }
     }

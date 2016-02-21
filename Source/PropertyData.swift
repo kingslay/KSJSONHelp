@@ -12,11 +12,9 @@ internal struct PropertyData {
     internal let isOptional: Bool
     internal var type: Any.Type
     internal var bindingType: Binding.Type?
-    
     internal var name: String?
     lazy internal var bindingValue: Binding? = self.toBinding(self.value)
     internal let value: Any
-    lazy internal var objectValue: AnyObject? = self.toAnyObject(self.value)
     
     internal var isValid: Bool {
         return name != nil
@@ -123,7 +121,7 @@ internal struct PropertyData {
                 arrM.addObject(objectValue(genericType, value: genericValue)!)
             }
             return arrM
-        }else if value is [String : AnyObject] {
+        }else if value is [String : AnyObject] && type is Storable.Type {
             return (type as! Storable.Type).fromDictionary((value as! [String : AnyObject])) as? AnyObject
         }
         return value as? AnyObject
@@ -131,41 +129,6 @@ internal struct PropertyData {
     private func generic(type: Any.Type) -> Any.Type {
         let clsString = "\(type)".replacingOccurrencesOfString("Array<", withString: "").replacingOccurrencesOfString("Optional<", withString: "").replacingOccurrencesOfString(">", withString: "")
         return NSClassFromString(clsString)!
-    }
-    
-    private  func toAnyObject(value: Any) -> AnyObject? {
-        if value is NSArray {
-            var dictM: [AnyObject] = []
-            let valueArray = value as! NSArray
-            for item in valueArray {
-                dictM.append(toAnyObject(item)!)
-            }
-            return dictM
-        }else if value is NSNumber {
-            return value as! NSNumber
-        }else if value is NSString {
-            return value as! NSString
-        }else if value is Model {
-            return (value as! Model).dictionary
-        } else if value is Int8 {
-            return NSNumber(char: value as! Int8)
-        }else if value is UInt8 {
-            return NSNumber(unsignedChar: value as! UInt8)
-        }else if value is Int16 {
-            return NSNumber(short: value as! Int16)
-        }else if value is UInt16 {
-            return NSNumber(unsignedShort: value as! UInt16)
-        }else if value is Int32 {
-            return NSNumber(int: value as! Int32)
-        }else if value is UInt32 {
-            return NSNumber(unsignedInt: value as! UInt32)
-        }else if value is Int64 {
-            return NSNumber(longLong: value as! Int64)
-        }else if value is UInt64 {
-            return NSNumber(unsignedLongLong: value as! UInt64)
-        }
-        
-        return value as? AnyObject
     }
 }
 
