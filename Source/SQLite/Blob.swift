@@ -113,6 +113,10 @@ extension NSArray : Binding, Value, DatatypeValue{
             }
         }
     }
+    private func generic(type: Any.Type) -> Any.Type {
+        let clsString = "\(type)".replacingOccurrencesOfString("Array<", withString: "").replacingOccurrencesOfString("Optional<", withString: "").replacingOccurrencesOfString(">", withString: "")
+        return NSClassFromString(clsString)!
+    }
 }
 
 extension Array: Value {
@@ -140,11 +144,6 @@ extension Array: Value {
 //        return array
 //    }
 }
-private func generic(type: Any.Type) -> Any.Type {
-    let clsString = "\(type)".replacingOccurrencesOfString("Array<", withString: "").replacingOccurrencesOfString("Optional<", withString: "").replacingOccurrencesOfString(">", withString: "")
-    return NSClassFromString(clsString)!
-}
-
 
 extension NSDictionary: Binding, DatatypeValue {
 
