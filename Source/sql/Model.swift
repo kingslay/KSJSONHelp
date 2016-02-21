@@ -42,7 +42,9 @@ public protocol Model {
 }
 
 extension Model {
-
+    public static var table: String {
+        return String(self)
+    }
 	public func save() {
 		Query().save(self)
 	}
@@ -61,13 +63,6 @@ extension Model {
         }
         return data
     }
-    public var dictionary: [String: AnyObject] {
-        var data: [String: AnyObject] = [:]
-        PropertyData.validPropertyDataForObject(self).forEach { (var propertyData) -> () in
-            data[propertyData.name!] = propertyData.objectValue
-        }
-        return data
-    }
 }
 
 extension Storable {
@@ -81,7 +76,6 @@ extension Storable {
     internal init(serialized: [String: Binding?]) {
         self.init()
         let propertyDatas = PropertyData.validPropertyDataForObject(self)
-        var validData: [String: AnyObject] = [:]
         for propertyData in propertyDatas {
             if let name = propertyData.name, let type = propertyData.bindingType, let optionalValue = serialized[name], let binding = optionalValue {
                 if let validValue = type.fromDatatypeValue(binding) as? AnyObject {
@@ -90,4 +84,23 @@ extension Storable {
             }
         }
     }
+}
+extension Storable where Self: Model {
+    
+    public static func fetchOne(filter: Filter?) -> Self? {
+        if let serialized = Database.driver.fetchOne(table: self.table, filter: filter) {
+            return self.init(serialized: serialized)
+        } else {
+            return nil
+        }
+    }
+    
+//    public static func fetch(filter: Filter?) -> [Self] {
+//        if let serializeds = Database.driver.fetch(table: self.table, filter: filter) {
+//            return self.init(serialized: serialized)
+//        } else {
+//            return nil
+//        }    }
+//   
+    
 }

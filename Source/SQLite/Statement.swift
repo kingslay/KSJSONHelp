@@ -33,6 +33,7 @@ public final class Statement {
     
     init(_ connection: Connection, _ SQL: String) throws {
         self.connection = connection
+        print("[SQL] \(SQL)")
         try connection.check(sqlite3_prepare_v2(connection.handle, SQL, -1, &handle, nil))
     }
     

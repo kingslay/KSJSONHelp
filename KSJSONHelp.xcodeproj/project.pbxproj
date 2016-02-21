@@ -72,6 +72,14 @@
 		3C71A5661C78201400CF48D1 /* NSObject+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A5641C78201400CF48D1 /* NSObject+Model.swift */; };
 		3C71A5671C78201400CF48D1 /* NSObject+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A5641C78201400CF48D1 /* NSObject+Model.swift */; };
 		3C71A5681C78201400CF48D1 /* NSObject+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A5641C78201400CF48D1 /* NSObject+Model.swift */; };
+		3C71A5701C79712A00CF48D1 /* TestClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A56E1C79712900CF48D1 /* TestClass.swift */; };
+		3C71A5721C79712A00CF48D1 /* TestClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A56E1C79712900CF48D1 /* TestClass.swift */; };
+		3C71A5791C7971D500CF48D1 /* AsynchronousSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A5731C7971D500CF48D1 /* AsynchronousSpec.swift */; };
+		3C71A57A1C7971D500CF48D1 /* AsynchronousSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A5731C7971D500CF48D1 /* AsynchronousSpec.swift */; };
+		3C71A57D1C7971D500CF48D1 /* DynamicRetrievalSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A5751C7971D500CF48D1 /* DynamicRetrievalSpec.swift */; };
+		3C71A57E1C7971D500CF48D1 /* DynamicRetrievalSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A5751C7971D500CF48D1 /* DynamicRetrievalSpec.swift */; };
+		3C71A5831C7971D500CF48D1 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A5781C7971D500CF48D1 /* Tests.swift */; };
+		3C71A5841C7971D500CF48D1 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A5781C7971D500CF48D1 /* Tests.swift */; };
 		3C85C8201BBE66E600E2F488 /* AppDelegate.swift in Resources */ = {isa = PBXBuildFile; fileRef = 3C808CD91B9601B7008F0ED7 /* AppDelegate.swift */; };
 		3C85C8211BBE66E600E2F488 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C808CDA1B9601B7008F0ED7 /* Assets.xcassets */; };
 		3C85C8221BBE66E600E2F488 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C808CDB1B9601B7008F0ED7 /* LaunchScreen.storyboard */; };
@@ -122,6 +130,10 @@
 		3C71A5461C77137800CF48D1 /* SQLiteDriver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLiteDriver.swift; sourceTree = "<group>"; };
 		3C71A55A1C7770FF00CF48D1 /* PropertyData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PropertyData.swift; path = Source/PropertyData.swift; sourceTree = SOURCE_ROOT; };
 		3C71A5641C78201400CF48D1 /* NSObject+Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSObject+Model.swift"; path = "Source/NSObject+Model.swift"; sourceTree = SOURCE_ROOT; };
+		3C71A56E1C79712900CF48D1 /* TestClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestClass.swift; sourceTree = "<group>"; };
+		3C71A5731C7971D500CF48D1 /* AsynchronousSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsynchronousSpec.swift; sourceTree = "<group>"; };
+		3C71A5751C7971D500CF48D1 /* DynamicRetrievalSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicRetrievalSpec.swift; sourceTree = "<group>"; };
+		3C71A5781C7971D500CF48D1 /* Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		3C808CB61B95FF4D008F0ED7 /* KSJSONHelp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KSJSONHelp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C808CD91B9601B7008F0ED7 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "KSJSONHelp-Demo/AppDelegate.swift"; sourceTree = SOURCE_ROOT; };
 		3C808CDA1B9601B7008F0ED7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "KSJSONHelp-Demo/Assets.xcassets"; sourceTree = SOURCE_ROOT; };
@@ -216,6 +228,10 @@
 			isa = PBXGroup;
 			children = (
 				3C85C83B1BBE6B2600E2F488 /* KSJSONHelpTests.swift */,
+				3C71A56E1C79712900CF48D1 /* TestClass.swift */,
+				3C71A5781C7971D500CF48D1 /* Tests.swift */,
+				3C71A5731C7971D500CF48D1 /* AsynchronousSpec.swift */,
+				3C71A5751C7971D500CF48D1 /* DynamicRetrievalSpec.swift */,
 				3C85C83D1BBE6B2600E2F488 /* Info.plist */,
 			);
 			path = KSJSONHelpTests;
@@ -463,16 +479,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C71A5721C79712A00CF48D1 /* TestClass.swift in Sources */,
 				3C622B811C76D5B400F1280E /* Database.swift in Sources */,
 				3C622BC41C76F6C100F1280E /* Connection.swift in Sources */,
+				3C71A57A1C7971D500CF48D1 /* AsynchronousSpec.swift in Sources */,
 				3C622B851C76D5B400F1280E /* Driver.swift in Sources */,
 				3C71A5681C78201400CF48D1 /* NSObject+Model.swift in Sources */,
 				3C622BC01C76F6C100F1280E /* Blob.swift in Sources */,
 				3C622BCC1C76F6C100F1280E /* Statement.swift in Sources */,
 				3C622B951C76D5B400F1280E /* PrintDriver.swift in Sources */,
+				3C71A57E1C7971D500CF48D1 /* DynamicRetrievalSpec.swift in Sources */,
 				3C622B991C76D5B400F1280E /* Query.swift in Sources */,
 				3C71A55E1C7770FF00CF48D1 /* PropertyData.swift in Sources */,
 				3C622BD01C76F6C100F1280E /* Value.swift in Sources */,
+				3C71A5841C7971D500CF48D1 /* Tests.swift in Sources */,
 				3C622B8D1C76D5B400F1280E /* MemoryDriver.swift in Sources */,
 				3C622B911C76D5B400F1280E /* Model.swift in Sources */,
 				3C71A54A1C77137800CF48D1 /* SQLiteDriver.swift in Sources */,
@@ -509,16 +529,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C622BBE1C76F6C100F1280E /* Blob.swift in Sources */,
+				3C71A5831C7971D500CF48D1 /* Tests.swift in Sources */,
 				3C622B871C76D5B400F1280E /* Filter.swift in Sources */,
 				3C622B9B1C76D5B400F1280E /* SQL.swift in Sources */,
 				3C622BCE1C76F6C100F1280E /* Value.swift in Sources */,
 				3C71A5661C78201400CF48D1 /* NSObject+Model.swift in Sources */,
 				3C622B8F1C76D5B400F1280E /* Model.swift in Sources */,
 				3C622B831C76D5B400F1280E /* Driver.swift in Sources */,
+				3C71A5791C7971D500CF48D1 /* AsynchronousSpec.swift in Sources */,
 				3C622B931C76D5B400F1280E /* PrintDriver.swift in Sources */,
 				3C622B971C76D5B400F1280E /* Query.swift in Sources */,
 				3C622B7F1C76D5B400F1280E /* Database.swift in Sources */,
+				3C71A5701C79712A00CF48D1 /* TestClass.swift in Sources */,
 				3C85C84F1BBE6DF500E2F488 /* KSJSONHelpTests.swift in Sources */,
+				3C71A57D1C7971D500CF48D1 /* DynamicRetrievalSpec.swift in Sources */,
 				3C622B8B1C76D5B400F1280E /* MemoryDriver.swift in Sources */,
 				3C71A5481C77137800CF48D1 /* SQLiteDriver.swift in Sources */,
 				3C71A55C1C7770FF00CF48D1 /* PropertyData.swift in Sources */,

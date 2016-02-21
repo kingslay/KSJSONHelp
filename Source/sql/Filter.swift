@@ -23,7 +23,7 @@ public class CompareFilter: Filter {
         self.comparison = comparison
     }
     public var statement: String {
-        return "\(self.key) \(self.comparison.rawValue) :\(value)";
+        return "\(self.key) \(self.comparison.rawValue) \(value)";
     }
 }
 
@@ -43,8 +43,301 @@ public class SubsetFilter: Filter {
         self.comparison = comparison
     }
     public var statement: String {
-        let placeholderString = (0..<self.superSet.count).map {":\(self.key)\($0)"}
+        let placeholderString = (0..<self.superSet.count).map {"\($0)"}
             .joinWithSeparator(", ")
         return "\(self.key) \(self.comparison.rawValue) (\(placeholderString))"
     }
 }
+public class CompositeFilter: Filter,DictionaryLiteralConvertible {
+    public typealias Key = String
+    public typealias Value = Binding
+    private var composites: [Filter] = []
+    
+    public required init(dictionaryLiteral elements: (Key, Value)...) {
+        elements.forEach { (propertyName, value) in
+            composites.append(CompareFilter(key: propertyName, value: value,comparison: .Equal))
+        }
+    }
+    public var statement: String {
+        if self.composites.count == 0 {
+            return "1==1"
+        }else{
+            return self.composites.map {$0.statement}.joinWithSeparator(" AND ")
+        }
+    }
+    
+    public func equal(propertyName: String, value: Binding) -> Filter {
+        composites.append(CompareFilter(key: propertyName, value: value, comparison: .Equal))
+        return self
+    }
+    
+    /** Evaluated as true if the value of the property is less than the provided value
+     
+     - parameter propertyName:  name of the property to be evaluated
+     - parameter array:         value that will be compared to the property value
+     
+     - returns:                 `self`, to enable chaining of statements
+     */
+    public func less(propertyName: String, value: Binding) -> Filter {
+        composites.append(CompareFilter(key: propertyName, value: value, comparison: .Less))
+        return self
+    }
+    
+    /** Evaluated as true if the value of the property is less or equal to the provided value
+     
+     - parameter propertyName:  name of the property to be evaluated
+     - parameter array:         value that will be compared to the property value
+     
+     - returns:                 `self`, to enable chaining of statements
+     */
+    public func lessOrEqual(propertyName: String, value: Binding) -> Filter {
+        composites.append(CompareFilter(key: propertyName,value: value, comparison: .LessOrEqual))
+        return self
+    }
+    
+    /** Evaluated as true if the value of the property is less than the provided value
+     
+     - parameter propertyName:  name of the property to be evaluated
+     - parameter array:         value that will be compared to the property value
+     
+     - returns:                 `self`, to enable chaining of statements
+     */
+    public func greater(propertyName: String, value: Binding) -> Filter {
+        composites.append(CompareFilter(key: propertyName, value: value, comparison: .Greater))
+        return self
+    }
+    
+    /** Evaluated as true if the value of the property is greater or equal to the provided value
+     
+     - parameter propertyName:  name of the property to be evaluated
+     - parameter array:         value that will be compared to the property value
+     
+     - returns:                 `self`, to enable chaining of statements
+     */
+    public func greaterOrEqual(propertyName: String, value: Binding) -> Filter {
+        composites.append(CompareFilter(key: propertyName, value: value, comparison: .GreaterOrEqual))
+        return self
+    }
+    
+    /** Evaluated as true if the value of the property is not equal to the provided value
+     
+     - parameter propertyName:  name of the property to be evaluated
+     - parameter array:         value that will be compared to the property value
+     
+     - returns:                 `self`, to enable chaining of statements
+     */
+    public func notEqual(propertyName: String, value: Binding) -> Filter {
+        composites.append(CompareFilter(key: propertyName, value: value, comparison: .NotEqual))
+        return self
+    }
+    
+    /** Evaluated as true if the value of the property is contained in the array
+     
+     - parameter propertyName:  name of the property to be evaluated
+     - parameter array:         array that should contain the property value
+     
+     - returns:                 `self`, to enable chaining of statements
+     */
+    public func contains(propertyName: String, array: [Binding]) -> Filter {
+        composites.append(SubsetFilter(key: propertyName, superSet: array, comparison: .In))
+        return self
+    }
+    
+    /** Evaluated as true if the value of the property is not contained in the array
+     
+     - parameter propertyName:  name of the property to be evaluated
+     - parameter array:         array that should not contain the property value
+     
+     - returns:                 `self`, to enable chaining of statements
+     */
+    public func notContains(propertyName: String, array: [Binding]) -> Filter {
+        composites.append(SubsetFilter(key: propertyName, superSet: array, comparison:  .NotIn))
+        return self
+    }
+    
+    /**
+     Evaluated as true if the value of the property matches the pattern.
+     
+     **%** matches any string
+     
+     **_** matches a single character
+     
+     'Dog' LIKE 'D_g'    = true
+     
+     'Dog' LIKE 'D%'     = true
+     
+     
+     - parameter propertyName:  name of the property to be evaluated
+     - parameter array:         array that should contain the property value
+     
+     - returns:                 `self`, to enable chaining of statements
+     */
+    public func like(propertyName: String, pattern: String) -> Filter {
+        composites.append(CompareFilter(key: propertyName, value: pattern, comparison: .Like))
+        return self
+    }
+    
+    /**
+     Evaluated as true if the value of the property matches the pattern.
+     
+     **%** matches any string
+     
+     **_** matches a single character
+     
+     'Dog' NOT LIKE 'D_g'    = false
+     
+     'Dog' NOT LIKE 'D%'     = false
+     
+     
+     - parameter propertyName:  name of the property to be evaluated
+     - parameter array:         array that should contain the property value
+     
+     - returns:                 `Filter` intance
+     */
+    public func notLike(propertyName: String, pattern: String) -> Filter {
+        composites.append(CompareFilter(key: propertyName, value: pattern, comparison: .NotLike))
+        return self
+    }
+}
+
+extension Filter {
+    
+    // MARK: - Convenience filter initializers
+    
+    /** Evaluated as true if the value of the property is equal to the provided value
+    
+    - parameter propertyName:   name of the property to be evaluated
+    - parameter array:          value that will be compared to the property value
+    
+    - returns:                  `Filter` intance
+    */
+    
+    public static func equal(propertyName: String, value: Binding) -> Filter {
+        return CompositeFilter().equal(propertyName, value: value)
+    }
+    
+    /** Evaluated as true if the value of the property is less than the provided value
+     
+     - parameter propertyName:  name of the property to be evaluated
+     - parameter array:         value that will be compared to the property value
+     
+     - returns:                 `Filter` intance
+     */
+    public static func less(propertyName: String, value: Binding) -> Filter {
+        return CompositeFilter().less(propertyName, value: value)
+    }
+    
+    /** Evaluated as true if the value of the property is less or equal to the provided value
+     
+     - parameter propertyName:  name of the property to be evaluated
+     - parameter array:         value that will be compared to the property value
+     
+     - returns:                 `Filter` intance
+     */
+    public static func lessOrEqual(propertyName: String, value: Binding) -> Filter {
+        return CompositeFilter().lessOrEqual(propertyName, value: value)
+    }
+    
+    /**
+     Evaluated as true if the value of the property is greater than the provided value
+     
+     - parameter propertyName:  name of the property to be evaluated
+     - parameter array:         value that will be compared to the property value
+     
+     - returns:                 `Filter` intance
+     */
+    public static func greater(propertyName: String, value: Binding) -> Filter {
+        return CompositeFilter().greater(propertyName, value: value)
+    }
+    
+    /**
+     Evaluated as true if the value of the property is greater or equal to the provided value
+     
+     - parameter propertyName:  name of the property to be evaluated
+     - parameter array:         value that will be compared to the property value
+     
+     - returns:                 `Filter` intance
+     */
+    public static func greaterOrEqual(propertyName: String, value: Binding) -> Filter {
+        return CompositeFilter().greaterOrEqual(propertyName, value: value)
+    }
+    
+    /**
+     Evaluated as true if the value of the property is not equal to the provided value
+     
+     - parameter propertyName:  name of the property to be evaluated
+     - parameter array:         value that will be compared to the property value
+     
+     - returns:                 `Filter` intance
+     */
+    public static func notEqual(propertyName: String, value: Binding) -> Filter {
+        return CompositeFilter().notEqual(propertyName, value: value)
+    }
+    
+    /**
+     Evaluated as true if the value of the property is contained in the array
+     
+     - parameter propertyName:  name of the property to be evaluated
+     - parameter array:         array that should contain the property value
+     
+     - returns:                 `Filter` intance
+     */
+    public static func contains(propertyName: String, array: [Binding]) -> Filter {
+        return CompositeFilter().contains(propertyName, array: array)
+    }
+    
+    /**
+     Evaluated as true if the value of the property is not contained in the array
+     
+     - parameter propertyName:  name of the property to be evaluated
+     - parameter array:         array that should not contain the property value
+     
+     - returns:                 `Filter` intance
+     */
+    public static func notContains(propertyName: String, array: [Binding]) -> Filter {
+        return CompositeFilter().notContains(propertyName, array: array)
+    }
+    
+    /**
+     Evaluated as true if the value of the property matches the pattern.
+     
+     **%** matches any string
+     
+     **_** matches a single character
+     
+     'Dog' LIKE 'D_g'    = true
+     
+     'Dog' LIKE 'D%'     = true
+     
+     
+     - parameter propertyName:  name of the property to be evaluated
+     - parameter array:         array that should contain the property value
+     
+     - returns:                 `Filter` intance
+     */
+    public static func like(propertyName: String, pattern: String) -> Filter {
+        return CompositeFilter().like(propertyName, pattern: pattern)
+    }
+    
+    /**
+     Evaluated as true if the value of the property matches the pattern.
+     
+     **%** matches any string
+     
+     **_** matches a single character
+     
+     'Dog' NOT LIKE 'D_g'    = false
+     
+     'Dog' NOT LIKE 'D%'     = false
+     
+     
+     - parameter propertyName:  name of the property to be evaluated
+     - parameter array:         array that should contain the property value
+     
+     - returns:                 `Filter` intance
+     */
+    public static func notLike(propertyName: String, pattern: String) -> Filter {
+        return CompositeFilter().notLike(propertyName, pattern: pattern)
+    }
+}
+

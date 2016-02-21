@@ -3,7 +3,7 @@ public class SQL {
     public var table: String
     public var operation: Operation
     
-    public var filters: [Filter]?
+    public var filter: Filter?
     public var limit: Int?
     public var data: [String: Binding?]?
     
@@ -15,7 +15,7 @@ public class SQL {
         case CREATE = "CREATE TABLE"
         case UPSERT = "INSERT OR REPLACE INTO"
         case COUNT = "SELECT count(*) FROM"
-
+        
     }
     
     public init(operation: Operation, table: String) {
@@ -30,8 +30,7 @@ public class SQL {
         if let data = self.data {
             if self.operation == .INSERT || self.operation == .UPSERT {
                 let columns = data.keys
-                let namedParameters = columns.map {":" + $0}
-                query.append("(\(columns.joinWithSeparator(", "))) VALUES (\(namedParameters.joinWithSeparator(", ")))")
+                query.append("(\(columns.joinWithSeparator(", "))) VALUES (\(columns.joinWithSeparator(", ")))")
             } else if self.operation == .UPDATE {
                 var updates: [String] = []
                 
@@ -41,14 +40,10 @@ public class SQL {
                 query.append("SET \(updates.joinWithSeparator(", "))")
             }
         }
-        if let filters = self.filters {
-            if filters.count > 0 {
-                query.append("WHERE")
-            }
+        if let filter = self.filter {
+            query.append("WHERE")
+            query.append(filter.statement)
             
-            for (index, filter) in filters.enumerate() {
-                query.append((index > 0) ? " AND \(filter.statement)" : filter.statement)
-            }
         }
         
         if let limit = self.limit {
@@ -56,13 +51,6 @@ public class SQL {
         }
         
         let queryString = query.joinWithSeparator(" ")
-        
-        self.log(queryString)
-        
         return queryString + ";"
-    }
-    
-    func log(message: Any) {
-        print("[SQL] \(message)")
     }
 }

@@ -21,18 +21,9 @@ class MemoryDriver: Driver {
 		]
 
 
-	func fetchOne(table table: String, filters: [Filter]) -> [String: Binding?]? {
-		print("fetch one \(filters.count) filters on \(table)")
-
+	func fetchOne(table table: String, filter: Filter?) -> [String: Binding?]? {
+		print("fetch one \(filter?.statement) filter on \(table)")
 		var id: String?
-
-		for filter in filters {
-			if let filter = filter as? CompareFilter {
-				if filter.key == "id" { //only working for id
-					id = "\(filter.value)"
-				}
-			}
-		}
 
 		if let id = id {
 			if let data = self.memory[table]?[id] {
@@ -43,8 +34,8 @@ class MemoryDriver: Driver {
 		return nil
 	}
 
-	func fetch(table table: String, filters: [Filter]) -> [[String: Binding?]]? {
-		print("fetch \(filters.count) filters on \(table)")
+	func fetch(table table: String, filter: Filter?) -> [[String: Binding?]]? {
+		print("fetch \(filter?.statement) filter on \(table)")
 
 		if let data = self.memory[table] {
 			var all: [[String: Binding?]] = []
@@ -61,10 +52,10 @@ class MemoryDriver: Driver {
 		return []
 	}
 
-	func delete(table table: String, filters: [Filter]) {
-		print("delete \(filters.count) filters on \(table)")
+	func delete(table table: String, filter: Filter?) {
+		print("delete \(filter?.statement) filter on \(table)")
 
-		if filters.count == 0 {
+		if filter == nil {
 			//truncate
 			self.memory[table] = [
 				"metadata": [
@@ -77,8 +68,8 @@ class MemoryDriver: Driver {
 		}
 	}
 
-	func update(table table: String, filters: [Filter], data: [String: Binding?]) {
-		print("update \(filters.count) filters \(data.count) data points on \(table)")
+	func update(table table: String, filter: Filter?, data: [String: Binding?]) {
+		print("update \(filter?.statement) filter \(data.count) data points on \(table)")
 
 		//implement me
 	}
@@ -97,8 +88,8 @@ class MemoryDriver: Driver {
 		//implement me
 	}
  
-	func exists(table table: String, filters: [Filter]) -> Bool {
-		print("exists \(filters.count) filters on \(table)")
+	func exists(table table: String, filter: Filter?) -> Bool {
+		print("exists \(filter?.statement) filter on \(table)")
 
 		if let data = self.memory[table] {
 			for (key, _) in data {
@@ -113,8 +104,8 @@ class MemoryDriver: Driver {
 		return false
 	}
 
-	func count(table table: String, filters: [Filter]) -> Int {
-		print("count \(filters.count) filters on \(table)")
+	func count(table table: String, filter: Filter?) -> Int {
+		print("count \(filter?.statement) filter on \(table)")
 
 		var count = 0
 

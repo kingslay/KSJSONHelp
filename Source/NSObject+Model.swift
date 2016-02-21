@@ -7,12 +7,6 @@
 //
 
 import Foundation
-
-extension Model where Self: NSObject {
-    public static var table: String {
-        return String(self)
-    }
-}
 extension NSObject {
     public var dictionary: [String: AnyObject] {
         var data: [String: AnyObject] = [:]

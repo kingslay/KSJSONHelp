@@ -4,16 +4,16 @@ public class SQLiteDriver: Driver {
     private let database = try! Connection("db.sqlite3")
     private var existingTables: Set<String> = []
 
-    public func fetchOne(table table: String, filters: [Filter]) -> [String: Binding?]? {
+    public func fetchOne(table table: String, filter: Filter?) -> [String: Binding?]? {
         let sql = SQL(operation: .SELECT, table: table)
-        sql.filters = filters
+        sql.filter = filter
         sql.limit = 1
         return execute(sql)?.first
     }
     
-    public func fetch(table table: String, filters: [Filter]) -> [[String: Binding?]]? {
+    public func fetch(table table: String, filter: Filter?) -> [[String: Binding?]]? {
         let sql = SQL(operation: .SELECT, table: table)
-        sql.filters = filters
+        sql.filter = filter
         if let statement = execute(sql) {
             return Array(statement)
         }else{
@@ -21,15 +21,15 @@ public class SQLiteDriver: Driver {
         }
     }
     
-    public func delete(table table: String, filters: [Filter]) {
+    public func delete(table table: String, filter: Filter?) {
         let sql = SQL(operation: .DELETE, table: table)
-        sql.filters = filters
+        sql.filter = filter
         execute(sql)
     }
     
-    public func update(table table: String, filters: [Filter], data: [String: Binding?]) {
+    public func update(table table: String, filter: Filter?, data: [String: Binding?]) {
         let sql = SQL(operation: .UPDATE, table: table)
-        sql.filters = filters
+        sql.filter = filter
         sql.data = data
         execute(sql)?.run()
     }
@@ -50,15 +50,15 @@ public class SQLiteDriver: Driver {
         }
     }
     
-    public func exists(table table: String, filters: [Filter]) -> Bool {
-        print("exists \(filters.count) filters on \(table)")
+    public func exists(table table: String, filter: Filter?) -> Bool {
+        print("exists \(filter?.statement) filter on \(table)")
         
         return false
     }
     
-    public func count(table table: String, filters: [Filter]) -> Int {
+    public func count(table table: String, filter: Filter?) -> Int {
         let sql = SQL(operation: .COUNT, table: table)
-        sql.filters = filters
+        sql.filter = filter
         sql.limit = 1
         if let value = execute(sql)?.scalar() {
             return wrapValue(value)
@@ -84,7 +84,7 @@ public class SQLiteDriver: Driver {
     }
     public func createTable(table table: String, sql: String) {
         do{
-            if !existingTables.contains(table){
+            if !existingTables.contains(table) {
                 try self.database.execute(sql)
                 existingTables.insert(table)
             }

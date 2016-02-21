@@ -1,29 +1,9 @@
 public class Query<T: Model> {
 
-	public var filters: [Filter] = []
-//	public var first: T? {
-//		if let serialized = Database.driver.fetchOne(table: self.table, filters: self.filters) where T.self is Storable.Type {
-//            serialized.toModel()
-//		} else {
-//			return nil
-//		}
-//	}
-//
-//	//var results: [Model]
-//	public var results: [T] {
-//		var models: [T] = []
-//
-//        if let serializeds = Database.driver.fetch(table: self.table, filters: self.filters) {
-//            for serialized in serializeds {
-//                let model = T(serialized: serialized)
-//                models.append(model)
-//            }
-//        }
-//		return models
-//	}
+	public var filter: Filter?
 
 	public func update(data: [String: Binding?]) {
-		Database.driver.update(table: self.table, filters: self.filters, data: data)
+		Database.driver.update(table: self.table, filter: self.filter, data: data)
 	}
 
 	public func insert(data: [String: Binding?]) {
@@ -43,22 +23,24 @@ public class Query<T: Model> {
 	}
 
 	public func delete() {
-		Database.driver.delete(table: self.table, filters: self.filters)
+		Database.driver.delete(table: self.table, filter: self.filter)
 	}
 
 	public var exists: Bool{
-		return Database.driver.exists(table: self.table, filters: self.filters)
+		return Database.driver.exists(table: self.table, filter: self.filter)
 	}
 
 	public var count: Int {
-		return Database.driver.count(table: self.table, filters: self.filters)
+		return Database.driver.count(table: self.table, filter: self.filter)
 	}
+    
+    func fetchOne(filter: Filter?) -> [String: Binding?]? {
+        return Database.driver.fetchOne(table: self.table, filter: self.filter)
 
-	//model
-//	public func find(id: Int) -> T? {
-//		return self.filter("id", "\(id)").first
-//	}
-
+    }
+    func fetch(filter: Filter?) -> [[String: Binding?]]? {
+        return Database.driver.fetch(table: self.table, filter: self.filter)
+    }
 
 	/* Internal Casts */
 	///Inserts or updates the entity in the database.
@@ -82,50 +64,27 @@ public class Query<T: Model> {
         if T.self is PrimaryKeys.Type {
             let primaryKeysType = T.self as! PrimaryKeys.Type
             let data = model.serialize
+            let filter = CompositeFilter()
             for primaryKey in primaryKeysType.primaryKeys() {
                 if let optionalValue = data[primaryKey],let value = optionalValue  {
-                    self.filter(primaryKey, value)
+                    filter.equal(primaryKey, value: value)
                 }
             }
+            self.filter = filter
             self.delete()
         }else{
             return
         }
 	}
-
-	//continues
-	public func filter(key: String, _ value: Binding) -> Query {
-		let filter = CompareFilter(key: key, value: value, comparison: .Equal)
-		self.filters.append(filter)
-		return self
-	}
-
-	public func filter(key: String, _ comparison: CompareFilter.Comparison, _ value: Binding) -> Query {
-		let filter = CompareFilter(key: key, value: value, comparison: comparison)
-		self.filters.append(filter)
-		return self
-	}
-
-	public func filter(key: String, contains superSet: [Binding]) -> Query {
-		let filter = SubsetFilter(key: key, superSet: superSet, comparison: .In)
-		self.filters.append(filter)
-		return self
-	}
-
-	public func filter(key: String, notContains superSet: [Binding]) -> Query {
-		let filter = SubsetFilter(key: key, superSet: superSet, comparison: .NotIn)
-		self.filters.append(filter)
-		return self
-	}
-
 	public init() {
 		self.table = T.table
 	}
+    
     internal func createTableStatementByPropertyData(propertyDatas: [PropertyData]) -> String {
         var statement = "CREATE TABLE \(self.table) ("
         
         for propertyData in propertyDatas {
-            statement += "\(propertyData.name!) \(propertyData.bindingType!.declaredDatatype))"
+            statement += "\(propertyData.name!) \(propertyData.bindingType!.declaredDatatype)"
             statement += propertyData.isOptional ? "" : " NOT NULL"
             statement += ", "
         }
