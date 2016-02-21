@@ -1,9 +1,4 @@
 import Foundation
-public protocol Storable {
-    /** Used to initialize an object to get information about its properties */
-    init()
-    func setValue(value: AnyObject?, forKey key: String)
-}
 /**
 	Base model for all Fluent entities.
  
@@ -29,7 +24,7 @@ public protocol IgnoredProperties {
      */
     static func ignoredProperties() -> Set<String>
 }
-
+///支持对象保存到数据库，转为字典
 public protocol Model: Serialization {
     
     ///The database table in which entities are stored.
@@ -41,7 +36,6 @@ public protocol Model: Serialization {
      */
     var serialize: [String: Binding?] { get }
 }
-
 extension Model {
     public static var table: String {
         return String(self)
@@ -57,7 +51,7 @@ extension Model {
     //	public static func find(id: Int) -> Self? {
     //		return Query().find(id)
     //	}
-    public var serialize: [String: Binding?] {
+    internal var serialize: [String: Binding?] {
         var data: [String: Binding?] = [:]
         PropertyData.validPropertyDataForObject(self).forEach { (var propertyData) -> () in
             data[propertyData.name!] = propertyData.bindingValue
@@ -88,6 +82,12 @@ extension Model {
     public var serialization: AnyObject {
         return self.dictionary
     }
+}
+///从数据库的表取出对象。从字典转为对象
+public protocol Storable {
+    /** Used to initialize an object to get information about its properties */
+    init()
+    func setValue(value: AnyObject?, forKey key: String)
 }
 extension Storable {
     public typealias ValueType1 = Self
