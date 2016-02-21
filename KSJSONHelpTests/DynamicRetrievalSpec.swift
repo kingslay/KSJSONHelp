@@ -25,7 +25,7 @@ class DynamicRetrievalSpec: SQLiteTestCase {
         dynamicObject.dic = ["1":1]
         dynamicObject.optionalArray = [1]
         dynamicObject.save()
-        let retrievedDynamicObject = DynamicTestClass.fetchOne(["primaryKey": dynamicObject.primaryKey] as? CompositeFilter)!
+        var retrievedDynamicObject = DynamicTestClass.fetchOne(["primaryKey": dynamicObject.primaryKey] as? CompositeFilter)!
         assert(retrievedDynamicObject.string == dynamicObject.string)
         assert(retrievedDynamicObject.nsstring == dynamicObject.nsstring)
         assert(retrievedDynamicObject.number == dynamicObject.number)
@@ -40,6 +40,12 @@ class DynamicRetrievalSpec: SQLiteTestCase {
         assert(retrievedDynamicObject.optionalArray == dynamicObject.optionalArray)
         assert(retrievedDynamicObject.dic == dynamicObject.dic)
         assert(retrievedDynamicObject.optionalDictionary == dynamicObject.optionalDictionary)
+        assert(DynamicTestClass.fetch(nil)?.count == 1)
+        dynamicObject.save()
+        assert(DynamicTestClass.fetch(nil)?.count == 1)
+        dynamicObject.primaryKey = 2
+        dynamicObject.save()
+        let i = DynamicTestClass.fetch(nil)?.count
         
     }
 }

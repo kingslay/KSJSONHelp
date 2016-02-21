@@ -4,12 +4,12 @@ public protocol Storable {
     func setValue(value: AnyObject?, forKey key: String)
 }
 /**
-	Base model for all Fluent entities. 
-
+	Base model for all Fluent entities.
+ 
 	Override the `table()`, `serialize()`, and `init(serialized:)`
-	methods on your subclass. 
-*/
-/** Implement this protocol to use primary keys */
+	methods on your subclass.
+ */
+ /** Implement this protocol to use primary keys */
 public protocol PrimaryKeys {
     /**
      Method used to define a set of primary keys for the types table
@@ -30,14 +30,14 @@ public protocol IgnoredProperties {
 }
 
 public protocol Model {
-
-	///The database table in which entities are stored.
-	static var table: String { get }
-	/**
-		This method will be called when the entity is saved. 
-		The keys of the dictionary are the column names
-		in the database.
-	*/
+    
+    ///The database table in which entities are stored.
+    static var table: String { get }
+    /**
+     This method will be called when the entity is saved.
+     The keys of the dictionary are the column names
+     in the database.
+     */
     var serialize: [String: Binding?] { get }
 }
 
@@ -45,17 +45,17 @@ extension Model {
     public static var table: String {
         return String(self)
     }
-	public func save() {
-		Query().save(self)
-	}
-
-	public func delete() {
-		Query().delete(self)
-	}
-
-//	public static func find(id: Int) -> Self? {
-//		return Query().find(id)
-//	}
+    public func save() {
+        Query().save(self)
+    }
+    
+    public func delete() {
+        Query().delete(self)
+    }
+    
+    //	public static func find(id: Int) -> Self? {
+    //		return Query().find(id)
+    //	}
     public var serialize: [String: Binding?] {
         var data: [String: Binding?] = [:]
         PropertyData.validPropertyDataForObject(self).forEach { (var propertyData) -> () in
@@ -86,8 +86,9 @@ extension Storable {
     }
 }
 extension Storable where Self: Model {
+    public typealias ValueType = Self
     
-    public static func fetchOne(filter: Filter?) -> Self? {
+    public static func fetchOne(filter: Filter?) -> ValueType? {
         if let serialized = Database.driver.fetchOne(table: self.table, filter: filter) {
             return self.init(serialized: serialized)
         } else {
@@ -95,12 +96,13 @@ extension Storable where Self: Model {
         }
     }
     
-//    public static func fetch(filter: Filter?) -> [Self] {
-//        if let serializeds = Database.driver.fetch(table: self.table, filter: filter) {
-//            return self.init(serialized: serialized)
-//        } else {
-//            return nil
-//        }    }
-//   
-    
+    public static func fetch(filter: Filter?) -> [ValueType]? {
+        if let serializeds = Database.driver.fetch(table: self.table, filter: filter) {
+            return serializeds.map({ (serialized) -> ValueType in
+                self.init(serialized: serialized)
+            })
+        } else {
+            return nil
+        }
+    }
 }
