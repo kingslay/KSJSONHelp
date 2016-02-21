@@ -74,7 +74,7 @@ public final class Statement {
     public func bind(values: [String: Binding?]) -> Statement {
         reset()
         for (name, value) in values {
-            let idx = sqlite3_bind_parameter_index(handle, name)
+            let idx = sqlite3_bind_parameter_index(handle, ":"+name)
             guard idx > 0 else {
                 fatalError("parameter not found: \(name)")
             }
@@ -151,7 +151,6 @@ extension Statement : CustomStringConvertible {
     public var description: String {
         return String.fromCString(sqlite3_sql(handle))!
     }
-    
 }
 
 public struct Cursor {

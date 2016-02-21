@@ -60,8 +60,8 @@ extension Blob : Binding {
     
     public static let declaredDatatype = "BLOB"
     
-    public static func fromDatatypeValue(datatypeValue: Binding) -> Binding {
-        return datatypeValue as! Blob
+    public static func fromDatatypeValue(datatypeValue: Binding) -> AnyObject {
+        return NSData.fromDatatypeValue(datatypeValue)
     }
     public var datatypeValue: Binding {
         return self
@@ -73,7 +73,7 @@ extension NSData : Binding {
         return Blob.declaredDatatype
     }
     
-    public class func fromDatatypeValue(dataValue: Binding) -> Binding {
+    public class func fromDatatypeValue(dataValue: Binding) -> AnyObject {
         return NSData(bytes: (dataValue as! Blob).bytes, length: (dataValue as! Blob).bytes.count)
     }
     
@@ -87,7 +87,7 @@ extension NSArray : Binding {
         return Blob.declaredDatatype
     }
     
-    public class func fromDatatypeValue(dataValue: Binding) -> Binding {
+    public class func fromDatatypeValue(dataValue: Binding) -> AnyObject {
         return NSKeyedUnarchiver.unarchiveObjectWithData(NSData(bytes: (dataValue as! Blob).bytes, length: (dataValue as! Blob).bytes.count)) as! NSArray
     }
     
@@ -101,7 +101,7 @@ extension NSDictionary : Binding {
     public class var declaredDatatype: String {
         return Blob.declaredDatatype
     }
-    public class func fromDatatypeValue(dataValue: Binding) -> Binding {
+    public class func fromDatatypeValue(dataValue: Binding) -> AnyObject {
         return NSKeyedUnarchiver.unarchiveObjectWithData(NSData(bytes: (dataValue as! Blob).bytes, length: (dataValue as! Blob).bytes.count)) as! NSDictionary
     }
     

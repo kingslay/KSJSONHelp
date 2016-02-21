@@ -8,13 +8,14 @@
 @testable import KSJSONHelp
 
 class DynamicRetrievalSpec: SQLiteTestCase {
-    let database = try! Connection("test_database")
     func testSave() {
         let dynamicObject = DynamicTestClass()
         dynamicObject.string = "not default value"
         dynamicObject.nsstring = "not default value"
         dynamicObject.int = 123
         dynamicObject.uint = 123
+        dynamicObject.int64 = 123
+        dynamicObject.uint64 = 123
         dynamicObject.number = 123
         dynamicObject.data = dynamicObject.string.dataUsingEncoding(NSUTF8StringEncoding)!
         dynamicObject.date = NSDate(timeIntervalSince1970: 123123)
@@ -31,6 +32,8 @@ class DynamicRetrievalSpec: SQLiteTestCase {
         assert(retrievedDynamicObject.number == dynamicObject.number)
         assert(retrievedDynamicObject.int == dynamicObject.int)
         assert(retrievedDynamicObject.uint == dynamicObject.uint)
+        assert(retrievedDynamicObject.int64 == dynamicObject.int64)
+        assert(retrievedDynamicObject.uint64 == dynamicObject.uint64)
         assert(retrievedDynamicObject.bool == dynamicObject.bool)
         assert(retrievedDynamicObject.float == dynamicObject.float)
         assert(retrievedDynamicObject.double == dynamicObject.double)
@@ -45,7 +48,8 @@ class DynamicRetrievalSpec: SQLiteTestCase {
         assert(DynamicTestClass.fetch(nil)?.count == 1)
         dynamicObject.primaryKey = 2
         dynamicObject.save()
-        let i = DynamicTestClass.fetch(nil)?.count
+        assert(DynamicTestClass.fetch(nil)?.count == 2)
+        
         
     }
 }

@@ -7,50 +7,6 @@
 //
 
 import Foundation
-extension NSObject {
-    public var dictionary: [String: AnyObject] {
-        var data: [String: AnyObject] = [:]
-        PropertyData.validPropertyDataForObject(self).forEach { (var propertyData) -> () in
-            if !(propertyData.value is NSNull || "\(propertyData.value)" == "nil"){
-                data[propertyData.name!] = propertyData.objectValue
-            }
-        }
-        return data
-    }
-    public class func fromDictionary(dic: [String: AnyObject]) -> Self {
-        let model = self.init()
-        PropertyData.validPropertyDataForObject(model).forEach{ (propertyData) -> () in
-            if let name = propertyData.name, let value = dic[name] {
-                if !(value is NSNull || "\(value)" == "nil"){
-                    model.setValue(propertyData.objectValue(propertyData.type,value:value), forKey: name)
-                }
-            }
-        }
-        return model
-    }
- 
-    public class func objectArrayForKey(defaultName: String) -> [NSObject]? {
-        if let objectArray = NSUserDefaults.standardUserDefaults().arrayForKey(defaultName) {
-            return objectArray.map {
-                fromDictionary($0 as! [String : AnyObject])
-            }
-        }else{
-            return nil
-        }
-    }
-    public class func setObjectArray(objectArray: [NSObject], forKey defaultName: String) {
-        NSUserDefaults.standardUserDefaults().setObjectArray(objectArray, forKey: defaultName)
-    }
-}
-extension NSUserDefaults {
-    
-    public func setObjectArray(objectArray: [NSObject], forKey defaultName: String) {
-        var object :[NSDictionary] = []
-        objectArray.forEach{object.append($0.dictionary)}
-        setValue(object, forKey: defaultName)
-    }
-   
-}
 
 //extension Dictionary {
 //    public func toModel <D where D: Model, D: Storable> () -> D {

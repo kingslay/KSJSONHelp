@@ -30,7 +30,7 @@ public class SQL {
         if let data = self.data {
             if self.operation == .INSERT || self.operation == .UPSERT {
                 let columns = data.keys
-                query.append("(\(columns.joinWithSeparator(", "))) VALUES (\(columns.joinWithSeparator(", ")))")
+                query.append("(\(columns.joinWithSeparator(", "))) VALUES (\(columns.map{":"+$0}.joinWithSeparator(", ")))")
             } else if self.operation == .UPDATE {
                 var updates: [String] = []
                 

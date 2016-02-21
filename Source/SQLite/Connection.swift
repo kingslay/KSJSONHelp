@@ -493,7 +493,7 @@ public final class Connection {
         guard let error = Result(errorCode: resultCode, connection: self, statement: statement) else {
             return resultCode
         }
-
+        print(error)
         throw error
     }
 
@@ -536,7 +536,7 @@ extension Connection.Location : CustomStringConvertible {
         case .Temporary:
             return ""
         case .URI(let URI):
-            return URI
+            return NSHomeDirectory()+"/"+URI
         }
     }
 

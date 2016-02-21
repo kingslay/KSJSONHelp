@@ -1,3 +1,4 @@
+import Foundation
 public protocol Storable {
     /** Used to initialize an object to get information about its properties */
     init()
@@ -63,9 +64,26 @@ extension Model {
         }
         return data
     }
+    
+    public var dictionary: [String: AnyObject] {
+        var data: [String: AnyObject] = [:]
+        PropertyData.validPropertyDataForObject(self).forEach { (var propertyData) -> () in
+            if !(propertyData.value is NSNull || "\(propertyData.value)" == "nil"){
+                data[propertyData.name!] = propertyData.objectValue
+            }
+        }
+        return data
+    }
+    
+    public static func setObjectArray(objectArray: [Model], forKey defaultName: String) {
+        NSUserDefaults.standardUserDefaults().setValue(objectArray.map{$0.dictionary}, forKey: defaultName)
+        
+    }
+    
 }
 
 extension Storable {
+    public typealias ValueType1 = Self
     
     public func setValuesForKeysWithDictionary(keyedValues: [String : AnyObject]) {
         keyedValues.forEach { (key, value) -> () in
@@ -78,12 +96,32 @@ extension Storable {
         let propertyDatas = PropertyData.validPropertyDataForObject(self)
         for propertyData in propertyDatas {
             if let name = propertyData.name, let type = propertyData.bindingType, let optionalValue = serialized[name], let binding = optionalValue {
-                if let validValue = type.fromDatatypeValue(binding) as? AnyObject {
-                    setValue(validValue, forKey: name)
-                }
+                setValue(type.fromDatatypeValue(binding), forKey: name)
             }
         }
     }
+    public static func fromDictionary(dic: [String: AnyObject]) -> Self {
+        let model = self.init()
+        PropertyData.validPropertyDataForObject(model).forEach{ (propertyData) -> () in
+            if let name = propertyData.name, let value = dic[name] {
+                if !(value is NSNull || "\(value)" == "nil"){
+                    model.setValue(propertyData.objectValue(propertyData.type,value:value), forKey: name)
+                }
+            }
+        }
+        return model
+    }
+    
+    public static func objectArrayForKey(defaultName: String) -> [ValueType1]? {
+        if let objectArray = NSUserDefaults.standardUserDefaults().arrayForKey(defaultName) {
+            return objectArray.map {
+                fromDictionary($0 as! [String : AnyObject])
+            }
+        }else{
+            return nil
+        }
+    }
+    
 }
 extension Storable where Self: Model {
     public typealias ValueType = Self

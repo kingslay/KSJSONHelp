@@ -12,12 +12,12 @@ internal struct PropertyData {
     internal let isOptional: Bool
     internal var type: Any.Type
     internal var bindingType: Binding.Type?
-
+    
     internal var name: String?
     lazy internal var bindingValue: Binding? = self.toBinding(self.value)
     internal let value: Any
-    lazy internal var objectValue: AnyObject = self.toAnyObject(self.value)
-
+    lazy internal var objectValue: AnyObject? = self.toAnyObject(self.value)
+    
     internal var isValid: Bool {
         return name != nil
     }
@@ -80,7 +80,7 @@ internal struct PropertyData {
             
         case is Optional<NSArray>.Type:     return NSArray.self
         case is Optional<NSDictionary>.Type: return NSDictionary.self
-
+            
         default:                            return nil
         }
     }
@@ -102,7 +102,7 @@ internal struct PropertyData {
         if mirror.displayStyle == .Dictionary {
             return NSKeyedArchiver.archivedDataWithRootObject(value as! NSDictionary)
         }
-
+        
         /* Raw value */
         if mirror.displayStyle != .Optional {
             return value as? Binding
@@ -115,56 +115,39 @@ internal struct PropertyData {
             return nil
         }
     }
-    internal func objectValue(type: Any.Type, value: Any) -> AnyObject {
+    internal func objectValue(type: Any.Type, value: Any) -> AnyObject? {
         if value is NSArray {
             let arrM = NSMutableArray()
             let genericType = generic(type)
             for  genericValue in value as! NSArray {
-                arrM.addObject(objectValue(genericType, value: genericValue))
+                arrM.addObject(objectValue(genericType, value: genericValue)!)
             }
             return arrM
         }else if value is [String : AnyObject] {
-            return (type as! NSObject.Type).fromDictionary((value as! [String : AnyObject]))
-        }else if type is Int.Type || type is Optional<Int>.Type {
-            if value is String {
-                return Int(value as! String)!
-            }
-            return value as! Int
-        }else if type is Float.Type || type is Optional<Float>.Type {
-            if value is String {
-                return Float(value as! String)!
-            }
-            return value as! Float
-        }else if type is Double.Type || type is Optional<Double>.Type {
-            if value is String {
-                return Double(value as! String)!
-            }
-            return value as! Double
-        }else if type is String.Type || type is Optional<String>.Type || type is NSString.Type || type is Optional<NSString>.Type  {
-            return value as! String
+            return (type as! Storable.Type).fromDictionary((value as! [String : AnyObject])) as? AnyObject
         }
-        return value as! AnyObject
+        return value as? AnyObject
     }
     private func generic(type: Any.Type) -> Any.Type {
         let clsString = "\(type)".replacingOccurrencesOfString("Array<", withString: "").replacingOccurrencesOfString("Optional<", withString: "").replacingOccurrencesOfString(">", withString: "")
         return NSClassFromString(clsString)!
     }
-
-    private  func toAnyObject(value: Any) -> AnyObject {
+    
+    private  func toAnyObject(value: Any) -> AnyObject? {
         if value is NSArray {
             var dictM: [AnyObject] = []
             let valueArray = value as! NSArray
             for item in valueArray {
-                dictM.append(toAnyObject(item))
+                dictM.append(toAnyObject(item)!)
             }
             return dictM
         }else if value is NSNumber {
             return value as! NSNumber
         }else if value is NSString {
             return value as! NSString
-        }else if value is NSObject {
-            return (value as! NSObject).dictionary
-        }else if value is Int8 {
+        }else if value is Model {
+            return (value as! Model).dictionary
+        } else if value is Int8 {
             return NSNumber(char: value as! Int8)
         }else if value is UInt8 {
             return NSNumber(unsignedChar: value as! UInt8)
@@ -181,7 +164,8 @@ internal struct PropertyData {
         }else if value is UInt64 {
             return NSNumber(unsignedLongLong: value as! UInt64)
         }
-        return value as! AnyObject
+        
+        return value as? AnyObject
     }
 }
 
@@ -203,7 +187,7 @@ extension PropertyData {
         
         /* Map children to property data and filter out ignored or invalid properties */
         propertyData += mirror.children.map {
-                PropertyData(property: $0)
+            PropertyData(property: $0)
             }.filter({
                 $0.isValid && !ignoredProperties.contains($0.name!)
             })

@@ -32,6 +32,9 @@ class DynamicTestClass: NSObject, Storable,Model {
     
     var int: Int            = 1
     var uint: UInt          = 1
+    var int64: Int64          = 1
+    var uint64: UInt64          = 1
+
     
     var bool: Bool          = false
     
