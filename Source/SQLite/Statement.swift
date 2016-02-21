@@ -162,18 +162,7 @@ public struct Cursor {
     private init(_ statement: Statement) {
         handle = statement.handle
         columnCount = statement.columnCount
-    }
-    //
-    //    // MARK: -
-    //
-    //    public subscript(idx: Int) -> Bool {
-    //        return Bool.toAnyObject(self[idx])
-    //    }
-    //
-    //    public subscript(idx: Int) -> Int {
-    //        return Int.toAnyObject(self[idx])
-    //    }
-    
+    }    
 }
 
 /// Cursors provide direct access to a statement’s current row.

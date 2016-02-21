@@ -33,14 +33,6 @@ public class Query<T: Model> {
 	public var count: Int {
 		return Database.driver.count(table: self.table, filter: self.filter)
 	}
-    
-    func fetchOne(filter: Filter?) -> [String: Binding?]? {
-        return Database.driver.fetchOne(table: self.table, filter: self.filter)
-
-    }
-    func fetch(filter: Filter?) -> [[String: Binding?]]? {
-        return Database.driver.fetch(table: self.table, filter: self.filter)
-    }
 
 	/* Internal Casts */
 	///Inserts or updates the entity in the database.
