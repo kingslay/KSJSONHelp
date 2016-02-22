@@ -40,17 +40,7 @@ extension Model {
     public static var table: String {
         return String(self)
     }
-    public func save() {
-        Query().save(self)
-    }
     
-    public func delete() {
-        Query().delete(self)
-    }
-    
-    //	public static func find(id: Int) -> Self? {
-    //		return Query().find(id)
-    //	}
     internal var serialize: [String: Binding?] {
         var data: [String: Binding?] = [:]
         PropertyData.validPropertyDataForObject(self).forEach { (var propertyData) -> () in
@@ -64,8 +54,8 @@ extension Model {
         PropertyData.validPropertyDataForObject(self).forEach { propertyData -> () in
             let value = propertyData.value
             if !(value is NSNull || "\(value)" == "nil"){
-                if value is Serialization {
-                    data[propertyData.name!] = (value as! Serialization).serialization
+                if let serialization = value as? Serialization {
+                    data[propertyData.name!] = serialization.serialization
                 }else if let anyObject = value as? AnyObject {
                     data[propertyData.name!] = anyObject
                 }
@@ -112,8 +102,8 @@ extension Storable {
         PropertyData.validPropertyDataForObject(model).forEach{ (propertyData) -> () in
             if let name = propertyData.name, var value = dic[name] {
                 if !(value is NSNull || "\(value)" == "nil"){
-                    if value is Deserialization {
-                        value = (value as! Deserialization).deserialization(propertyData.type)
+                    if let deserialization = value as? Deserialization {
+                        value = deserialization.deserialization(propertyData.type)
                     }
                     model.setValue(value, forKey: name)
                     
@@ -133,25 +123,4 @@ extension Storable {
         }
     }
     
-}
-extension Storable where Self: Model {
-    public typealias ValueType = Self
-    
-    public static func fetchOne(filter: Filter?) -> ValueType? {
-        if let serialized = Database.driver.fetchOne(table: self.table, filter: filter) {
-            return self.init(serialized: serialized)
-        } else {
-            return nil
-        }
-    }
-    
-    public static func fetch(filter: Filter?) -> [ValueType]? {
-        if let serializeds = Database.driver.fetch(table: self.table, filter: filter) {
-            return serializeds.map({ (serialized) -> ValueType in
-                self.init(serialized: serialized)
-            })
-        } else {
-            return nil
-        }
-    }
 }

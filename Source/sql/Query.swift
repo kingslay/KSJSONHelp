@@ -1,4 +1,5 @@
 public class Query<T: Model> {
+    public let table: String
 
 	public var filter: Filter?
 
@@ -33,6 +34,23 @@ public class Query<T: Model> {
 	public var count: Int {
 		return Database.driver.count(table: self.table, filter: self.filter)
 	}
+    public func fetchOne(filter: Filter?) -> T? {
+        if let S = T.self as? Storable.Type , let serialized = Database.driver.fetchOne(table: self.table, filter: filter) {
+            return S.init(serialized: serialized) as? T
+        } else {
+            return nil
+        }
+    }
+    
+    public func fetch(filter: Filter?) -> [T]? {
+        if let S = T.self as? Storable.Type, let serializeds = Database.driver.fetch(table: self.table, filter: filter) {
+            return serializeds.map({ (serialized) -> T in
+                S.init(serialized: serialized) as! T
+            })
+        } else {
+            return nil
+        }
+    }
 
 	/* Internal Casts */
 	///Inserts or updates the entity in the database.
@@ -53,8 +71,7 @@ public class Query<T: Model> {
 
 	///Deletes the entity from the database.
 	func delete(model: T) {
-        if T.self is PrimaryKeys.Type {
-            let primaryKeysType = T.self as! PrimaryKeys.Type
+        if let primaryKeysType = T.self as? PrimaryKeys.Type {
             let data = model.serialize
             let filter = CompositeFilter()
             for primaryKey in primaryKeysType.primaryKeys() {
@@ -81,14 +98,31 @@ public class Query<T: Model> {
             statement += ", "
         }
         
-        if T.self is PrimaryKeys.Type {
-            let primaryKeysType = T.self as! PrimaryKeys.Type
+        if let primaryKeysType = T.self as? PrimaryKeys.Type {
             statement += "PRIMARY KEY (\(primaryKeysType.primaryKeys().joinWithSeparator(", ")))"
         }
         statement += ")"
         return statement
     }
 
-
-	public let table: String
+}
+extension Model {
+    public func save() {
+        Query().save(self)
+    }
+    
+    public func delete() {
+        Query().delete(self)
+    }
+}
+extension Storable where Self: Model {
+    public typealias ValueType = Self
+    
+    public static func fetchOne(filter: Filter?) -> ValueType? {
+        return Query().fetchOne(filter)
+    }
+    
+    public static func fetch(filter: Filter?) -> [ValueType]? {
+        return Query().fetch(filter)
+    }
 }

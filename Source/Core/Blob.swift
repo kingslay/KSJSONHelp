@@ -96,8 +96,8 @@ extension NSArray : Binding, Serialization, Deserialization{
     }
     public var serialization: AnyObject {
         return self.map { value -> AnyObject in
-            if value is Serialization {
-                return (value as! Serialization ).serialization
+            if let serialization = value as? Serialization {
+                return serialization.serialization
             }else{
                 return value
             }
@@ -106,8 +106,8 @@ extension NSArray : Binding, Serialization, Deserialization{
     public func deserialization(type: Any.Type) -> AnyObject {
         let genericType = generic(type)
         return self.map { value -> AnyObject in
-            if value is Deserialization {
-                return (value as! Deserialization).deserialization(genericType)
+            if let deserialization = value as? Deserialization {
+                return deserialization.deserialization(genericType)
             }else{
                 return value
             }
@@ -123,26 +123,13 @@ extension Array: Serialization {
     
     public var serialization: AnyObject {
         return self.map { value -> AnyObject in
-            if value is Serialization {
-                return (value as! Serialization ).serialization
+            if let serialization = value as? Serialization {
+                return serialization.serialization
             }else{
                 return value as! AnyObject
             }
         }
     }
-    
-//    public func toAnyObject(type: Any.Type) -> AnyObject {
-//        let genericType = generic(type)
-//        let array = NSMutableArray()
-//        self.forEach { value in
-//            if value is DatatypeValue {
-//                return array.addObject((value as! DatatypeValue).toAnyObject(genericType))
-//            }else {
-//                return array.addObject(value as! AnyObject)
-//            }
-//        }
-//        return array
-//    }
 }
 
 extension NSDictionary: Binding, Deserialization {
@@ -158,8 +145,8 @@ extension NSDictionary: Binding, Deserialization {
         return NSKeyedArchiver.archivedDataWithRootObject(self)
     }
     public func deserialization(type: Any.Type) -> AnyObject {
-        if self is [String : AnyObject] && type is Storable.Type {
-            return (type as! Storable.Type).fromDictionary((self as! [String : AnyObject])) as! AnyObject
+        if let dic = self as? [String : AnyObject], let storable = type as? Storable.Type {
+            return storable.fromDictionary(dic) as! AnyObject
         }else {
             return self
         }
