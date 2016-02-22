@@ -65,9 +65,7 @@ extension Model {
     }
     
     public static func setObjectArray(objectArray: [Model], forKey defaultName: String) {
-        
         NSUserDefaults.standardUserDefaults().setValue(objectArray.map{$0.dictionary}, forKey: defaultName)
-        
     }
     public var serialization: AnyObject {
         return self.dictionary
