@@ -117,7 +117,12 @@ extension Model {
 }
 extension Storable where Self: Model {
     public typealias ValueType = Self
-    
+    public static func fetchOne(dic dic: [String:Binding]) -> ValueType? {
+        return Query().fetchOne(CompositeFilter.fromDictionary(dic))
+    }
+    public static func fetch(dic dic: [String:Binding]) -> [ValueType]? {
+        return Query().fetch(CompositeFilter.fromDictionary(dic))
+    }
     public static func fetchOne(filter: Filter?) -> ValueType? {
         return Query().fetchOne(filter)
     }

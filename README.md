@@ -1,10 +1,64 @@
 # 		KSJSONHelp
 
-KSJSONHelp is a lightweight and pure Swift implemented library for 
+ a lightweight and pure Swift implemented library for  
 
-.convert dictionary to model
+- conversion between JSON and model. 
 
-.convert model to dictionary
+- Simple ActiveRecord implementation for working with your database
+
+
+纯swift实现框架支持
+
+- 字典、模型互相转化
+
+
+
+- 模型持久化到数据库，数据库查询、更新、删除对象
+
+## Usage 
+
+#### convert dictionary to model
+
+```swift
+@objc(Person)
+class Person: NSObject, Storable, Model {
+    var name: String
+    var weight: CGFloat
+    var height: NSInteger
+    var age: Int64
+    var sex: Bool = false
+    override required init() {
+        name = ""
+        age = 1
+        height = 11
+        weight = 11.111
+    }
+    init(name: String,age: Int64,height: NSInteger = 11,weight: CGFloat = 11.1111) {
+        self.name = name
+        self.age = age
+        self.height = height
+        self.weight = weight
+    }
+}
+let person = Person.fromDictionary(dic)
+```
+
+#### convert model to dictionary
+
+```swift
+let dict = person.dictionary
+```
+
+####  ORM
+
+```swift
+if let user = Person.fetchOne(dic:["name": "Old Name"]) {
+	print("Found \(user.name)")
+	user.name = "New Name"
+	user.save()
+}
+```
+
 
 ## Requirements
 
@@ -78,23 +132,6 @@ $(SRCROOT)/Carthage/Build/iOS/KSJSONHelp.framework
 
 For more information about how to use Carthage, please see its project page.
 
-## Usage
-
-#### convert dictionary to model
-
-``` swift
-let person = Person2.toModel(dic)
-```
-
-#### convert model to dictionary
-
-it’s easy to convert model to dictionary, I already did the cascade im not going to repeat the details:
-
-``` swift
-let dict = person.toDictionary()
-```
-
 ## Contact
 
 Follow and contact me on [Twitter ](https://twitter.com/kingslay01)or [Sina Weibo](http://weibo.com/p/1005051702286027/home?from=page_100505&mod=TAB#place)[](http://weibo.com/p/1005051702286027/home?from=page_100505&mod=TAB#place). If you find an issue, just open a ticket on it. Pull requests are warmly welcome as well.
-
