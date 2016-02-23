@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C5D63291C7C4CE9003AF626 /* KSJSONHelp-Swift.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C5D63281C7C4CE9003AF626 /* KSJSONHelp-Swift.h */; };
+		3C5D632A1C7C4CE9003AF626 /* KSJSONHelp-Swift.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C5D63281C7C4CE9003AF626 /* KSJSONHelp-Swift.h */; };
 		3C622B7E1C76D5B400F1280E /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C622B761C76D5B400F1280E /* Database.swift */; };
 		3C622B821C76D5B400F1280E /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C622B771C76D5B400F1280E /* Driver.swift */; };
 		3C622B861C76D5B400F1280E /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C622B781C76D5B400F1280E /* Filter.swift */; };
@@ -72,6 +74,7 @@
 		3C09B7181BD15F2C000D3273 /* KSJSONHelp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KSJSONHelp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C1BD8721BECE2D7003E34F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "KSJSONHelp-Demo/Info.plist"; sourceTree = SOURCE_ROOT; };
 		3C4C5CD91C3E465C002233DA /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BridgingHeader.h; path = Source/BridgingHeader.h; sourceTree = SOURCE_ROOT; };
+		3C5D63281C7C4CE9003AF626 /* KSJSONHelp-Swift.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "KSJSONHelp-Swift.h"; path = "Source/KSJSONHelp-Swift.h"; sourceTree = SOURCE_ROOT; };
 		3C622B761C76D5B400F1280E /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		3C622B771C76D5B400F1280E /* Driver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Driver.swift; sourceTree = "<group>"; };
 		3C622B781C76D5B400F1280E /* Filter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
@@ -191,6 +194,7 @@
 				3C808CDB1B9601B7008F0ED7 /* LaunchScreen.storyboard */,
 				3C808CDD1B9601B7008F0ED7 /* Main.storyboard */,
 				3C808CE01B9601B7008F0ED7 /* ViewController.swift */,
+				3C5D63281C7C4CE9003AF626 /* KSJSONHelp-Swift.h */,
 			);
 			name = "Supporting Files";
 			path = KSJSONHelp;
@@ -281,6 +285,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3CE2C19B1C7BFE6E000DA58C /* BridgingHeader.h in Headers */,
+				3C5D632A1C7C4CE9003AF626 /* KSJSONHelp-Swift.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +294,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3CE2C19A1C7BFE36000DA58C /* BridgingHeader.h in Headers */,
+				3C5D63291C7C4CE9003AF626 /* KSJSONHelp-Swift.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
