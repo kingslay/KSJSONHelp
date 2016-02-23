@@ -197,6 +197,8 @@
 		3C808CE91B96023A008F0ED7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3CE2C1BE1C7C053D000DA58C /* libsqlite3.tbd */,
+				3CE2C1BC1C7C0530000DA58C /* libsqlite3.tbd */,
 				3C1BD8721BECE2D7003E34F8 /* Info.plist */,
 				3C808CD91B9601B7008F0ED7 /* AppDelegate.swift */,
 				3C808CDA1B9601B7008F0ED7 /* Assets.xcassets */,
@@ -224,8 +226,6 @@
 		3CD3C4391B9216DD00CE1FBF = {
 			isa = PBXGroup;
 			children = (
-				3CE2C1BE1C7C053D000DA58C /* libsqlite3.tbd */,
-				3CE2C1BC1C7C0530000DA58C /* libsqlite3.tbd */,
 				3C0936941B93054400F05323 /* MyPlayground.playground */,
 				3CD3C4441B9216DD00CE1FBF /* Source */,
 				3C808CE91B96023A008F0ED7 /* Supporting Files */,
