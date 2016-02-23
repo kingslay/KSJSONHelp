@@ -114,6 +114,12 @@ extension Model {
     public func delete() {
         Query().delete(self)
     }
+    public static func delete(dic dic: [String:Binding]) {
+        delete(CompositeFilter.fromDictionary(dic))
+    }
+    public static func delete(filter: Filter) {
+        Database.driver.delete(table: self.table, filter: filter)
+    }
 }
 extension Storable where Self: Model {
 //    public typealias ValueType = Self

@@ -50,6 +50,11 @@ class DynamicRetrievalSpec: SQLiteTestCase {
         dynamicObject.primaryKey = 2
         dynamicObject.save()
         assert(DynamicTestClass.fetch(nil)?.count == 2)
+        dynamicObject.delete()
+        assert(DynamicTestClass.fetch(nil)?.count == 1)
+        DynamicTestClass.delete(dic:[:])
+        assert(DynamicTestClass.fetch(nil)?.count == 0)
+
         
         
     }

@@ -11,7 +11,6 @@
 		3C5D639C1C7C54AF003AF626 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5D639B1C7C54AF003AF626 /* Tests.swift */; };
 		3C5D63A61C7C54F0003AF626 /* AsynchronousTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5D63A11C7C54F0003AF626 /* AsynchronousTest.swift */; };
 		3C5D63A71C7C54F0003AF626 /* DynamicRetrievalTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5D63A21C7C54F0003AF626 /* DynamicRetrievalTest.swift */; };
-		3C5D63A81C7C54F0003AF626 /* KSJSONGHelp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5D63A31C7C54F0003AF626 /* KSJSONGHelp.swift */; };
 		3C5D63A91C7C54F0003AF626 /* KSJSONHelpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5D63A41C7C54F0003AF626 /* KSJSONHelpTests.swift */; };
 		3C5D63AA1C7C54F0003AF626 /* TestClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5D63A51C7C54F0003AF626 /* TestClass.swift */; };
 /* End PBXBuildFile section */
@@ -23,9 +22,25 @@
 		3C5D639D1C7C54AF003AF626 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3C5D63A11C7C54F0003AF626 /* AsynchronousTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsynchronousTest.swift; sourceTree = "<group>"; };
 		3C5D63A21C7C54F0003AF626 /* DynamicRetrievalTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicRetrievalTest.swift; sourceTree = "<group>"; };
-		3C5D63A31C7C54F0003AF626 /* KSJSONGHelp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSJSONGHelp.swift; sourceTree = "<group>"; };
 		3C5D63A41C7C54F0003AF626 /* KSJSONHelpTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSJSONHelpTests.swift; sourceTree = "<group>"; };
 		3C5D63A51C7C54F0003AF626 /* TestClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestClass.swift; sourceTree = "<group>"; };
+		3C5D63B01C7C7D50003AF626 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
+		3C5D63B21C7C7D50003AF626 /* Blob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blob.swift; sourceTree = "<group>"; };
+		3C5D63B31C7C7D50003AF626 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		3C5D63B41C7C7D50003AF626 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		3C5D63B51C7C7D50003AF626 /* PropertyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyData.swift; sourceTree = "<group>"; };
+		3C5D63B61C7C7D50003AF626 /* Value.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Value.swift; sourceTree = "<group>"; };
+		3C5D63B71C7C7D50003AF626 /* KSJSONHelp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KSJSONHelp.h; sourceTree = "<group>"; };
+		3C5D63B91C7C7D50003AF626 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
+		3C5D63BA1C7C7D50003AF626 /* Driver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Driver.swift; sourceTree = "<group>"; };
+		3C5D63BB1C7C7D50003AF626 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		3C5D63BC1C7C7D50003AF626 /* MemoryDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryDriver.swift; sourceTree = "<group>"; };
+		3C5D63BD1C7C7D50003AF626 /* PrintDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintDriver.swift; sourceTree = "<group>"; };
+		3C5D63BE1C7C7D50003AF626 /* Query.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Query.swift; sourceTree = "<group>"; };
+		3C5D63BF1C7C7D50003AF626 /* SQL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQL.swift; sourceTree = "<group>"; };
+		3C5D63C11C7C7D50003AF626 /* Connection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
+		3C5D63C21C7C7D50003AF626 /* SQLiteDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteDriver.swift; sourceTree = "<group>"; };
+		3C5D63C31C7C7D50003AF626 /* Statement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statement.swift; sourceTree = "<group>"; };
 		53B6D8CA8384455F38BE90B0 /* Pods_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5371E305F9461D63F26DBB8 /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -55,7 +70,6 @@
 			children = (
 				3C5D63A11C7C54F0003AF626 /* AsynchronousTest.swift */,
 				3C5D63A21C7C54F0003AF626 /* DynamicRetrievalTest.swift */,
-				3C5D63A31C7C54F0003AF626 /* KSJSONGHelp.swift */,
 				3C5D63A41C7C54F0003AF626 /* KSJSONHelpTests.swift */,
 				3C5D63A51C7C54F0003AF626 /* TestClass.swift */,
 				3C5D639B1C7C54AF003AF626 /* Tests.swift */,
@@ -64,9 +78,59 @@
 			path = Tests;
 			sourceTree = "<group>";
 		};
+		3C5D63AF1C7C7D50003AF626 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				3C5D63B01C7C7D50003AF626 /* BridgingHeader.h */,
+				3C5D63B71C7C7D50003AF626 /* KSJSONHelp.h */,
+				3C5D63B11C7C7D50003AF626 /* Core */,
+				3C5D63B81C7C7D50003AF626 /* SQL */,
+				3C5D63C01C7C7D50003AF626 /* SQLite */,
+			);
+			name = Source;
+			path = ../Source;
+			sourceTree = "<group>";
+		};
+		3C5D63B11C7C7D50003AF626 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				3C5D63B21C7C7D50003AF626 /* Blob.swift */,
+				3C5D63B31C7C7D50003AF626 /* Helpers.swift */,
+				3C5D63B41C7C7D50003AF626 /* Model.swift */,
+				3C5D63B51C7C7D50003AF626 /* PropertyData.swift */,
+				3C5D63B61C7C7D50003AF626 /* Value.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		3C5D63B81C7C7D50003AF626 /* SQL */ = {
+			isa = PBXGroup;
+			children = (
+				3C5D63B91C7C7D50003AF626 /* Database.swift */,
+				3C5D63BA1C7C7D50003AF626 /* Driver.swift */,
+				3C5D63BB1C7C7D50003AF626 /* Filter.swift */,
+				3C5D63BC1C7C7D50003AF626 /* MemoryDriver.swift */,
+				3C5D63BD1C7C7D50003AF626 /* PrintDriver.swift */,
+				3C5D63BE1C7C7D50003AF626 /* Query.swift */,
+				3C5D63BF1C7C7D50003AF626 /* SQL.swift */,
+			);
+			path = SQL;
+			sourceTree = "<group>";
+		};
+		3C5D63C01C7C7D50003AF626 /* SQLite */ = {
+			isa = PBXGroup;
+			children = (
+				3C5D63C11C7C7D50003AF626 /* Connection.swift */,
+				3C5D63C21C7C7D50003AF626 /* SQLiteDriver.swift */,
+				3C5D63C31C7C7D50003AF626 /* Statement.swift */,
+			);
+			path = SQLite;
+			sourceTree = "<group>";
+		};
 		3CD3C4391B9216DD00CE1FBF = {
 			isa = PBXGroup;
 			children = (
+				3C5D63AF1C7C7D50003AF626 /* Source */,
 				3C5D639A1C7C54AF003AF626 /* Tests */,
 				3CD3C4431B9216DD00CE1FBF /* Products */,
 				F7EF42285238763B5DA9D80E /* Pods */,
@@ -210,7 +274,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C5D63A81C7C54F0003AF626 /* KSJSONGHelp.swift in Sources */,
 				3C5D63A91C7C54F0003AF626 /* KSJSONHelpTests.swift in Sources */,
 				3C5D639C1C7C54AF003AF626 /* Tests.swift in Sources */,
 				3C5D63A71C7C54F0003AF626 /* DynamicRetrievalTest.swift in Sources */,

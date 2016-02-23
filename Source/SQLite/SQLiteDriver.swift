@@ -24,7 +24,7 @@ public class SQLiteDriver: Driver {
     public func delete(table table: String, filter: Filter?) {
         let sql = SQL(operation: .DELETE, table: table)
         sql.filter = filter
-        execute(sql)
+        execute(sql)?.run()
     }
     
     public func update(table table: String, filter: Filter?, data: [String: Binding?]) {

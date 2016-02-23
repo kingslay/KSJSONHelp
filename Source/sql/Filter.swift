@@ -1,6 +1,17 @@
 public protocol Filter {
     var statement: String { get }
 }
+@warn_unused_result func transcode(literal: Binding) -> String {
+    
+    switch literal {
+    case let blob as Blob:
+        return blob.description
+    case let string as String:
+        return string.quote("'")
+    case let binding:
+        return "\(binding)"
+    }
+}
 public class CompareFilter: Filter {
     public enum Comparison: String {
         case Equal =            "="
@@ -23,7 +34,7 @@ public class CompareFilter: Filter {
         self.comparison = comparison
     }
     public var statement: String {
-        return "\(self.key) \(self.comparison.rawValue) \(value)";
+        return "\(self.key) \(self.comparison.rawValue) \(transcode(value))";
     }
 }
 
@@ -43,7 +54,7 @@ public class SubsetFilter: Filter {
         self.comparison = comparison
     }
     public var statement: String {
-        let placeholderString = (0..<self.superSet.count).map {"\($0)"}
+        let placeholderString = self.superSet.map { transcode($0) }
             .joinWithSeparator(", ")
         return "\(self.key) \(self.comparison.rawValue) (\(placeholderString))"
     }

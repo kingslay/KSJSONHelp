@@ -11,7 +11,7 @@ import KSJSONHelp
 
 class DynamicTestClass: NSObject, Storable,Model {
     
-    var primaryKey: NSNumber = 1
+    var primaryKey: Int = 1
     
     var optionalString: String?
     var optionalNSString: NSString?
