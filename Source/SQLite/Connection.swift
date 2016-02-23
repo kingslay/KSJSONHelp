@@ -23,7 +23,6 @@
 //
 
 import Foundation
-import sqlite3
 let SQLITE_TRANSIENT = unsafeBitCast(-1, sqlite3_destructor_type.self)
 
 /// A connection to SQLite.

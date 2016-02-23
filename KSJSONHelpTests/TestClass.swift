@@ -7,6 +7,7 @@
 //
 
 import Foundation
+@testable import KSJSONHelp
 
 class DynamicTestClass: NSObject, Storable,Model {
     

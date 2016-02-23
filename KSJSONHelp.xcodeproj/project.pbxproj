@@ -7,109 +7,75 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3C09B7221BD15F2C000D3273 /* KSJSONHelp_OSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C09B7181BD15F2C000D3273 /* KSJSONHelp_OSX.framework */; };
 		3C09B7321BD15F5A000D3273 /* KSJSONHelp.h in Headers */ = {isa = PBXBuildFile; fileRef = 3CBC20AC1BBD95C40007DC65 /* KSJSONHelp.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3C5CF9981C40EB360087C5BC /* KSJSONHelp.h in Sources */ = {isa = PBXBuildFile; fileRef = 3CBC20AC1BBD95C40007DC65 /* KSJSONHelp.h */; };
-		3C5CF99B1C40EB360087C5BC /* BridgingHeader.h in Sources */ = {isa = PBXBuildFile; fileRef = 3C4C5CD91C3E465C002233DA /* BridgingHeader.h */; };
 		3C622B7E1C76D5B400F1280E /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C622B761C76D5B400F1280E /* Database.swift */; };
-		3C622B7F1C76D5B400F1280E /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C622B761C76D5B400F1280E /* Database.swift */; };
-		3C622B801C76D5B400F1280E /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C622B761C76D5B400F1280E /* Database.swift */; };
-		3C622B811C76D5B400F1280E /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C622B761C76D5B400F1280E /* Database.swift */; };
 		3C622B821C76D5B400F1280E /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C622B771C76D5B400F1280E /* Driver.swift */; };
-		3C622B831C76D5B400F1280E /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C622B771C76D5B400F1280E /* Driver.swift */; };
-		3C622B841C76D5B400F1280E /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C622B771C76D5B400F1280E /* Driver.swift */; };
-		3C622B851C76D5B400F1280E /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C622B771C76D5B400F1280E /* Driver.swift */; };
 		3C622B861C76D5B400F1280E /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C622B781C76D5B400F1280E /* Filter.swift */; };
-		3C622B871C76D5B400F1280E /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C622B781C76D5B400F1280E /* Filter.swift */; };
-		3C622B881C76D5B400F1280E /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C622B781C76D5B400F1280E /* Filter.swift */; };
-		3C622B891C76D5B400F1280E /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C622B781C76D5B400F1280E /* Filter.swift */; };
 		3C622B8A1C76D5B400F1280E /* MemoryDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C622B791C76D5B400F1280E /* MemoryDriver.swift */; };
-		3C622B8B1C76D5B400F1280E /* MemoryDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C622B791C76D5B400F1280E /* MemoryDriver.swift */; };
-		3C622B8C1C76D5B400F1280E /* MemoryDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C622B791C76D5B400F1280E /* MemoryDriver.swift */; };
-		3C622B8D1C76D5B400F1280E /* MemoryDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C622B791C76D5B400F1280E /* MemoryDriver.swift */; };
 		3C622B921C76D5B400F1280E /* PrintDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C622B7B1C76D5B400F1280E /* PrintDriver.swift */; };
-		3C622B931C76D5B400F1280E /* PrintDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C622B7B1C76D5B400F1280E /* PrintDriver.swift */; };
-		3C622B941C76D5B400F1280E /* PrintDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C622B7B1C76D5B400F1280E /* PrintDriver.swift */; };
-		3C622B951C76D5B400F1280E /* PrintDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C622B7B1C76D5B400F1280E /* PrintDriver.swift */; };
 		3C622B961C76D5B400F1280E /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C622B7C1C76D5B400F1280E /* Query.swift */; };
-		3C622B971C76D5B400F1280E /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C622B7C1C76D5B400F1280E /* Query.swift */; };
-		3C622B981C76D5B400F1280E /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C622B7C1C76D5B400F1280E /* Query.swift */; };
-		3C622B991C76D5B400F1280E /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C622B7C1C76D5B400F1280E /* Query.swift */; };
 		3C622B9A1C76D5B400F1280E /* SQL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C622B7D1C76D5B400F1280E /* SQL.swift */; };
-		3C622B9B1C76D5B400F1280E /* SQL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C622B7D1C76D5B400F1280E /* SQL.swift */; };
-		3C622B9C1C76D5B400F1280E /* SQL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C622B7D1C76D5B400F1280E /* SQL.swift */; };
-		3C622B9D1C76D5B400F1280E /* SQL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C622B7D1C76D5B400F1280E /* SQL.swift */; };
 		3C622BC11C76F6C100F1280E /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C622BB91C76F6C100F1280E /* Connection.swift */; };
-		3C622BC21C76F6C100F1280E /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C622BB91C76F6C100F1280E /* Connection.swift */; };
-		3C622BC31C76F6C100F1280E /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C622BB91C76F6C100F1280E /* Connection.swift */; };
-		3C622BC41C76F6C100F1280E /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C622BB91C76F6C100F1280E /* Connection.swift */; };
 		3C622BC91C76F6C100F1280E /* Statement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C622BBB1C76F6C100F1280E /* Statement.swift */; };
-		3C622BCA1C76F6C100F1280E /* Statement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C622BBB1C76F6C100F1280E /* Statement.swift */; };
-		3C622BCB1C76F6C100F1280E /* Statement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C622BBB1C76F6C100F1280E /* Statement.swift */; };
-		3C622BCC1C76F6C100F1280E /* Statement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C622BBB1C76F6C100F1280E /* Statement.swift */; };
-		3C71A5701C79712A00CF48D1 /* TestClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A56E1C79712900CF48D1 /* TestClass.swift */; };
-		3C71A5721C79712A00CF48D1 /* TestClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A56E1C79712900CF48D1 /* TestClass.swift */; };
-		3C71A5791C7971D500CF48D1 /* AsynchronousSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A5731C7971D500CF48D1 /* AsynchronousSpec.swift */; };
-		3C71A57A1C7971D500CF48D1 /* AsynchronousSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A5731C7971D500CF48D1 /* AsynchronousSpec.swift */; };
-		3C71A57D1C7971D500CF48D1 /* DynamicRetrievalSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A5751C7971D500CF48D1 /* DynamicRetrievalSpec.swift */; };
-		3C71A57E1C7971D500CF48D1 /* DynamicRetrievalSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A5751C7971D500CF48D1 /* DynamicRetrievalSpec.swift */; };
-		3C71A5831C7971D500CF48D1 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A5781C7971D500CF48D1 /* Tests.swift */; };
-		3C71A5841C7971D500CF48D1 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A5781C7971D500CF48D1 /* Tests.swift */; };
 		3C71A5991C7A147600CF48D1 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A5981C7A147600CF48D1 /* Helpers.swift */; };
-		3C71A59A1C7A147600CF48D1 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A5981C7A147600CF48D1 /* Helpers.swift */; };
 		3C71A59B1C7A184800CF48D1 /* Blob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A58C1C7A143400CF48D1 /* Blob.swift */; };
-		3C71A59C1C7A184900CF48D1 /* Blob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A58C1C7A143400CF48D1 /* Blob.swift */; };
 		3C71A59D1C7A184F00CF48D1 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A58D1C7A143400CF48D1 /* Model.swift */; };
-		3C71A59E1C7A185100CF48D1 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A58D1C7A143400CF48D1 /* Model.swift */; };
 		3C71A59F1C7A185600CF48D1 /* PropertyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A58E1C7A143400CF48D1 /* PropertyData.swift */; };
-		3C71A5A01C7A185600CF48D1 /* PropertyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A58E1C7A143400CF48D1 /* PropertyData.swift */; };
 		3C71A5A11C7A185B00CF48D1 /* Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A58F1C7A143400CF48D1 /* Value.swift */; };
-		3C71A5A21C7A185E00CF48D1 /* Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A58F1C7A143400CF48D1 /* Value.swift */; };
-		3C71A5A31C7A19D400CF48D1 /* Blob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A58C1C7A143400CF48D1 /* Blob.swift */; };
-		3C71A5A41C7A19D500CF48D1 /* Blob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A58C1C7A143400CF48D1 /* Blob.swift */; };
-		3C71A5A51C7A19D800CF48D1 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A5981C7A147600CF48D1 /* Helpers.swift */; };
-		3C71A5A61C7A19D900CF48D1 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A5981C7A147600CF48D1 /* Helpers.swift */; };
-		3C71A5A71C7A19DD00CF48D1 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A58D1C7A143400CF48D1 /* Model.swift */; };
-		3C71A5A81C7A19DD00CF48D1 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A58D1C7A143400CF48D1 /* Model.swift */; };
-		3C71A5A91C7A19E000CF48D1 /* PropertyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A58E1C7A143400CF48D1 /* PropertyData.swift */; };
-		3C71A5AA1C7A19E100CF48D1 /* PropertyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A58E1C7A143400CF48D1 /* PropertyData.swift */; };
-		3C71A5AB1C7A19E400CF48D1 /* Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A58F1C7A143400CF48D1 /* Value.swift */; };
-		3C71A5AC1C7A19E400CF48D1 /* Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A58F1C7A143400CF48D1 /* Value.swift */; };
 		3C71A5AE1C7A938800CF48D1 /* SQLiteDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A5AD1C7A938800CF48D1 /* SQLiteDriver.swift */; };
-		3C71A5AF1C7A938800CF48D1 /* SQLiteDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A5AD1C7A938800CF48D1 /* SQLiteDriver.swift */; };
-		3C71A5B01C7A939200CF48D1 /* SQLiteDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A5AD1C7A938800CF48D1 /* SQLiteDriver.swift */; };
-		3C71A5B11C7A939300CF48D1 /* SQLiteDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A5AD1C7A938800CF48D1 /* SQLiteDriver.swift */; };
 		3C85C8201BBE66E600E2F488 /* AppDelegate.swift in Resources */ = {isa = PBXBuildFile; fileRef = 3C808CD91B9601B7008F0ED7 /* AppDelegate.swift */; };
 		3C85C8211BBE66E600E2F488 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C808CDA1B9601B7008F0ED7 /* Assets.xcassets */; };
 		3C85C8221BBE66E600E2F488 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C808CDB1B9601B7008F0ED7 /* LaunchScreen.storyboard */; };
 		3C85C8231BBE66E600E2F488 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C808CDD1B9601B7008F0ED7 /* Main.storyboard */; };
 		3C85C8241BBE66E600E2F488 /* ViewController.swift in Resources */ = {isa = PBXBuildFile; fileRef = 3C808CE01B9601B7008F0ED7 /* ViewController.swift */; };
-		3C85C83E1BBE6B2600E2F488 /* KSJSONHelp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C808CB61B95FF4D008F0ED7 /* KSJSONHelp.framework */; settings = {ATTRIBUTES = (Required, ); }; };
-		3C85C84F1BBE6DF500E2F488 /* KSJSONHelpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C85C83B1BBE6B2600E2F488 /* KSJSONHelpTests.swift */; };
 		3CBC20B11BBD95C40007DC65 /* KSJSONHelp.h in Headers */ = {isa = PBXBuildFile; fileRef = 3CBC20AC1BBD95C40007DC65 /* KSJSONHelp.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3CE2C19A1C7BFE36000DA58C /* BridgingHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C4C5CD91C3E465C002233DA /* BridgingHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3CE2C19B1C7BFE6E000DA58C /* BridgingHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C4C5CD91C3E465C002233DA /* BridgingHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3CE2C19D1C7BFEEF000DA58C /* sqlite3.h in Headers */ = {isa = PBXBuildFile; fileRef = 3CE2C19C1C7BFEEF000DA58C /* sqlite3.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3CE2C19E1C7BFEEF000DA58C /* sqlite3.h in Headers */ = {isa = PBXBuildFile; fileRef = 3CE2C19C1C7BFEEF000DA58C /* sqlite3.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3CE2C1A21C7C00BA000DA58C /* Blob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A58C1C7A143400CF48D1 /* Blob.swift */; };
+		3CE2C1A31C7C00BA000DA58C /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A5981C7A147600CF48D1 /* Helpers.swift */; };
+		3CE2C1A41C7C00BA000DA58C /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A58D1C7A143400CF48D1 /* Model.swift */; };
+		3CE2C1A51C7C00BA000DA58C /* PropertyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A58E1C7A143400CF48D1 /* PropertyData.swift */; };
+		3CE2C1A61C7C00BA000DA58C /* Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A58F1C7A143400CF48D1 /* Value.swift */; };
+		3CE2C1A71C7C00BA000DA58C /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C622B761C76D5B400F1280E /* Database.swift */; };
+		3CE2C1A81C7C00BA000DA58C /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C622B771C76D5B400F1280E /* Driver.swift */; };
+		3CE2C1A91C7C00BA000DA58C /* MemoryDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C622B791C76D5B400F1280E /* MemoryDriver.swift */; };
+		3CE2C1AA1C7C00BA000DA58C /* PrintDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C622B7B1C76D5B400F1280E /* PrintDriver.swift */; };
+		3CE2C1AB1C7C00BA000DA58C /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C622B781C76D5B400F1280E /* Filter.swift */; };
+		3CE2C1AC1C7C00BA000DA58C /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C622B7C1C76D5B400F1280E /* Query.swift */; };
+		3CE2C1AD1C7C00BA000DA58C /* SQL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C622B7D1C76D5B400F1280E /* SQL.swift */; };
+		3CE2C1AE1C7C00BA000DA58C /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C622BB91C76F6C100F1280E /* Connection.swift */; };
+		3CE2C1AF1C7C00BA000DA58C /* SQLiteDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C71A5AD1C7A938800CF48D1 /* SQLiteDriver.swift */; };
+		3CE2C1B01C7C00BA000DA58C /* Statement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C622BBB1C76F6C100F1280E /* Statement.swift */; };
+		3CE2C1BD1C7C0530000DA58C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CE2C1BC1C7C0530000DA58C /* libsqlite3.tbd */; };
+		3CE2C1BF1C7C053D000DA58C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CE2C1BE1C7C053D000DA58C /* libsqlite3.tbd */; };
+		3CE2C1C71C7C08C2000DA58C /* KSJSONHelpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE2C1C61C7C08C2000DA58C /* KSJSONHelpTests.swift */; };
+		3CE2C1C91C7C08C2000DA58C /* KSJSONHelp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C808CB61B95FF4D008F0ED7 /* KSJSONHelp.framework */; };
+		3CE2C1E51C7C093B000DA58C /* KSJSONHelpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE2C1E41C7C093B000DA58C /* KSJSONHelpTests.swift */; };
+		3CE2C1E71C7C093B000DA58C /* KSJSONHelp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C09B7181BD15F2C000D3273 /* KSJSONHelp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3C09B7231BD15F2C000D3273 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3CD3C43A1B9216DD00CE1FBF /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3C09B7171BD15F2C000D3273;
-			remoteInfo = "KSJSONHelp-OSX";
-		};
-		3C85C84D1BBE6D8100E2F488 /* PBXContainerItemProxy */ = {
+		3CE2C1CA1C7C08C2000DA58C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3CD3C43A1B9216DD00CE1FBF /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 3C808CB51B95FF4D008F0ED7;
-			remoteInfo = KSJSONHelp;
+			remoteInfo = "KSJSONHelp iOS";
+		};
+		3CE2C1E81C7C093B000DA58C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3CD3C43A1B9216DD00CE1FBF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3C09B7171BD15F2C000D3273;
+			remoteInfo = "KSJSONHelp Mac";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		3C0936941B93054400F05323 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
-		3C09B7181BD15F2C000D3273 /* KSJSONHelp_OSX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KSJSONHelp_OSX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3C09B7211BD15F2C000D3273 /* KSJSONHelp_OSXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KSJSONHelp_OSXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C09B7181BD15F2C000D3273 /* KSJSONHelp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KSJSONHelp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C1BD8721BECE2D7003E34F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "KSJSONHelp-Demo/Info.plist"; sourceTree = SOURCE_ROOT; };
 		3C4C5CD91C3E465C002233DA /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BridgingHeader.h; path = Source/BridgingHeader.h; sourceTree = SOURCE_ROOT; };
 		3C622B761C76D5B400F1280E /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
@@ -122,8 +88,8 @@
 		3C622BB91C76F6C100F1280E /* Connection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
 		3C622BBB1C76F6C100F1280E /* Statement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Statement.swift; sourceTree = "<group>"; };
 		3C71A56E1C79712900CF48D1 /* TestClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestClass.swift; sourceTree = "<group>"; };
-		3C71A5731C7971D500CF48D1 /* AsynchronousSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsynchronousSpec.swift; sourceTree = "<group>"; };
-		3C71A5751C7971D500CF48D1 /* DynamicRetrievalSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicRetrievalSpec.swift; sourceTree = "<group>"; };
+		3C71A5731C7971D500CF48D1 /* AsynchronousTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsynchronousTest.swift; sourceTree = "<group>"; };
+		3C71A5751C7971D500CF48D1 /* DynamicRetrievalTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicRetrievalTest.swift; sourceTree = "<group>"; };
 		3C71A5781C7971D500CF48D1 /* Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		3C71A58C1C7A143400CF48D1 /* Blob.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Blob.swift; sourceTree = "<group>"; };
 		3C71A58D1C7A143400CF48D1 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -137,10 +103,20 @@
 		3C808CDC1B9601B7008F0ED7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3C808CDE1B9601B7008F0ED7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3C808CE01B9601B7008F0ED7 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = "KSJSONHelp-Demo/ViewController.swift"; sourceTree = SOURCE_ROOT; };
-		3C85C8391BBE6B2600E2F488 /* KSJSONHelpTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KSJSONHelpTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C85C83B1BBE6B2600E2F488 /* KSJSONHelpTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KSJSONHelpTests.swift; sourceTree = "<group>"; };
 		3C85C83D1BBE6B2600E2F488 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3CBC20AC1BBD95C40007DC65 /* KSJSONHelp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KSJSONHelp.h; path = Source/KSJSONHelp.h; sourceTree = SOURCE_ROOT; };
+		3CE2C19C1C7BFEEF000DA58C /* sqlite3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sqlite3.h; path = ../../../../../../Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/include/sqlite3.h; sourceTree = "<group>"; };
+		3CE2C1BC1C7C0530000DA58C /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		3CE2C1BE1C7C053D000DA58C /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/usr/lib/libsqlite3.tbd; sourceTree = DEVELOPER_DIR; };
+		3CE2C1C41C7C08C2000DA58C /* KSJSONHelpTests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "KSJSONHelpTests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3CE2C1C61C7C08C2000DA58C /* KSJSONHelpTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KSJSONHelpTests.swift; sourceTree = "<group>"; };
+		3CE2C1C81C7C08C2000DA58C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3CE2C1D51C7C08E7000DA58C /* KSJSONHelpTests_Mac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KSJSONHelpTests_Mac.swift; sourceTree = "<group>"; };
+		3CE2C1D71C7C08E7000DA58C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3CE2C1E21C7C093B000DA58C /* KSJSONHelpTests Mac.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "KSJSONHelpTests Mac.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3CE2C1E41C7C093B000DA58C /* KSJSONHelpTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KSJSONHelpTests.swift; sourceTree = "<group>"; };
+		3CE2C1E61C7C093B000DA58C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,14 +124,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3C09B71E1BD15F2C000D3273 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3C09B7221BD15F2C000D3273 /* KSJSONHelp_OSX.framework in Frameworks */,
+				3CE2C1BF1C7C053D000DA58C /* libsqlite3.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,14 +132,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CE2C1BD1C7C0530000DA58C /* libsqlite3.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3C85C8361BBE6B2600E2F488 /* Frameworks */ = {
+		3CE2C1C11C7C08C1000DA58C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C85C83E1BBE6B2600E2F488 /* KSJSONHelp.framework in Frameworks */,
+				3CE2C1C91C7C08C2000DA58C /* KSJSONHelp.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3CE2C1DF1C7C093B000DA58C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3CE2C1E71C7C093B000DA58C /* KSJSONHelp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,8 +214,8 @@
 				3C85C83B1BBE6B2600E2F488 /* KSJSONHelpTests.swift */,
 				3C71A56E1C79712900CF48D1 /* TestClass.swift */,
 				3C71A5781C7971D500CF48D1 /* Tests.swift */,
-				3C71A5731C7971D500CF48D1 /* AsynchronousSpec.swift */,
-				3C71A5751C7971D500CF48D1 /* DynamicRetrievalSpec.swift */,
+				3C71A5731C7971D500CF48D1 /* AsynchronousTest.swift */,
+				3C71A5751C7971D500CF48D1 /* DynamicRetrievalTest.swift */,
 				3C85C83D1BBE6B2600E2F488 /* Info.plist */,
 			);
 			path = KSJSONHelpTests;
@@ -246,10 +224,15 @@
 		3CD3C4391B9216DD00CE1FBF = {
 			isa = PBXGroup;
 			children = (
+				3CE2C1BE1C7C053D000DA58C /* libsqlite3.tbd */,
+				3CE2C1BC1C7C0530000DA58C /* libsqlite3.tbd */,
 				3C0936941B93054400F05323 /* MyPlayground.playground */,
 				3CD3C4441B9216DD00CE1FBF /* Source */,
 				3C808CE91B96023A008F0ED7 /* Supporting Files */,
 				3C85C83A1BBE6B2600E2F488 /* KSJSONHelpTests */,
+				3CE2C1C51C7C08C2000DA58C /* KSJSONHelpTests */,
+				3CE2C1D41C7C08E7000DA58C /* KSJSONHelpTests Mac */,
+				3CE2C1E31C7C093B000DA58C /* KSJSONHelpTests */,
 				3CD3C4431B9216DD00CE1FBF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -258,9 +241,9 @@
 			isa = PBXGroup;
 			children = (
 				3C808CB61B95FF4D008F0ED7 /* KSJSONHelp.framework */,
-				3C85C8391BBE6B2600E2F488 /* KSJSONHelpTests.xctest */,
-				3C09B7181BD15F2C000D3273 /* KSJSONHelp_OSX.framework */,
-				3C09B7211BD15F2C000D3273 /* KSJSONHelp_OSXTests.xctest */,
+				3C09B7181BD15F2C000D3273 /* KSJSONHelp.framework */,
+				3CE2C1C41C7C08C2000DA58C /* KSJSONHelpTests iOS.xctest */,
+				3CE2C1E21C7C093B000DA58C /* KSJSONHelpTests Mac.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -273,9 +256,37 @@
 				3C622B9E1C76D64700F1280E /* SQLite */,
 				3CBC20AC1BBD95C40007DC65 /* KSJSONHelp.h */,
 				3C4C5CD91C3E465C002233DA /* BridgingHeader.h */,
+				3CE2C19C1C7BFEEF000DA58C /* sqlite3.h */,
 			);
 			name = Source;
 			path = KSJSONHelp;
+			sourceTree = "<group>";
+		};
+		3CE2C1C51C7C08C2000DA58C /* KSJSONHelpTests */ = {
+			isa = PBXGroup;
+			children = (
+				3CE2C1C61C7C08C2000DA58C /* KSJSONHelpTests.swift */,
+				3CE2C1C81C7C08C2000DA58C /* Info.plist */,
+			);
+			path = KSJSONHelpTests;
+			sourceTree = "<group>";
+		};
+		3CE2C1D41C7C08E7000DA58C /* KSJSONHelpTests Mac */ = {
+			isa = PBXGroup;
+			children = (
+				3CE2C1D51C7C08E7000DA58C /* KSJSONHelpTests_Mac.swift */,
+				3CE2C1D71C7C08E7000DA58C /* Info.plist */,
+			);
+			path = "KSJSONHelpTests Mac";
+			sourceTree = "<group>";
+		};
+		3CE2C1E31C7C093B000DA58C /* KSJSONHelpTests */ = {
+			isa = PBXGroup;
+			children = (
+				3CE2C1E41C7C093B000DA58C /* KSJSONHelpTests.swift */,
+				3CE2C1E61C7C093B000DA58C /* Info.plist */,
+			);
+			path = KSJSONHelpTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -285,6 +296,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CE2C19B1C7BFE6E000DA58C /* BridgingHeader.h in Headers */,
+				3CE2C19E1C7BFEEF000DA58C /* sqlite3.h in Headers */,
 				3C09B7321BD15F5A000D3273 /* KSJSONHelp.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -293,6 +306,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CE2C19A1C7BFE36000DA58C /* BridgingHeader.h in Headers */,
+				3CE2C19D1C7BFEEF000DA58C /* sqlite3.h in Headers */,
 				3CBC20B11BBD95C40007DC65 /* KSJSONHelp.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -300,9 +315,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		3C09B7171BD15F2C000D3273 /* KSJSONHelp_OSX */ = {
+		3C09B7171BD15F2C000D3273 /* KSJSONHelp Mac */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3C09B72D1BD15F2C000D3273 /* Build configuration list for PBXNativeTarget "KSJSONHelp_OSX" */;
+			buildConfigurationList = 3C09B72D1BD15F2C000D3273 /* Build configuration list for PBXNativeTarget "KSJSONHelp Mac" */;
 			buildPhases = (
 				3C09B7131BD15F2C000D3273 /* Sources */,
 				3C09B7141BD15F2C000D3273 /* Frameworks */,
@@ -313,32 +328,14 @@
 			);
 			dependencies = (
 			);
-			name = KSJSONHelp_OSX;
+			name = "KSJSONHelp Mac";
 			productName = "KSJSONHelp-OSX";
-			productReference = 3C09B7181BD15F2C000D3273 /* KSJSONHelp_OSX.framework */;
+			productReference = 3C09B7181BD15F2C000D3273 /* KSJSONHelp.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		3C09B7201BD15F2C000D3273 /* KSJSONHelp_OSXTests */ = {
+		3C808CB51B95FF4D008F0ED7 /* KSJSONHelp iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3C09B72E1BD15F2C000D3273 /* Build configuration list for PBXNativeTarget "KSJSONHelp_OSXTests" */;
-			buildPhases = (
-				3C09B71D1BD15F2C000D3273 /* Sources */,
-				3C09B71E1BD15F2C000D3273 /* Frameworks */,
-				3C09B71F1BD15F2C000D3273 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				3C09B7241BD15F2C000D3273 /* PBXTargetDependency */,
-			);
-			name = KSJSONHelp_OSXTests;
-			productName = "KSJSONHelp-OSXTests";
-			productReference = 3C09B7211BD15F2C000D3273 /* KSJSONHelp_OSXTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		3C808CB51B95FF4D008F0ED7 /* KSJSONHelp */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3C808CCD1B95FF4D008F0ED7 /* Build configuration list for PBXNativeTarget "KSJSONHelp" */;
+			buildConfigurationList = 3C808CCD1B95FF4D008F0ED7 /* Build configuration list for PBXNativeTarget "KSJSONHelp iOS" */;
 			buildPhases = (
 				3C808CB11B95FF4D008F0ED7 /* Sources */,
 				3C808CB21B95FF4D008F0ED7 /* Frameworks */,
@@ -349,27 +346,45 @@
 			);
 			dependencies = (
 			);
-			name = KSJSONHelp;
+			name = "KSJSONHelp iOS";
 			productName = KSJSONHelp;
 			productReference = 3C808CB61B95FF4D008F0ED7 /* KSJSONHelp.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		3C85C8381BBE6B2600E2F488 /* KSJSONHelpTests */ = {
+		3CE2C1C31C7C08C1000DA58C /* KSJSONHelpTests iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3C85C8411BBE6B2600E2F488 /* Build configuration list for PBXNativeTarget "KSJSONHelpTests" */;
+			buildConfigurationList = 3CE2C1CC1C7C08C2000DA58C /* Build configuration list for PBXNativeTarget "KSJSONHelpTests iOS" */;
 			buildPhases = (
-				3C85C8351BBE6B2600E2F488 /* Sources */,
-				3C85C8361BBE6B2600E2F488 /* Frameworks */,
-				3C85C8371BBE6B2600E2F488 /* Resources */,
+				3CE2C1C01C7C08C1000DA58C /* Sources */,
+				3CE2C1C11C7C08C1000DA58C /* Frameworks */,
+				3CE2C1C21C7C08C1000DA58C /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				3C85C84E1BBE6D8100E2F488 /* PBXTargetDependency */,
+				3CE2C1CB1C7C08C2000DA58C /* PBXTargetDependency */,
 			);
-			name = KSJSONHelpTests;
+			name = "KSJSONHelpTests iOS";
 			productName = KSJSONHelpTests;
-			productReference = 3C85C8391BBE6B2600E2F488 /* KSJSONHelpTests.xctest */;
+			productReference = 3CE2C1C41C7C08C2000DA58C /* KSJSONHelpTests iOS.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		3CE2C1E11C7C093B000DA58C /* KSJSONHelpTests Mac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3CE2C1EA1C7C093B000DA58C /* Build configuration list for PBXNativeTarget "KSJSONHelpTests Mac" */;
+			buildPhases = (
+				3CE2C1DE1C7C093B000DA58C /* Sources */,
+				3CE2C1DF1C7C093B000DA58C /* Frameworks */,
+				3CE2C1E01C7C093B000DA58C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3CE2C1E91C7C093B000DA58C /* PBXTargetDependency */,
+			);
+			name = "KSJSONHelpTests Mac";
+			productName = KSJSONHelpTests;
+			productReference = 3CE2C1E21C7C093B000DA58C /* KSJSONHelpTests Mac.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -385,14 +400,14 @@
 					3C09B7171BD15F2C000D3273 = {
 						CreatedOnToolsVersion = 7.0;
 					};
-					3C09B7201BD15F2C000D3273 = {
-						CreatedOnToolsVersion = 7.0;
-					};
 					3C808CB51B95FF4D008F0ED7 = {
 						CreatedOnToolsVersion = 7.0;
 					};
-					3C85C8381BBE6B2600E2F488 = {
-						CreatedOnToolsVersion = 7.0;
+					3CE2C1C31C7C08C1000DA58C = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					3CE2C1E11C7C093B000DA58C = {
+						CreatedOnToolsVersion = 7.3;
 					};
 				};
 			};
@@ -409,23 +424,16 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3C808CB51B95FF4D008F0ED7 /* KSJSONHelp */,
-				3C85C8381BBE6B2600E2F488 /* KSJSONHelpTests */,
-				3C09B7171BD15F2C000D3273 /* KSJSONHelp_OSX */,
-				3C09B7201BD15F2C000D3273 /* KSJSONHelp_OSXTests */,
+				3C808CB51B95FF4D008F0ED7 /* KSJSONHelp iOS */,
+				3CE2C1C31C7C08C1000DA58C /* KSJSONHelpTests iOS */,
+				3C09B7171BD15F2C000D3273 /* KSJSONHelp Mac */,
+				3CE2C1E11C7C093B000DA58C /* KSJSONHelpTests Mac */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		3C09B7161BD15F2C000D3273 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3C09B71F1BD15F2C000D3273 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -444,7 +452,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3C85C8371BBE6B2600E2F488 /* Resources */ = {
+		3CE2C1C21C7C08C1000DA58C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3CE2C1E01C7C093B000DA58C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -458,49 +473,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C71A59E1C7A185100CF48D1 /* Model.swift in Sources */,
-				3C5CF9981C40EB360087C5BC /* KSJSONHelp.h in Sources */,
-				3C622B841C76D5B400F1280E /* Driver.swift in Sources */,
-				3C71A59C1C7A184900CF48D1 /* Blob.swift in Sources */,
-				3C71A5A21C7A185E00CF48D1 /* Value.swift in Sources */,
-				3C5CF99B1C40EB360087C5BC /* BridgingHeader.h in Sources */,
-				3C622BC31C76F6C100F1280E /* Connection.swift in Sources */,
-				3C622B881C76D5B400F1280E /* Filter.swift in Sources */,
-				3C622B801C76D5B400F1280E /* Database.swift in Sources */,
-				3C622BCB1C76F6C100F1280E /* Statement.swift in Sources */,
-				3C622B981C76D5B400F1280E /* Query.swift in Sources */,
-				3C622B9C1C76D5B400F1280E /* SQL.swift in Sources */,
-				3C71A5A01C7A185600CF48D1 /* PropertyData.swift in Sources */,
-				3C71A5AF1C7A938800CF48D1 /* SQLiteDriver.swift in Sources */,
-				3C71A59A1C7A147600CF48D1 /* Helpers.swift in Sources */,
-				3C622B941C76D5B400F1280E /* PrintDriver.swift in Sources */,
-				3C622B8C1C76D5B400F1280E /* MemoryDriver.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3C09B71D1BD15F2C000D3273 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3C71A5721C79712A00CF48D1 /* TestClass.swift in Sources */,
-				3C622B811C76D5B400F1280E /* Database.swift in Sources */,
-				3C622BC41C76F6C100F1280E /* Connection.swift in Sources */,
-				3C71A57A1C7971D500CF48D1 /* AsynchronousSpec.swift in Sources */,
-				3C622B851C76D5B400F1280E /* Driver.swift in Sources */,
-				3C622BCC1C76F6C100F1280E /* Statement.swift in Sources */,
-				3C622B951C76D5B400F1280E /* PrintDriver.swift in Sources */,
-				3C71A57E1C7971D500CF48D1 /* DynamicRetrievalSpec.swift in Sources */,
-				3C622B991C76D5B400F1280E /* Query.swift in Sources */,
-				3C71A5841C7971D500CF48D1 /* Tests.swift in Sources */,
-				3C71A5A81C7A19DD00CF48D1 /* Model.swift in Sources */,
-				3C622B8D1C76D5B400F1280E /* MemoryDriver.swift in Sources */,
-				3C71A5A61C7A19D900CF48D1 /* Helpers.swift in Sources */,
-				3C71A5AA1C7A19E100CF48D1 /* PropertyData.swift in Sources */,
-				3C71A5AC1C7A19E400CF48D1 /* Value.swift in Sources */,
-				3C71A5B11C7A939300CF48D1 /* SQLiteDriver.swift in Sources */,
-				3C71A5A41C7A19D500CF48D1 /* Blob.swift in Sources */,
-				3C622B891C76D5B400F1280E /* Filter.swift in Sources */,
-				3C622B9D1C76D5B400F1280E /* SQL.swift in Sources */,
+				3CE2C1A21C7C00BA000DA58C /* Blob.swift in Sources */,
+				3CE2C1A31C7C00BA000DA58C /* Helpers.swift in Sources */,
+				3CE2C1A41C7C00BA000DA58C /* Model.swift in Sources */,
+				3CE2C1A51C7C00BA000DA58C /* PropertyData.swift in Sources */,
+				3CE2C1A61C7C00BA000DA58C /* Value.swift in Sources */,
+				3CE2C1A71C7C00BA000DA58C /* Database.swift in Sources */,
+				3CE2C1A81C7C00BA000DA58C /* Driver.swift in Sources */,
+				3CE2C1A91C7C00BA000DA58C /* MemoryDriver.swift in Sources */,
+				3CE2C1AA1C7C00BA000DA58C /* PrintDriver.swift in Sources */,
+				3CE2C1AB1C7C00BA000DA58C /* Filter.swift in Sources */,
+				3CE2C1AC1C7C00BA000DA58C /* Query.swift in Sources */,
+				3CE2C1AD1C7C00BA000DA58C /* SQL.swift in Sources */,
+				3CE2C1AE1C7C00BA000DA58C /* Connection.swift in Sources */,
+				3CE2C1AF1C7C00BA000DA58C /* SQLiteDriver.swift in Sources */,
+				3CE2C1B01C7C00BA000DA58C /* Statement.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -526,45 +513,34 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3C85C8351BBE6B2600E2F488 /* Sources */ = {
+		3CE2C1C01C7C08C1000DA58C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C71A5831C7971D500CF48D1 /* Tests.swift in Sources */,
-				3C622B871C76D5B400F1280E /* Filter.swift in Sources */,
-				3C622B9B1C76D5B400F1280E /* SQL.swift in Sources */,
-				3C622B831C76D5B400F1280E /* Driver.swift in Sources */,
-				3C71A5A31C7A19D400CF48D1 /* Blob.swift in Sources */,
-				3C71A5A91C7A19E000CF48D1 /* PropertyData.swift in Sources */,
-				3C71A5791C7971D500CF48D1 /* AsynchronousSpec.swift in Sources */,
-				3C71A5AB1C7A19E400CF48D1 /* Value.swift in Sources */,
-				3C622B931C76D5B400F1280E /* PrintDriver.swift in Sources */,
-				3C622B971C76D5B400F1280E /* Query.swift in Sources */,
-				3C622B7F1C76D5B400F1280E /* Database.swift in Sources */,
-				3C71A5B01C7A939200CF48D1 /* SQLiteDriver.swift in Sources */,
-				3C71A5A71C7A19DD00CF48D1 /* Model.swift in Sources */,
-				3C71A5701C79712A00CF48D1 /* TestClass.swift in Sources */,
-				3C71A5A51C7A19D800CF48D1 /* Helpers.swift in Sources */,
-				3C85C84F1BBE6DF500E2F488 /* KSJSONHelpTests.swift in Sources */,
-				3C71A57D1C7971D500CF48D1 /* DynamicRetrievalSpec.swift in Sources */,
-				3C622B8B1C76D5B400F1280E /* MemoryDriver.swift in Sources */,
-				3C622BC21C76F6C100F1280E /* Connection.swift in Sources */,
-				3C622BCA1C76F6C100F1280E /* Statement.swift in Sources */,
+				3CE2C1C71C7C08C2000DA58C /* KSJSONHelpTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3CE2C1DE1C7C093B000DA58C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3CE2C1E51C7C093B000DA58C /* KSJSONHelpTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		3C09B7241BD15F2C000D3273 /* PBXTargetDependency */ = {
+		3CE2C1CB1C7C08C2000DA58C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 3C09B7171BD15F2C000D3273 /* KSJSONHelp_OSX */;
-			targetProxy = 3C09B7231BD15F2C000D3273 /* PBXContainerItemProxy */;
+			target = 3C808CB51B95FF4D008F0ED7 /* KSJSONHelp iOS */;
+			targetProxy = 3CE2C1CA1C7C08C2000DA58C /* PBXContainerItemProxy */;
 		};
-		3C85C84E1BBE6D8100E2F488 /* PBXTargetDependency */ = {
+		3CE2C1E91C7C093B000DA58C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 3C808CB51B95FF4D008F0ED7 /* KSJSONHelp */;
-			targetProxy = 3C85C84D1BBE6D8100E2F488 /* PBXContainerItemProxy */;
+			target = 3C09B7171BD15F2C000D3273 /* KSJSONHelp Mac */;
+			targetProxy = 3CE2C1E81C7C093B000DA58C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -606,10 +582,10 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "king.KSJSONHelp-OSX";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = KSJSONHelp;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = Source;
+				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -632,41 +608,12 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "king.KSJSONHelp-OSX";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = KSJSONHelp;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = Source;
+				SWIFT_INCLUDE_PATHS = "";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		3C09B72B1BD15F2C000D3273 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "KSJSONHelp-OSXTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "king.KSJSONHelp-OSXTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-			};
-			name = Debug;
-		};
-		3C09B72C1BD15F2C000D3273 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "KSJSONHelp-OSXTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_BUNDLE_IDENTIFIER = "king.KSJSONHelp-OSXTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -685,9 +632,9 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "-lsqlite3";
 				PRODUCT_BUNDLE_IDENTIFIER = king.KSJSONHelp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = KSJSONHelp;
 				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = Source;
+				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -711,38 +658,13 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "-lsqlite3";
 				PRODUCT_BUNDLE_IDENTIFIER = king.KSJSONHelp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = KSJSONHelp;
 				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = Source;
+				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		3C85C8421BBE6B2600E2F488 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = KSJSONHelpTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = king.KSJSONHelpTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-			};
-			name = Debug;
-		};
-		3C85C8431BBE6B2600E2F488 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = KSJSONHelpTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = king.KSJSONHelpTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -829,10 +751,60 @@
 			};
 			name = Release;
 		};
+		3CE2C1CD1C7C08C2000DA58C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = KSJSONHelpTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = king.KSJSONHelpTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		3CE2C1CE1C7C08C2000DA58C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = KSJSONHelpTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = king.KSJSONHelpTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		3CE2C1EB1C7C093B000DA58C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = KSJSONHelpTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = king.KSJSONHelpTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		3CE2C1EC1C7C093B000DA58C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = KSJSONHelpTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = king.KSJSONHelpTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3C09B72D1BD15F2C000D3273 /* Build configuration list for PBXNativeTarget "KSJSONHelp_OSX" */ = {
+		3C09B72D1BD15F2C000D3273 /* Build configuration list for PBXNativeTarget "KSJSONHelp Mac" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3C09B7291BD15F2C000D3273 /* Debug */,
@@ -841,29 +813,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3C09B72E1BD15F2C000D3273 /* Build configuration list for PBXNativeTarget "KSJSONHelp_OSXTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3C09B72B1BD15F2C000D3273 /* Debug */,
-				3C09B72C1BD15F2C000D3273 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3C808CCD1B95FF4D008F0ED7 /* Build configuration list for PBXNativeTarget "KSJSONHelp" */ = {
+		3C808CCD1B95FF4D008F0ED7 /* Build configuration list for PBXNativeTarget "KSJSONHelp iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3C808CCE1B95FF4D008F0ED7 /* Debug */,
 				3C808CCF1B95FF4D008F0ED7 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3C85C8411BBE6B2600E2F488 /* Build configuration list for PBXNativeTarget "KSJSONHelpTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3C85C8421BBE6B2600E2F488 /* Debug */,
-				3C85C8431BBE6B2600E2F488 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -876,6 +830,22 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		3CE2C1CC1C7C08C2000DA58C /* Build configuration list for PBXNativeTarget "KSJSONHelpTests iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3CE2C1CD1C7C08C2000DA58C /* Debug */,
+				3CE2C1CE1C7C08C2000DA58C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		3CE2C1EA1C7C093B000DA58C /* Build configuration list for PBXNativeTarget "KSJSONHelpTests Mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3CE2C1EB1C7C093B000DA58C /* Debug */,
+				3CE2C1EC1C7C093B000DA58C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

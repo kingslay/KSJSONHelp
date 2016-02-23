@@ -1,6 +1,6 @@
 //
-//  KSJSONHelpTests.swift
-//  KSJSONHelpTests
+//  KSJSONHelpTests_Mac.swift
+//  KSJSONHelpTests Mac
 //
 //  Created by king on 16/2/23.
 //  Copyright © 2016年 king. All rights reserved.
@@ -8,7 +8,7 @@
 
 import XCTest
 
-class KSJSONHelpTests: XCTestCase {
+class KSJSONHelpTests_Mac: XCTestCase {
     
     override func setUp() {
         super.setUp()
