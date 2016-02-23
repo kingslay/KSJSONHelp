@@ -1,5 +1,5 @@
 framework module KSJSONHelp {
-    umbrella header "SQLite.h"
+    umbrella header "KSJSONHelp.h"
 
     // Load the SDK header alongside SQLite.swift. Alternate headers:
     //

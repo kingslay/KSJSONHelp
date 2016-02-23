@@ -2,7 +2,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = "KSJSONHelp"
-  s.version          = "0.5.13"
+  s.version          = "0.5.14"
   s.summary          = "swift's MJExtension"
 
   s.description      = <<-DESC
