@@ -1,14 +1,14 @@
 {
   "name": "KSJSONHelp",
-  "version": "0.4.3",
+  "version": "0.5.0",
   "summary": "swift's MJExtension",
-  "description": " KSJSONHelp is a lightweight and pure Swift implemented library for    convert dictionary to model    convert model to dictionary",
+  "description": " KSJSONHelp is a lightweight and pure Swift implemented library for conversion between JSON and model.Simple ActiveRecord implementation for working with your database",
   "homepage": "https://github.com/kingslay/KSJSONHelp",
   "license": "MIT",
   "authors": {"kingslay": "kingslay@icloud.com"},
   "source": {
 	  "git": "https://github.com/kingslay/KSJSONHelp.git",
-	  "tag": "0.4.3"
+	  "tag": "0.5.0"
 	  },
  "platforms": {
     "ios": "8.0"

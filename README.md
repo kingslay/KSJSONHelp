@@ -6,14 +6,13 @@
 
 - Simple ActiveRecord implementation for working with your database
 
-
 纯swift实现框架支持
 
-- 字典、模型互相转化
+- son、对象互相转化
 
 
 
-- 模型持久化到数据库，数据库查询、更新、删除对象
+- 解决对象与关系数据库映射，并快速实现 CRUD 操作的对象存储类库
 
 ## Usage 
 
@@ -49,13 +48,14 @@ let person = Person.fromDictionary(dic)
 let dict = person.dictionary
 ```
 
-####  ORM
+####   CRUD operate
 
 ```swift
 if let user = Person.fetchOne(dic:["name": "Old Name"]) {
 	print("Found \(user.name)")
 	user.name = "New Name"
 	user.save()
+    user.delete()
 }
 ```
 
