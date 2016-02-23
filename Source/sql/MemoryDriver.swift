@@ -23,13 +23,11 @@ class MemoryDriver: Driver {
 
 	func fetchOne(table table: String, filter: Filter?) -> [String: Binding?]? {
 		print("fetch one \(filter?.statement) filter on \(table)")
-		var id: String?
-
-		if let id = id {
-			if let data = self.memory[table]?[id] {
-				return data
-			}
-		}
+//		if let id = id {
+//			if let data = self.memory[table]?[id] {
+//				return data
+//			}
+//		}
 
 		return nil
 	}
