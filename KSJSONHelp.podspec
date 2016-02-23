@@ -21,7 +21,6 @@ Pod::Spec.new do |s|
   s.tvos.deployment_target = "9.0"
   s.osx.deployment_target = "10.9"
 
-  s.module_map = "Source/SQLite/module.modulemap"
   s.libraries = 'sqlite3'
   s.source_files = 'Source/**/*.{c,h,m,swift}'
 end
