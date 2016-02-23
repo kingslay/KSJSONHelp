@@ -14,6 +14,6 @@ FOUNDATION_EXPORT double KSJSONHelpVersionNumber;
 //! Project version string for KSJSONHelp.
 FOUNDATION_EXPORT const unsigned char KSJSONHelpVersionString[];
 
-#import <KSJSONHelp/BridgingHeader.h>
+#import <BridgingHeader.h>
 
 
