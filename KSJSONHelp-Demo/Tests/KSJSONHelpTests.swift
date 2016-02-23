@@ -11,7 +11,7 @@ import XCTest
 import KSJSONHelp
 
 @objc(Person)
-class Person: NSObject, Storable, Model {
+class Person: NSObject, Storable, Model, ReplacePropertys {
     var name: String
     var weight: CGFloat
     var height: NSInteger
@@ -28,6 +28,9 @@ class Person: NSObject, Storable, Model {
         self.age = age
         self.height = height
         self.weight = weight
+    }
+    static func replacePropertys() -> [String : String] {
+        return ["name": "name"]
     }
 
 }

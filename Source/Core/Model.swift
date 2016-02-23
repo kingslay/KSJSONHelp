@@ -24,6 +24,10 @@ public protocol IgnoredProperties {
      */
     static func ignoredProperties() -> Set<String>
 }
+///属性对应。用于json转为对象的时候
+public protocol ReplacePropertys {
+    static func replacePropertys() -> [String: String]
+}
 ///支持对象保存到数据库，转为字典
 public protocol Model: Serialization {
     
@@ -97,13 +101,17 @@ extension Storable {
     }
     public static func fromDictionary(dic: [String: AnyObject]) -> Self {
         let model = self.init()
+        var replaceMap: [String: String]?
+        if let replacePropertys  = self as? ReplacePropertys.Type {
+            replaceMap = replacePropertys.replacePropertys()
+        }
         PropertyData.validPropertyDataForObject(model).forEach{ (propertyData) -> () in
             if let name = propertyData.name, var value = dic[name] {
                 if !(value is NSNull || "\(value)" == "nil"){
                     if let deserialization = value as? Deserialization {
                         value = deserialization.deserialization(propertyData.type)
                     }
-                    model.setValue(value, forKey: name)
+                    model.setValue(value, forKey: (replaceMap?[name] ?? name))
                     
                 }
             }
