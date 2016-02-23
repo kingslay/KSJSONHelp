@@ -1,9 +1,5 @@
-framework module KSJSONHelp {
-    umbrella header "KSJSONHelp.h"
-
-    // Load the SDK header alongside SQLite.swift. Alternate headers:
-    header "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/include/sqlite3.h"
-    
+module sqlite3 [system] {
+    header "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/usr/include/sqlite3.h"
+    link "sqlite3"
     export *
-    module * { export * }
 }

@@ -23,7 +23,7 @@
 //
 
 /// A single SQL statement.
-
+import sqlite3
 public final class Statement {
     
     private var handle: COpaquePointer = nil
