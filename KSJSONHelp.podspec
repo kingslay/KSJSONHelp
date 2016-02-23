@@ -2,7 +2,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = "KSJSONHelp"
-  s.version          = "0.5.12"
+  s.version          = "0.5.13"
   s.summary          = "swift's MJExtension"
 
   s.description      = <<-DESC
@@ -18,8 +18,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = "8.0"
   s.tvos.deployment_target = "9.0"
   s.osx.deployment_target = "10.9"
-
   s.source_files = 'Source/**/*.{c,h,m,swift}'
-  s.library = 'sqlite3'
-                               
+  s.module_map = "module.modulemap"
+  s.libraries = 'sqlite3'                               
 end

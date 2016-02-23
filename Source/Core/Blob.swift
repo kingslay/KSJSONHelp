@@ -23,7 +23,6 @@
 //
 import Foundation
 public struct Blob {
-
     public let bytes: [UInt8]
 
     public init(bytes: [UInt8]) {
