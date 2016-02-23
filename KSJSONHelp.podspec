@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "KSJSONHelp"
-  s.version          = "0.5.3"
+  s.version          = "0.5.4"
   s.summary          = "swift's MJExtension"
 
   s.description      = <<-DESC
@@ -11,10 +11,9 @@ Pod::Spec.new do |s|
 
   s.homepage         = "https://github.com/kingslay/KSJSONHelp"
   s.license          = 'MIT'
-  s.author           = {"kingslay": "kingslay@icloud.com"},
+  s.author           = { "kingslay" => "kingslay@icloud.com" }
   s.source           = { :git => "https://github.com/kingslay/KSJSONHelp.git", :tag => s.version.to_s }
-  s.social_media_url = 'http://weibo.com/p/1005051702286027/home?from=page_100505&mod=TAB#place'
-
+  s.social_media_url = "http://weibo.com/p/1005051702286027/home?from=page_100505&mod=TAB#place"
   s.module_name      = 'KSJSONHelp'
   s.ios.deployment_target = "8.0"
   s.tvos.deployment_target = "9.0"
