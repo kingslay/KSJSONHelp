@@ -78,7 +78,7 @@ public protocol Storable {
     func setValue(value: AnyObject?, forKey key: String)
 }
 extension Storable {
-    public typealias ValueType1 = Self
+//    public typealias ValueType1 = Self
     
     public func setValuesForKeysWithDictionary(keyedValues: [String : AnyObject]) {
         keyedValues.forEach { (key, value) -> () in
@@ -110,8 +110,13 @@ extension Storable {
         }
         return model
     }
+    public static func fromArray(array: [[String: AnyObject]]) -> [Self] {
+        return array.map {
+            fromDictionary($0)
+        }
+    }
     
-    public static func objectArrayForKey(defaultName: String) -> [ValueType1]? {
+    public static func objectArrayForKey(defaultName: String) -> [Self]? {
         if let objectArray = NSUserDefaults.standardUserDefaults().arrayForKey(defaultName) {
             return objectArray.map {
                 fromDictionary($0 as! [String : AnyObject])
