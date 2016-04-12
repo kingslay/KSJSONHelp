@@ -21,6 +21,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 //
+import CSQLite
 import Foundation
 let SQLITE_TRANSIENT = unsafeBitCast(-1, sqlite3_destructor_type.self)
 

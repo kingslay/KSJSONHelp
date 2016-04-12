@@ -61,9 +61,10 @@ public class Query<T: Model> {
         }else{
             let propertyData = PropertyData.validPropertyDataForObject(model)
             Database.driver.createTable(table: self.table, sql: createTableStatementByPropertyData(propertyData))
-            propertyData.forEach({ (var propertyData) -> () in
+            propertyData.forEach{ propertyData in
+                var propertyData = propertyData
                 data[propertyData.name!] = propertyData.bindingValue
-            })
+            }
         }
 		self.upsert(data)
 		

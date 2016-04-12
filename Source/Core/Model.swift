@@ -47,7 +47,8 @@ extension Model {
     
     public var serialize: [String: Binding?] {
         var data: [String: Binding?] = [:]
-        PropertyData.validPropertyDataForObject(self).forEach { (var propertyData) -> () in
+        PropertyData.validPropertyDataForObject(self).forEach { propertyData in
+            var propertyData = propertyData
             data[propertyData.name!] = propertyData.bindingValue
         }
         return data

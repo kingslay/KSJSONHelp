@@ -117,10 +117,10 @@ internal struct PropertyData {
 
 extension PropertyData {
     internal static func validPropertyDataForObject (object: Any) -> [PropertyData] {
-        return validPropertyDataForMirror(Mirror(reflecting: object))
+        var ignoredProperties = Set<String>()
+        return validPropertyDataForMirror(Mirror(reflecting: object), ignoredProperties: &ignoredProperties)
     }
-    
-    private static func validPropertyDataForMirror(mirror: Mirror, var ignoredProperties: Set<String> = []) -> [PropertyData] {
+    private static func validPropertyDataForMirror(mirror: Mirror, inout ignoredProperties: Set<String>) -> [PropertyData] {
         if mirror.subjectType is IgnoredProperties.Type {
             ignoredProperties = ignoredProperties.union((mirror.subjectType as! IgnoredProperties.Type).ignoredProperties())
         }
@@ -128,7 +128,7 @@ extension PropertyData {
         var propertyData: [PropertyData] = []
         
         if let superclassMirror = mirror.superclassMirror() {
-            propertyData += validPropertyDataForMirror(superclassMirror, ignoredProperties: ignoredProperties)
+            propertyData += validPropertyDataForMirror(superclassMirror, ignoredProperties: &ignoredProperties)
         }
         
         /* Map children to property data and filter out ignored or invalid properties */

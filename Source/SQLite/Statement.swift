@@ -23,6 +23,7 @@
 //
 
 /// A single SQL statement.
+import CSQLite
 
 public final class Statement {
     

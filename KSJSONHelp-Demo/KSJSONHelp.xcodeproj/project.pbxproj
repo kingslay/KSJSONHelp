@@ -24,13 +24,11 @@
 		3C5D63A21C7C54F0003AF626 /* DynamicRetrievalTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicRetrievalTest.swift; sourceTree = "<group>"; };
 		3C5D63A41C7C54F0003AF626 /* KSJSONHelpTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KSJSONHelpTests.swift; sourceTree = "<group>"; };
 		3C5D63A51C7C54F0003AF626 /* TestClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestClass.swift; sourceTree = "<group>"; };
-		3C5D63B01C7C7D50003AF626 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		3C5D63B21C7C7D50003AF626 /* Blob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blob.swift; sourceTree = "<group>"; };
 		3C5D63B31C7C7D50003AF626 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		3C5D63B41C7C7D50003AF626 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		3C5D63B51C7C7D50003AF626 /* PropertyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyData.swift; sourceTree = "<group>"; };
 		3C5D63B61C7C7D50003AF626 /* Value.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Value.swift; sourceTree = "<group>"; };
-		3C5D63B71C7C7D50003AF626 /* KSJSONHelp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KSJSONHelp.h; sourceTree = "<group>"; };
 		3C5D63B91C7C7D50003AF626 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		3C5D63BA1C7C7D50003AF626 /* Driver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Driver.swift; sourceTree = "<group>"; };
 		3C5D63BB1C7C7D50003AF626 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
@@ -81,8 +79,6 @@
 		3C5D63AF1C7C7D50003AF626 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				3C5D63B01C7C7D50003AF626 /* BridgingHeader.h */,
-				3C5D63B71C7C7D50003AF626 /* KSJSONHelp.h */,
 				3C5D63B11C7C7D50003AF626 /* Core */,
 				3C5D63B81C7C7D50003AF626 /* SQL */,
 				3C5D63C01C7C7D50003AF626 /* SQLite */,
