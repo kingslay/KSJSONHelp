@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import KSJSONHelp
+import KSJSONHelp
 
 @objc(Person)
 class Person: NSObject, Storable, Model, ReplacePropertys {

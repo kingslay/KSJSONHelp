@@ -2,7 +2,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = "KSJSONHelp"
-  s.version          = "0.6.2"
+  s.version          = "0.6.3"
   s.summary          = "swift's MJExtension"
 
   s.description      = <<-DESC
@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
   s.tvos.deployment_target = "9.0"
   s.osx.deployment_target = "10.9"
   s.source_files = 'Source/**/*.{c,h,m,swift}'
-  s.module_name      = 'SQLite'
+  s.module_name      = 'KSJSONHelp'
   s.preserve_paths = 'CocoaPods/**/*'
   s.pod_target_xcconfig = {
     'SWIFT_INCLUDE_PATHS[sdk=macosx*]'           => '$(SRCROOT)/KSJSONHelp/CocoaPods/macosx',
