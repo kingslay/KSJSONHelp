@@ -85,7 +85,7 @@ public protocol Storable {
 extension Storable {
 //    public typealias ValueType1 = Self
     
-    public func setValuesForKeysWithDictionary(keyedValues: [String : AnyObject]) {
+    internal func setValuesForKeysWithDictionary(keyedValues: [String : AnyObject]) {
         keyedValues.forEach { (key, value) -> () in
             self.setValue(value, forKey: key)
         }
@@ -100,39 +100,37 @@ extension Storable {
             }
         }
     }
-    public static func fromDictionary(dic: [String: AnyObject]) -> Self {
-        let model = self.init()
+    public init(from dic: [String: AnyObject]) {
+        self.init()
         var replaceMap: [String: String]?
         if let replacePropertys  = self as? ReplacePropertys.Type {
             replaceMap = replacePropertys.replacePropertys()
         }
-        PropertyData.validPropertyDataForObject(model).forEach{ (propertyData) -> () in
+        PropertyData.validPropertyDataForObject(self).forEach{ (propertyData) -> () in
             if let name = propertyData.name, var value = dic[name] {
                 if !(value is NSNull || "\(value)" == "nil"){
                     if let deserialization = value as? Deserialization {
                         value = deserialization.deserialization(propertyData.type)
                     }
-                    model.setValue(value, forKey: (replaceMap?[name] ?? name))
+                    setValue(value, forKey: (replaceMap?[name] ?? name))
                     
                 }
             }
         }
-        return model
     }
-    public static func fromArray(array: [[String: AnyObject]]) -> [Self] {
+    public static func objectArray(from array: [[String: AnyObject]]) -> [Self] {
         return array.map {
-            fromDictionary($0)
+            self.init(from: $0)
         }
     }
     
-    public static func objectArrayForKey(defaultName: String) -> [Self]? {
+    public static func objectArray(forKey defaultName: String) -> [Self]? {
         if let objectArray = NSUserDefaults.standardUserDefaults().arrayForKey(defaultName) {
             return objectArray.map {
-                fromDictionary($0 as! [String : AnyObject])
+                self.init(from: $0 as! [String : AnyObject])
             }
         }else{
             return nil
         }
     }
-    
 }

@@ -145,7 +145,7 @@ extension NSDictionary: Binding, Deserialization {
     }
     public func deserialization(type: Any.Type) -> AnyObject {
         if let dic = self as? [String : AnyObject], let storable = type as? Storable.Type {
-            return storable.fromDictionary(dic) as! AnyObject
+            return storable.init(from: dic) as! AnyObject
         }else {
             return self
         }

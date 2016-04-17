@@ -13,7 +13,7 @@ internal func findFirst<S : SequenceType> (s: S, condition: (S.Generator.Element
     return nil
 }
 
-extension String{
+internal extension String{
     
     func contain(subStr: String) -> Bool {return (self as NSString).rangeOfString(subStr).length > 0}
     
