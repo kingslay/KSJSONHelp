@@ -69,7 +69,7 @@ extension Model {
         return data
     }
     
-    public static func setObjectArray(objectArray: [Model], forKey defaultName: String) {
+    public static func setObjectArray(objectArray: [Self], forKey defaultName: String) {
         NSUserDefaults.standardUserDefaults().setValue(objectArray.map{$0.dictionary}, forKey: defaultName)
     }
     public var serialization: AnyObject {
@@ -134,3 +134,5 @@ extension Storable {
         }
     }
 }
+
+
