@@ -535,7 +535,8 @@ extension Connection.Location : CustomStringConvertible {
         case .Temporary:
             return ""
         case .URI(let URI):
-            return NSHomeDirectory()+"/"+URI
+            let documentsDir : String = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0]
+            return documentsDir+"/"+URI
         }
     }
 
