@@ -9,7 +9,7 @@
 import Foundation
 import KSJSONHelp
 
-class DynamicTestClass: NSObject, Storable,Model {
+class DynamicTestClass: NSObject,NSCoding,Storable,Model {
     
     var primaryKey: Int = 1
     
@@ -47,6 +47,10 @@ class DynamicTestClass: NSObject, Storable,Model {
     override required init() {
         super.init()
     }
+    required init?(coder aDecoder: NSCoder) {
+    }
+    public func encodeWithCoder(aCoder: NSCoder)
+    {}
 }
 
 extension DynamicTestClass: PrimaryKeys {

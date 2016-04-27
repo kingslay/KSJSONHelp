@@ -87,7 +87,7 @@ public class Query<T: Model> {
         }
 	}
 	public init() {
-		self.table = T.table
+		self.table = T.tableName
 	}
     
     internal func createTableStatementByPropertyData(propertyDatas: [PropertyData]) -> String {
@@ -119,7 +119,7 @@ extension Model {
         delete(CompositeFilter.fromDictionary(dic))
     }
     public static func delete(filter: Filter) {
-        Database.driver.delete(table: self.table, filter: filter)
+        Database.driver.delete(table: self.tableName, filter: filter)
     }
 }
 extension Storable where Self: Model {

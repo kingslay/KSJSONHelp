@@ -73,7 +73,7 @@ class KSJSONHelpTests: XCTestCase {
         person.sex = true
         let dic = person.dictionary
         assert(person.age == (dic["age"] as! NSNumber).longLongValue)
-        Person.objectArray(from: [dic])
+        Person.loadValues(from: [dic])
         let personNew = Person(from: dic)
         print(dic)
         dicEqual(dic, personNew.dictionary)
@@ -119,8 +119,8 @@ class KSJSONHelpTests: XCTestCase {
         let person = Person3(name: "wang", age: 30)
         person.books = ["a","b"]
         person.child = [ Person(name: "xiaowang", age: 1) ]
-        Person3.setObjectArray([person], forKey: "person")
-        let personArray = Person3.objectArray(forKey: "person")
+        Person3.saveValuesToDefaults([person], forKey: "person")
+        let personArray = Person3.loadValuesFromDefaults(forKey: "person")
         dicEqual(personArray![0].dictionary, person.dictionary)
         print(personArray![0].dictionary)
         

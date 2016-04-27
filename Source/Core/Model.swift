@@ -32,7 +32,7 @@ public protocol ReplacePropertys {
 public protocol Model: Serialization {
     
     ///The database table in which entities are stored.
-    static var table: String { get }
+    static var tableName: String { get }
     /**
      This method will be called when the entity is saved.
      The keys of the dictionary are the column names
@@ -41,7 +41,7 @@ public protocol Model: Serialization {
     var serialize: [String: Binding?] { get }
 }
 extension Model {
-    public static var table: String {
+    public static var tableName: String {
         return String(self)
     }
     
@@ -69,7 +69,7 @@ extension Model {
         return data
     }
     
-    public static func setObjectArray(objectArray: [Self], forKey defaultName: String) {
+    public static func saveValuesToDefaults(objectArray: [Self], forKey defaultName: String = Self.tableName) {
         NSUserDefaults.standardUserDefaults().setValue(objectArray.map{$0.dictionary}, forKey: defaultName)
     }
     public var serialization: AnyObject {
@@ -83,8 +83,6 @@ public protocol Storable {
     func setValue(value: AnyObject?, forKey key: String)
 }
 extension Storable {
-//    public typealias ValueType1 = Self
-    
     internal func setValuesForKeysWithDictionary(keyedValues: [String : AnyObject]) {
         keyedValues.forEach { (key, value) -> () in
             self.setValue(value, forKey: key)
@@ -118,13 +116,13 @@ extension Storable {
             }
         }
     }
-    public static func objectArray(from array: [[String: AnyObject]]) -> [Self] {
+    public static func loadValues(from array: [[String: AnyObject]]) -> [Self] {
         return array.map {
             self.init(from: $0)
         }
     }
     
-    public static func objectArray(forKey defaultName: String) -> [Self]? {
+    public static func loadValuesFromDefaults(forKey defaultName: String = String(Self)) -> [Self]? {
         if let objectArray = NSUserDefaults.standardUserDefaults().arrayForKey(defaultName) {
             return objectArray.map {
                 self.init(from: $0 as! [String : AnyObject])
@@ -134,5 +132,25 @@ extension Storable {
         }
     }
 }
-
+extension NSCoding where Self: Model,Self: Storable {
+    public func encodeWithCoder(aCoder: NSCoder) {
+        for (key,value) in self.dictionary{
+            aCoder.encodeObject(value, forKey: key)
+        }
+    }
+    public init?(coder aDecoder: NSCoder) {
+        self.init()
+        PropertyData.validPropertyDataForObject(self).forEach{ (propertyData) -> () in
+            if let name = propertyData.name, var value = aDecoder.decodeObjectForKey(name) {
+                if !(value is NSNull || "\(value)" == "nil"){
+                    if let deserialization = value as? Deserialization {
+                        value = deserialization.deserialization(propertyData.type)
+                    }
+                    setValue(value, forKey: name)
+                    
+                }
+            }
+        }
+    }
+}
 
