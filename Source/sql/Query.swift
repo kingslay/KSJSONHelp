@@ -92,15 +92,17 @@ public class Query<T: Model> {
     
     internal func createTableStatementByPropertyData(propertyDatas: [PropertyData]) -> String {
         var statement = "CREATE TABLE \(self.table) ("
-        
+        var columnDefinitions: [String] = []
         for propertyData in propertyDatas {
-            statement += "\(propertyData.name!) \(propertyData.bindingType!.declaredDatatype)"
-            statement += propertyData.isOptional ? "" : " NOT NULL"
-            statement += ", "
+            var columnDefinition = "\(propertyData.name!) \(propertyData.bindingType!.declaredDatatype)"
+            if propertyData.isOptional {
+                columnDefinition += " NOT NULL"
+            }
+            columnDefinitions.append(columnDefinition)
         }
-        
+        statement += columnDefinitions.joinWithSeparator(", ")
         if let primaryKeysType = T.self as? PrimaryKeys.Type {
-            statement += "PRIMARY KEY (\(primaryKeysType.primaryKeys().joinWithSeparator(", ")))"
+            statement += ", PRIMARY KEY (\(primaryKeysType.primaryKeys().joinWithSeparator(", ")))"
         }
         statement += ")"
         return statement
