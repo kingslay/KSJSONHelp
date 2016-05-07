@@ -1,0 +1,14 @@
+PODS:
+  - KSJSONHelp (0.6.6)
+
+DEPENDENCIES:
+  - KSJSONHelp (from `../`)
+
+EXTERNAL SOURCES:
+  KSJSONHelp:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  KSJSONHelp: 3a92e2d3e2c4353ed03d9e3a39e1d4d58e4fa637
+
+COCOAPODS: 0.39.0
