@@ -95,7 +95,7 @@ public class Query<T: Model> {
         var columnDefinitions: [String] = []
         for propertyData in propertyDatas {
             var columnDefinition = "\(propertyData.name!) \(propertyData.bindingType!.declaredDatatype)"
-            if propertyData.isOptional {
+            if !propertyData.isOptional {
                 columnDefinition += " NOT NULL"
             }
             columnDefinitions.append(columnDefinition)
