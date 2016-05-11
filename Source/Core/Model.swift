@@ -6,7 +6,7 @@ import Foundation
 	methods on your subclass.
  */
  /** Implement this protocol to use primary keys */
-public protocol PrimaryKeys {
+public protocol PrimaryKeyProtocol {
     /**
      Method used to define a set of primary keys for the types table
      
@@ -16,7 +16,7 @@ public protocol PrimaryKeys {
 }
 
 /** Implement this protocol to ignore arbitrary properties */
-public protocol IgnoredProperties {
+public protocol IgnoredPropertieProtocol {
     /**
      Method used to define a set of ignored properties
      
@@ -24,8 +24,11 @@ public protocol IgnoredProperties {
      */
     static func ignoredProperties() -> Set<String>
 }
+public protocol DefaultValueProtocol {
+    static func defaultValueFor(property: String) -> AnyObject?
+}
 ///属性对应。用于json转为对象的时候
-public protocol ReplacePropertys {
+public protocol ReplacePropertyProtocol {
     static func replacePropertys() -> [String: String]
 }
 ///支持对象保存到数据库，转为字典
@@ -101,7 +104,7 @@ extension Storable {
     public init(from dic: [String: AnyObject]) {
         self.init()
         var replaceMap: [String: String]?
-        if let replacePropertys  = self as? ReplacePropertys.Type {
+        if let replacePropertys  = self as? ReplacePropertyProtocol.Type {
             replaceMap = replacePropertys.replacePropertys()
         }
         PropertyData.validPropertyDataForObject(self).forEach{ (propertyData) -> () in

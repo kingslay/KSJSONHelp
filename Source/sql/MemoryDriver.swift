@@ -119,11 +119,7 @@ class MemoryDriver: Driver {
 
 		return count
 	}
-    func containsTable(table table: String) -> Bool {
-        return true
-    }
-    func createTable(table table: String, sql: String) {
-    }
+    func createTableWith(model: Model){}
     func execute(SQL: String) {
         
     }

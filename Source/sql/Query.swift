@@ -1,5 +1,5 @@
 public class Query<T: Model> {
-    public let table: String
+    public let table: String = T.tableName
 
 	public var filter: Filter?
 
@@ -55,24 +55,13 @@ public class Query<T: Model> {
 	/* Internal Casts */
 	///Inserts or updates the entity in the database.
 	func save(model: T) {
-        var data: [String: Binding?] = [:]
-        if Database.driver.containsTable(table: self.table){
-            data = model.serialize
-        }else{
-            let propertyData = PropertyData.validPropertyDataForObject(model)
-            Database.driver.createTable(table: self.table, sql: createTableStatementByPropertyData(propertyData))
-            propertyData.forEach{ propertyData in
-                var propertyData = propertyData
-                data[propertyData.name!] = propertyData.bindingValue
-            }
-        }
-		self.upsert(data)
-		
+        Database.driver.createTableWith(model)
+        self.upsert(model.serialize)
 	}
 
 	///Deletes the entity from the database.
 	func delete(model: T) {
-        if let primaryKeysType = T.self as? PrimaryKeys.Type {
+        if let primaryKeysType = T.self as? PrimaryKeyProtocol.Type {
             let data = model.serialize
             let filter = CompositeFilter()
             for primaryKey in primaryKeysType.primaryKeys() {
@@ -86,28 +75,6 @@ public class Query<T: Model> {
             return
         }
 	}
-	public init() {
-		self.table = T.tableName
-	}
-    
-    internal func createTableStatementByPropertyData(propertyDatas: [PropertyData]) -> String {
-        var statement = "CREATE TABLE \(self.table) ("
-        var columnDefinitions: [String] = []
-        for propertyData in propertyDatas {
-            var columnDefinition = "\(propertyData.name!) \(propertyData.bindingType!.declaredDatatype)"
-            if !propertyData.isOptional {
-                columnDefinition += " NOT NULL"
-            }
-            columnDefinitions.append(columnDefinition)
-        }
-        statement += columnDefinitions.joinWithSeparator(", ")
-        if let primaryKeysType = T.self as? PrimaryKeys.Type {
-            statement += ", PRIMARY KEY (\(primaryKeysType.primaryKeys().joinWithSeparator(", ")))"
-        }
-        statement += ")"
-        return statement
-    }
-
 }
 extension Model {
     public func save() {

@@ -121,8 +121,8 @@ extension PropertyData {
         return validPropertyDataForMirror(Mirror(reflecting: object), ignoredProperties: &ignoredProperties)
     }
     private static func validPropertyDataForMirror(mirror: Mirror, inout ignoredProperties: Set<String>) -> [PropertyData] {
-        if mirror.subjectType is IgnoredProperties.Type {
-            ignoredProperties = ignoredProperties.union((mirror.subjectType as! IgnoredProperties.Type).ignoredProperties())
+        if mirror.subjectType is IgnoredPropertieProtocol.Type {
+            ignoredProperties = ignoredProperties.union((mirror.subjectType as! IgnoredPropertieProtocol.Type).ignoredProperties())
         }
         
         var propertyData: [PropertyData] = []

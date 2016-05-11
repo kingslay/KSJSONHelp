@@ -53,7 +53,7 @@ class DynamicTestClass: NSObject,NSCoding,Storable,Model {
     {}
 }
 
-extension DynamicTestClass: PrimaryKeys {
+extension DynamicTestClass: PrimaryKeyProtocol {
     static func primaryKeys() -> Set<String> {
         return ["primaryKey"]
     }
@@ -117,13 +117,13 @@ class TestClass: Model {
     required init() {}
 }
 
-extension TestClass: PrimaryKeys {
+extension TestClass: PrimaryKeyProtocol {
     static func primaryKeys() -> Set<String> {
         return ["primaryKey"]
     }
 }
 
-extension TestClass: IgnoredProperties {
+extension TestClass: IgnoredPropertieProtocol {
     static func ignoredProperties() -> Set<String> {
         return ["ignored"]
     }

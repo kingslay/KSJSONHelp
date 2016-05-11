@@ -10,7 +10,7 @@ import XCTest
 import KSJSONHelp
 
 @objc(Person)
-class Person: NSObject, Storable, Model, ReplacePropertys {
+class Person: NSObject, Storable, Model, ReplacePropertyProtocol {
     var name: String
     var weight: CGFloat
     var height: NSInteger

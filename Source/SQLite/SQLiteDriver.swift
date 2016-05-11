@@ -1,9 +1,10 @@
 
 public class SQLiteDriver: Driver {
-    
     private let database = try! Connection("db.sqlite3")
     private var existingTables: Set<String> = []
-
+    public init() {
+        
+    }
     public func fetchOne(table table: String, filter: Filter?) -> [String: Binding?]? {
         let sql = SQL(operation: .SELECT, table: table)
         sql.filter = filter
@@ -66,43 +67,57 @@ public class SQLiteDriver: Driver {
             return 0
         }
     }
-    public func containsTable(table table: String) -> Bool {
-        if existingTables.contains(table){
-            return true
-        }else{
+    public func createTableWith(model: Model) {
+        let tableName = model.dynamicType.tableName
+        let propertyDatas = PropertyData.validPropertyDataForObject(model)
+        let columnDefinition : (PropertyData) -> (String) = { property in
+            var columnDefinition = "\(property.name!) \(property.bindingType!.declaredDatatype)"
+            if !property.isOptional {
+                columnDefinition += " NOT NULL"
+            }
+            if let defaultValueProtocol = model.self as? DefaultValueProtocol.Type,let defaultValue = defaultValueProtocol.defaultValueFor(property.name!) {
+                columnDefinition += " DEFAULT \(defaultValue))"
+            }
+            return columnDefinition
+        }
+        
+        if existingTables.contains(tableName) {
+            let select = "select * from \(tableName) limit 0"
             do{
-                if try self.database.containsTable(table) {
-                    existingTables.insert(table)
-                    return true
-                }else{
-                    return false
+                let statement = try self.database.prepare(select)
+                let columnNames = statement.columnNames
+                propertyDatas.forEach{ property in
+                    if !columnNames.contains(property.name!) {
+                        let alertSQL = "alter table \(tableName) add column \(columnDefinition)"
+                        execute(alertSQL)
+                    }
                 }
-            }catch{
-                return false
+            } catch {
+                
             }
-        }
-    }
-    public func createTable(table table: String, sql: String) {
-        do{
-            if !existingTables.contains(table) {
-                try self.database.execute(sql)
-                existingTables.insert(table)
+        } else {
+            var statement = "CREATE TABLE \(tableName) ("
+            var columnDefinitions: [String] = []
+            for propertyData in propertyDatas {
+                columnDefinitions.append(columnDefinition(propertyData))
             }
-        }catch{
-            
+            statement += columnDefinitions.joinWithSeparator(", ")
+            if let primaryKeysType = model.self as? PrimaryKeyProtocol.Type {
+                statement += ", PRIMARY KEY (\(primaryKeysType.primaryKeys().joinWithSeparator(", ")))"
+            }
+            statement += ")"
+            execute(statement)
+            existingTables.insert(tableName)
         }
+        
     }
+    
     public func execute(SQL: String) {
         do{
             try self.database.execute(SQL)
         }catch{
             
         }
-    }
-
-    
-    public init() {
-        
     }
     
     private func execute(sql: SQL) -> Statement? {

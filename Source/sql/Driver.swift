@@ -7,7 +7,6 @@ public protocol Driver {
 	func upsert(table table: String, items: [[String: Binding?]])
 	func exists(table table: String, filter: Filter?) -> Bool
 	func count(table table: String, filter: Filter?) -> Int
-    func containsTable(table table: String) -> Bool
-    func createTable(table table: String, sql: String)
+    func createTableWith(model: Model)
     func execute(SQL: String)
 }

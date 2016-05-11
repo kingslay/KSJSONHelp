@@ -36,7 +36,7 @@
 		3C5D63BC1C7C7D50003AF626 /* MemoryDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryDriver.swift; sourceTree = "<group>"; };
 		3C5D63BD1C7C7D50003AF626 /* PrintDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintDriver.swift; sourceTree = "<group>"; };
 		3C5D63BE1C7C7D50003AF626 /* Query.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Query.swift; sourceTree = "<group>"; };
-		3C5D63BF1C7C7D50003AF626 /* SQL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQL.swift; sourceTree = "<group>"; };
+		3C5D63BF1C7C7D50003AF626 /* SQL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SQL.swift; path = ../SQL/SQL.swift; sourceTree = "<group>"; };
 		3C5D63C11C7C7D50003AF626 /* Connection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
 		3C5D63C21C7C7D50003AF626 /* SQLiteDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteDriver.swift; sourceTree = "<group>"; };
 		3C5D63C31C7C7D50003AF626 /* Statement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statement.swift; sourceTree = "<group>"; };
@@ -120,7 +120,6 @@
 				3C5D63BC1C7C7D50003AF626 /* MemoryDriver.swift */,
 				3C5D63BD1C7C7D50003AF626 /* PrintDriver.swift */,
 				3C5D63BE1C7C7D50003AF626 /* Query.swift */,
-				3C5D63BF1C7C7D50003AF626 /* SQL.swift */,
 			);
 			path = SQL;
 			sourceTree = "<group>";
@@ -128,6 +127,7 @@
 		3C5D63C01C7C7D50003AF626 /* SQLite */ = {
 			isa = PBXGroup;
 			children = (
+				3C5D63BF1C7C7D50003AF626 /* SQL.swift */,
 				3C5D63C11C7C7D50003AF626 /* Connection.swift */,
 				3C5D63C21C7C7D50003AF626 /* SQLiteDriver.swift */,
 				3C5D63C31C7C7D50003AF626 /* Statement.swift */,
