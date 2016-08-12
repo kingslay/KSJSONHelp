@@ -3,7 +3,7 @@ public class SQLiteDriver: Driver {
     private let database = try! Connection("db.sqlite3")
     private var existingTables: Set<String> = []
     public init() {
-        
+
     }
     public func fetchOne(table table: String, filter: Filter?) -> [String: Binding?]? {
         let sql = SQL(operation: .SELECT, table: table)
@@ -11,7 +11,7 @@ public class SQLiteDriver: Driver {
         sql.limit = 1
         return execute(sql)?.first
     }
-    
+
     public func fetch(table table: String, filter: Filter?) -> [[String: Binding?]]? {
         let sql = SQL(operation: .SELECT, table: table)
         sql.filter = filter
@@ -21,20 +21,20 @@ public class SQLiteDriver: Driver {
             return nil
         }
     }
-    
+
     public func delete(table table: String, filter: Filter?) {
         let sql = SQL(operation: .DELETE, table: table)
         sql.filter = filter
         execute(sql)?.run()
     }
-    
+
     public func update(table table: String, filter: Filter?, data: [String: Binding?]) {
         let sql = SQL(operation: .UPDATE, table: table)
         sql.filter = filter
         sql.data = data
         execute(sql)?.run()
     }
-    
+
     public func insert(table table: String, items: [[String: Binding?]]) {
         for item in items {
             let sql = SQL(operation: .INSERT, table: table)
@@ -42,7 +42,7 @@ public class SQLiteDriver: Driver {
             execute(sql)?.run()
         }
     }
-    
+
     public func upsert(table table: String, items: [[String: Binding?]]) {
         for item in items {
             let sql = SQL(operation: .UPSERT, table: table)
@@ -50,13 +50,13 @@ public class SQLiteDriver: Driver {
             execute(sql)?.run()
         }
     }
-    
+
     public func exists(table table: String, filter: Filter?) -> Bool {
         print("exists \(filter?.statement) filter on \(table)")
-        
+
         return false
     }
-    
+
     public func count(table table: String, filter: Filter?) -> Int {
         let sql = SQL(operation: .COUNT, table: table)
         sql.filter = filter
@@ -69,6 +69,9 @@ public class SQLiteDriver: Driver {
     }
     public func createTableWith(model: Model) {
         let tableName = model.dynamicType.tableName
+        if existingTables.contains(tableName) {
+            return
+        }
         let propertyDatas = PropertyData.validPropertyDataForObject(model)
         let columnDefinition : (PropertyData) -> (String) = { property in
             var columnDefinition = "\(property.name!) \(property.bindingType!.declaredDatatype)"
@@ -80,22 +83,17 @@ public class SQLiteDriver: Driver {
             }
             return columnDefinition
         }
-        
-        if existingTables.contains(tableName) {
-            let select = "select * from \(tableName) limit 0"
-            do{
-                let statement = try self.database.prepare(select)
-                let columnNames = statement.columnNames
-                propertyDatas.forEach{ property in
-                    if !columnNames.contains(property.name!) {
-                        let alertSQL = "alter table \(tableName) add column \(columnDefinition)"
-                        execute(alertSQL)
-                    }
+        let select = "select * from \(tableName) limit 0"
+        do{
+            let statement = try self.database.prepare(select)
+            let columnNames = statement.columnNames
+            propertyDatas.forEach{ property in
+                if !columnNames.contains(property.name!) {
+                    let alertSQL = "alter table \(tableName) add column \(columnDefinition(property))"
+                    execute(alertSQL)
                 }
-            } catch {
-                
             }
-        } else {
+        } catch {
             var statement = "CREATE TABLE \(tableName) ("
             var columnDefinitions: [String] = []
             for propertyData in propertyDatas {
@@ -107,19 +105,18 @@ public class SQLiteDriver: Driver {
             }
             statement += ")"
             execute(statement)
-            existingTables.insert(tableName)
         }
-        
+        existingTables.insert(tableName)
     }
-    
+
     public func execute(SQL: String) {
         do{
             try self.database.execute(SQL)
         }catch{
-            
+
         }
     }
-    
+
     private func execute(sql: SQL) -> Statement? {
         do{
             return try self.database.prepare(sql.query, sql.data)
