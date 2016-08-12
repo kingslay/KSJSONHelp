@@ -1,8 +1,8 @@
 PODS:
-  - KSJSONHelp/Core (0.6.6)
-  - KSJSONHelp/SQL (0.6.6):
+  - KSJSONHelp/Core (0.6.8)
+  - KSJSONHelp/SQL (0.6.8):
     - KSJSONHelp/Core
-  - KSJSONHelp/SQLite (0.6.6):
+  - KSJSONHelp/SQLite (0.6.8):
     - KSJSONHelp/SQL
 
 DEPENDENCIES:
@@ -13,7 +13,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  KSJSONHelp: 3fb0d27caa3af1a455c786b8cda653c235f85810
+  KSJSONHelp: 72a44ea89b0aedb2cb1b36e376f6ed14c033a3be
 
 PODFILE CHECKSUM: 78d6aa51b0881ea6a1458c8f79f39d932500d0dd
 

@@ -2,7 +2,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = "KSJSONHelp"
-  s.version          = "0.6.7"
+  s.version          = "0.6.8"
   s.summary          = "swift's MJExtension"
 
   s.description      = <<-DESC
@@ -22,7 +22,6 @@ Pod::Spec.new do |s|
   s.module_name      = 'KSJSONHelp'
   s.subspec "Core" do |ss|
     ss.source_files  = 'Core/Source/**/*.swift'
-    ss.resources = 'Core/Resource/*.{json,png,jpg,gif,js}'
   end
   s.subspec "SQL" do |ss|
     ss.source_files  = "SQL/Source/**/*.swift"
@@ -31,7 +30,7 @@ Pod::Spec.new do |s|
   s.subspec "SQLite" do |ss|
     ss.source_files  = "SQLite/Source/**/*.swift"
     ss.dependency "KSJSONHelp/SQL"
-    ss.preserve_paths = 'CocoaPods/**/*'
+    ss.preserve_paths = 'SQLite/CocoaPods/**/*'
     ss.pod_target_xcconfig = {
       'SWIFT_INCLUDE_PATHS[sdk=macosx*]'           => '$(SRCROOT)/KSJSONHelp/SQLite/CocoaPods/macosx',
       'SWIFT_INCLUDE_PATHS[sdk=iphoneos*]'         => '$(SRCROOT)/KSJSONHelp/SQLite/CocoaPods/iphoneos',

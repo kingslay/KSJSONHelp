@@ -1,6 +1,6 @@
 {
   "name": "KSJSONHelp",
-  "version": "0.6.6",
+  "version": "0.6.8",
   "summary": "swift's MJExtension",
   "description": "KSJSONHelp is a lightweight and pure Swift implemented library for\nconversion between JSON and model\nSimple ActiveRecord implementation for working with your database",
   "homepage": "https://github.com/kingslay/KSJSONHelp",
@@ -10,7 +10,7 @@
   },
   "source": {
     "git": "https://github.com/kingslay/KSJSONHelp.git",
-    "tag": "0.6.6"
+    "tag": "0.6.8"
   },
   "platforms": {
     "ios": "8.0",
@@ -22,8 +22,7 @@
   "subspecs": [
     {
       "name": "Core",
-      "source_files": "Core/Source/**/*.swift",
-      "resources": "Core/Resource/*.{json,png,jpg,gif,js}"
+      "source_files": "Core/Source/**/*.swift"
     },
     {
       "name": "SQL",
@@ -42,7 +41,7 @@
 
         ]
       },
-      "preserve_paths": "CocoaPods/**/*",
+      "preserve_paths": "SQLite/CocoaPods/**/*",
       "pod_target_xcconfig": {
         "SWIFT_INCLUDE_PATHS[sdk=macosx*]": "$(SRCROOT)/KSJSONHelp/SQLite/CocoaPods/macosx",
         "SWIFT_INCLUDE_PATHS[sdk=iphoneos*]": "$(SRCROOT)/KSJSONHelp/SQLite/CocoaPods/iphoneos",

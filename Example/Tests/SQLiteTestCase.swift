@@ -7,8 +7,10 @@
 //
 
 import XCTest
+import KSJSONHelp
 class SQLiteTestCase: XCTestCase {
     override func setUp() {
+        Database.driver = SQLiteDriver()
         let _ = try? NSFileManager.defaultManager().removeItemAtPath(NSHomeDirectory()+"/db.sqlite3")
     }
 }
