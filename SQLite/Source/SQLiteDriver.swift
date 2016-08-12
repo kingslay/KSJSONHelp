@@ -75,7 +75,7 @@ public class SQLiteDriver: Driver {
             if !property.isOptional {
                 columnDefinition += " NOT NULL"
             }
-            if let defaultValueProtocol = model.self as? DefaultValueProtocol.Type,let defaultValue = defaultValueProtocol.defaultValueFor(property.name!) {
+            if let defaultValueProtocol = model.dynamicType as? DefaultValueProtocol.Type,let defaultValue = defaultValueProtocol.defaultValueFor(property.name!) {
                 columnDefinition += " DEFAULT \(defaultValue))"
             }
             return columnDefinition
@@ -102,7 +102,7 @@ public class SQLiteDriver: Driver {
                 columnDefinitions.append(columnDefinition(propertyData))
             }
             statement += columnDefinitions.joinWithSeparator(", ")
-            if let primaryKeysType = model.self as? PrimaryKeyProtocol.Type {
+            if let primaryKeysType = model.dynamicType as? PrimaryKeyProtocol.Type {
                 statement += ", PRIMARY KEY (\(primaryKeysType.primaryKeys().joinWithSeparator(", ")))"
             }
             statement += ")"
