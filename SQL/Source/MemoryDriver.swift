@@ -1,126 +1,121 @@
-class MemoryDriver: Driver {
-	var memory: [
-		String: [ //table
-			String: //id
-				[ //entity
-					String: String
-				]
-		]
-	] = [ "users":
-			[
-				"metadata": [
-					"increment": "1"
-				],
-				"1": [
-					"id": "1",
-					"first_name": "Tanner",
-					"last_name": "Nelson",
-					"email": "me@tanner.xyz"
-				]
-			]
-		]
+final public class MemoryDriver {
 
+    typealias Collection = [String: Document]
 
-	func fetchOne(table table: String, filter: Filter?) -> [String: Binding?]? {
+    typealias Document = [String: Binding?]
+
+    typealias Store = [String: Collection]
+    var store: Store
+    public init() {
+        self.store = Store()
+    }
+    
+}
+extension MemoryDriver: Driver {
+
+	public func fetchOne(table table: String, filter: Filter?) -> [String: Binding?]? {
 		print("fetch one \(filter?.statement) filter on \(table)")
-//		if let id = id {
-//			if let data = self.memory[table]?[id] {
-//				return data
-//			}
-//		}
+        var id: String?
+        if let filter = filter as? CompareFilter {
+            if filter.key == "identifier" {
+                id = filter.value as? String
+            }
+        }
+        if let id = id {
+            if let data = self.store[table]?[id] {
+                return data
+            }
+        }
+        return nil
+	}
 
+	public func fetch(table table: String, filter: Filter?) -> [[String: Binding?]]? {
+		print("fetch \(filter?.statement) filter on \(table)")
+        if let collection = self.store[table] {
+            var models = [Document]()
+            for (_,value) in collection {
+                models.append(value)
+            }
+            return models
+        }
 		return nil
 	}
 
-	func fetch(table table: String, filter: Filter?) -> [[String: Binding?]]? {
-		print("fetch \(filter?.statement) filter on \(table)")
-
-		if let data = self.memory[table] {
-			var all: [[String: Binding?]] = []
-
-			for (key, entity) in data {
-				if key != "metadata" { //hack
-					all.append(entity)
-				}
-			}
-
-			return all
-		}
-
-		return []
-	}
-
-	func delete(table table: String, filter: Filter?) {
+	public func delete(table table: String, filter: Filter?) {
 		print("delete \(filter?.statement) filter on \(table)")
-
-		if filter == nil {
-			//truncate
-			self.memory[table] = [
-				"metadata": [
-					"increment": "0"
-				]
-			]
-		} else {
-			let id = "1" //hack
-			self.memory[table]?.removeValueForKey(id)
-		}
+        var id: String?
+        if let filter = filter as? CompareFilter {
+            if filter.key == "identifier" {
+                id = filter.value as? String
+            }
+        }
+        if let id = id {
+            store[table]?[id] = nil
+        }
 	}
 
-	func update(table table: String, filter: Filter?, data: [String: Binding?]) {
+	public func update(table table: String, filter: Filter?, data: [String: Binding?]) {
 		print("update \(filter?.statement) filter \(data.count) data points on \(table)")
 
-		//implement me
 	}
 
-	func insert(table table: String, items: [[String: Binding?]]) {
-		print("insert \(items.count) items into \(table)")
+	public func insert(table table: String, items: [[String: Binding?]]) {
+        var collectionData: Collection
+        if let col = store[table] {
+            collectionData = col
+        } else {
+            collectionData = Collection()
+        }
 
-		//implement me
+        for item in items {
+            let identifier = item["identifier"] as! String
+            collectionData[identifier] = item
+        }
+        store[table] = collectionData
 	}
 
-	func upsert(table table: String, items: [[String: Binding?]]) {
-		//check if object exists
-		// if does - update
-		// if not - insert
+	public func upsert(table table: String, items: [[String: Binding?]]) {
+        var collectionData: Collection
+        if let col = store[table] {
+            collectionData = col
+        } else {
+            collectionData = Collection()
+        }
 
-		//implement me
+        for item in items {
+            let identifier = item["identifier"] as! String
+            collectionData[identifier] = item
+        }
+        store[table] = collectionData
 	}
  
-	func exists(table table: String, filter: Filter?) -> Bool {
+	public func exists(table table: String, filter: Filter?) -> Bool {
 		print("exists \(filter?.statement) filter on \(table)")
-
-		if let data = self.memory[table] {
-			for (key, _) in data {
-				//implement filtering
-
-				if key != "metadata" { //hack
-					return true
-				}
-			}
-		}
-
-		return false
+        var id: String?
+        if let filter = filter as? CompareFilter {
+            if filter.key == "identifier" {
+                id = filter.value as? String
+            }
+        }
+        if let id = id {
+            if let data = self.store[table]?[id] {
+                return true
+            }
+        }
+        return false
 	}
 
-	func count(table table: String, filter: Filter?) -> Int {
+	public func count(table table: String, filter: Filter?) -> Int {
 		print("count \(filter?.statement) filter on \(table)")
+        if let collection = self.store[table] {
+           return collection.count
+        }
+        return 0
+    }
+    public func createTableWith(model: Model){
 
-		var count = 0
-
-		if let data = self.memory[table] {
-			for (key, _) in data {
-				//implement filtering
-
-				if key != "metadata" { //hack
-					count += 1
-				}
-			}
-		}
-
-		return count
-	}
-    func createTableWith(model: Model){}
-    func execute(SQL: String) {
+    }
+    public func execute(SQL: String) {
         
     }
 }
