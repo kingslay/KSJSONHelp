@@ -52,6 +52,21 @@
         "SWIFT_INCLUDE_PATHS[sdk=watchsimulator*]": "$(SRCROOT)/KSJSONHelp/SQLite/CocoaPods/watchsimulator"
       },
       "libraries": "sqlite3"
+    },
+    {
+      "name": "SQLiteStandalone",
+      "source_files": "SQLite/Source/**/*.swift",
+      "dependencies": {
+        "KSJSONHelp/SQL": [
+
+        ],
+        "sqlite3": [
+
+        ]
+      },
+      "xcconfig": {
+        "OTHER_SWIFT_FLAGS": "$(inherited) -DSQLITE_SWIFT_STANDALONE"
+      }
     }
   ]
 }

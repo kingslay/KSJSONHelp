@@ -23,8 +23,11 @@
 //
 
 /// A single SQL statement.
-import CSQLite
-
+#if SQLITE_SWIFT_STANDALONE
+    import sqlite3
+#else
+    import CSQLite
+#endif
 public final class Statement {
     
     private var handle: COpaquePointer = nil

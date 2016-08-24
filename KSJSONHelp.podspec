@@ -2,7 +2,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = "KSJSONHelp"
-  s.version          = "0.6.8"
+  s.version          = "0.6.9"
   s.summary          = "swift's MJExtension"
 
   s.description      = <<-DESC
@@ -42,4 +42,10 @@ Pod::Spec.new do |s|
     }
     ss.libraries = 'sqlite3'
   end
+  s.subspec 'SQLiteStandalone' do |ss|
+    ss.source_files  = "SQLite/Source/**/*.swift"
+    ss.dependency "KSJSONHelp/SQL"
+    ss.xcconfig = { 'OTHER_SWIFT_FLAGS' => '$(inherited) -DSQLITE_SWIFT_STANDALONE' }
+    ss.dependency 'sqlite3'
+end
 end
