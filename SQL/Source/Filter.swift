@@ -28,7 +28,7 @@ public class CompareFilter: Filter {
     public let value: Binding
     public let comparison: Comparison
     
-    init(key: String, value: Binding, comparison: Comparison) {
+    public init(key: String, value: Binding, comparison: Comparison) {
         self.key = key
         self.value = value
         self.comparison = comparison
@@ -48,7 +48,7 @@ public class SubsetFilter: Filter {
     public let superSet: [Binding]
     public let comparison: Comparison
     
-    init(key: String, superSet: [Binding], comparison: Comparison) {
+    public init(key: String, superSet: [Binding], comparison: Comparison) {
         self.key = key
         self.superSet = superSet
         self.comparison = comparison
@@ -222,7 +222,7 @@ public class CompositeFilter: Filter,DictionaryLiteralConvertible {
     }
 }
 
-extension Filter {
+public extension Filter {
     
     public static func addFilter(filter: Filter) -> CompositeFilter {
         return CompositeFilter().addFilter(filter)
