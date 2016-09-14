@@ -1,13 +1,13 @@
 PODS:
-  - KSJSONHelp/Core (0.6.8)
-  - KSJSONHelp/SQL (0.6.8):
+  - KSJSONHelp/Core (0.7.0)
+  - KSJSONHelp/SQL (0.7.0):
     - KSJSONHelp/Core
-  - KSJSONHelp/SQLiteStandalone (0.6.8):
+  - KSJSONHelp/SQLiteStandalone (0.7.0):
     - KSJSONHelp/SQL
     - sqlite3
-  - sqlite3 (3.14.1):
-    - sqlite3/common (= 3.14.1)
-  - sqlite3/common (3.14.1)
+  - sqlite3 (3.14.2):
+    - sqlite3/common (= 3.14.2)
+  - sqlite3/common (3.14.2)
 
 DEPENDENCIES:
   - KSJSONHelp/SQLiteStandalone (from `../`)
@@ -17,8 +17,8 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  KSJSONHelp: 667b12e99b233acea5f4f8707cb7719d3544dfc4
-  sqlite3: fa06185267585e2995e3325dd817e4141203e81b
+  KSJSONHelp: 4c3ab7814dfb9f0b51ef554548a78b092617c81e
+  sqlite3: 0da4924a394eff8e354bb63138818c870b28b097
 
 PODFILE CHECKSUM: ee9fe2c32e03ba73a37aa4c5a4c8104082aad939
 

@@ -2,7 +2,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = "KSJSONHelp"
-  s.version          = "0.7.0"
+  s.version          = "0.7.1"
   s.summary          = "swift's MJExtension"
 
   s.description      = <<-DESC
@@ -27,21 +27,21 @@ Pod::Spec.new do |s|
     ss.source_files  = "SQL/Source/**/*.swift"
     ss.dependency "KSJSONHelp/Core"
   end
-  s.subspec "SQLite" do |ss|
-    ss.source_files  = "SQLite/Source/**/*.swift"
-    ss.dependency "KSJSONHelp/SQL"
-    ss.preserve_paths = 'SQLite/CocoaPods/**/*'
-    ss.pod_target_xcconfig = {
-      'SWIFT_INCLUDE_PATHS[sdk=macosx*]'           => '$(SRCROOT)/KSJSONHelp/SQLite/CocoaPods/macosx',
-      'SWIFT_INCLUDE_PATHS[sdk=iphoneos*]'         => '$(SRCROOT)/KSJSONHelp/SQLite/CocoaPods/iphoneos',
-      'SWIFT_INCLUDE_PATHS[sdk=iphonesimulator*]'  => '$(SRCROOT)/KSJSONHelp/SQLite/CocoaPods/iphonesimulator',
-      'SWIFT_INCLUDE_PATHS[sdk=appletvos*]'        => '$(SRCROOT)/KSJSONHelp/SQLite/CocoaPods/appletvos',
-      'SWIFT_INCLUDE_PATHS[sdk=appletvsimulator*]' => '$(SRCROOT)/KSJSONHelp/SQLite/CocoaPods/appletvsimulator',
-      'SWIFT_INCLUDE_PATHS[sdk=watchos*]'          => '$(SRCROOT)/KSJSONHelp/SQLite/CocoaPods/watchos',
-      'SWIFT_INCLUDE_PATHS[sdk=watchsimulator*]'   => '$(SRCROOT)/KSJSONHelp/SQLite/CocoaPods/watchsimulator'
-    }
-    ss.libraries = 'sqlite3'
-  end
+  # s.subspec "SQLite" do |ss|
+  #   ss.source_files  = "SQLite/Source/**/*.swift"
+  #   ss.dependency "KSJSONHelp/SQL"
+  #   ss.preserve_paths = 'SQLite/CocoaPods/**/*'
+  #   ss.pod_target_xcconfig = {
+  #     'SWIFT_INCLUDE_PATHS[sdk=macosx*]'           => '$(SRCROOT)/KSJSONHelp/SQLite/CocoaPods/macosx',
+  #     'SWIFT_INCLUDE_PATHS[sdk=iphoneos*]'         => '$(SRCROOT)/KSJSONHelp/SQLite/CocoaPods/iphoneos',
+  #     'SWIFT_INCLUDE_PATHS[sdk=iphonesimulator*]'  => '$(SRCROOT)/KSJSONHelp/SQLite/CocoaPods/iphonesimulator',
+  #     'SWIFT_INCLUDE_PATHS[sdk=appletvos*]'        => '$(SRCROOT)/KSJSONHelp/SQLite/CocoaPods/appletvos',
+  #     'SWIFT_INCLUDE_PATHS[sdk=appletvsimulator*]' => '$(SRCROOT)/KSJSONHelp/SQLite/CocoaPods/appletvsimulator',
+  #     'SWIFT_INCLUDE_PATHS[sdk=watchos*]'          => '$(SRCROOT)/KSJSONHelp/SQLite/CocoaPods/watchos',
+  #     'SWIFT_INCLUDE_PATHS[sdk=watchsimulator*]'   => '$(SRCROOT)/KSJSONHelp/SQLite/CocoaPods/watchsimulator'
+  #   }
+  #   ss.libraries = 'sqlite3'
+  # end
   s.subspec 'SQLiteStandalone' do |ss|
     ss.source_files  = "SQLite/Source/**/*.swift"
     ss.dependency "KSJSONHelp/SQL"

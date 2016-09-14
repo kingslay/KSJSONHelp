@@ -49,7 +49,7 @@ class DynamicTestClass: NSObject,NSCoding,Storable,Model {
     }
     required init?(coder aDecoder: NSCoder) {
     }
-    public func encodeWithCoder(aCoder: NSCoder)
+    internal func encodeWithCoder(aCoder: NSCoder)
     {}
 }
 
