@@ -13,7 +13,7 @@ final public class MemoryDriver {
 }
 extension MemoryDriver: Driver {
 
-	public func fetchOne(table table: String, filter: Filter?) -> [String: Binding?]? {
+	public func fetchOne(table: String, filter: Filter?) -> [String: Binding?]? {
 		print("fetch one \(filter?.statement) filter on \(table)")
         var id: String?
         if let filter = filter as? CompareFilter {
@@ -29,7 +29,7 @@ extension MemoryDriver: Driver {
         return nil
 	}
 
-	public func fetch(table table: String, filter: Filter?) -> [[String: Binding?]]? {
+	public func fetch(table: String, filter: Filter?) -> [[String: Binding?]]? {
 		print("fetch \(filter?.statement) filter on \(table)")
         if let collection = self.store[table] {
             var models = [Document]()
@@ -41,7 +41,7 @@ extension MemoryDriver: Driver {
 		return nil
 	}
 
-	public func delete(table table: String, filter: Filter?) {
+	public func delete(table: String, filter: Filter?) {
 		print("delete \(filter?.statement) filter on \(table)")
         var id: String?
         if let filter = filter as? CompareFilter {
@@ -54,12 +54,12 @@ extension MemoryDriver: Driver {
         }
 	}
 
-	public func update(table table: String, filter: Filter?, data: [String: Binding?]) {
+	public func update(table: String, filter: Filter?, data: [String: Binding?]) {
 		print("update \(filter?.statement) filter \(data.count) data points on \(table)")
 
 	}
 
-	public func insert(table table: String, items: [[String: Binding?]]) {
+	public func insert(table: String, items: [[String: Binding?]]) {
         var collectionData: Collection
         if let col = store[table] {
             collectionData = col
@@ -74,7 +74,7 @@ extension MemoryDriver: Driver {
         store[table] = collectionData
 	}
 
-	public func upsert(table table: String, items: [[String: Binding?]]) {
+	public func upsert(table: String, items: [[String: Binding?]]) {
         var collectionData: Collection
         if let col = store[table] {
             collectionData = col
@@ -89,7 +89,7 @@ extension MemoryDriver: Driver {
         store[table] = collectionData
 	}
  
-	public func exists(table table: String, filter: Filter?) -> Bool {
+	public func exists(table: String, filter: Filter?) -> Bool {
 		print("exists \(filter?.statement) filter on \(table)")
         var id: String?
         if let filter = filter as? CompareFilter {
@@ -105,7 +105,7 @@ extension MemoryDriver: Driver {
         return false
 	}
 
-	public func count(table table: String, filter: Filter?) -> Int {
+	public func count(table: String, filter: Filter?) -> Int {
 		print("count \(filter?.statement) filter on \(table)")
         if let collection = self.store[table] {
            return collection.count
@@ -115,7 +115,7 @@ extension MemoryDriver: Driver {
     public func createTableWith(model: Model){
 
     }
-    public func execute(SQL: String) {
+    public func execute(sql: String) {
         
     }
 }

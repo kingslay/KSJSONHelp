@@ -1,7 +1,7 @@
 public protocol Filter {
     var statement: String { get }
 }
-@warn_unused_result func transcode(literal: Binding) -> String {
+func transcode(_ literal: Binding) -> String {
     
     switch literal {
     case let blob as Blob:
@@ -12,7 +12,7 @@ public protocol Filter {
         return "\(binding)"
     }
 }
-public class CompareFilter: Filter {
+open class CompareFilter: Filter {
     public enum Comparison: String {
         case Equal =            "="
         case Less =             "<"
@@ -24,71 +24,71 @@ public class CompareFilter: Filter {
         case GreaterOrEqual =   ">="
     }
     
-    public let key: String
-    public let value: Binding
-    public let comparison: Comparison
+    open let key: String
+    open let value: Binding
+    open let comparison: Comparison
     
     public init(key: String, value: Binding, comparison: Comparison) {
         self.key = key
         self.value = value
         self.comparison = comparison
     }
-    public var statement: String {
+    open var statement: String {
         return "\(self.key) \(self.comparison.rawValue) \(transcode(value))";
     }
 }
 
-public class SubsetFilter: Filter {
+open class SubsetFilter: Filter {
     public enum Comparison: String {
         case In =               "IN"
         case NotIn =            "NOT IN"
     }
     
-    public let key: String
-    public let superSet: [Binding]
-    public let comparison: Comparison
+    open let key: String
+    open let superSet: [Binding]
+    open let comparison: Comparison
     
     public init(key: String, superSet: [Binding], comparison: Comparison) {
         self.key = key
         self.superSet = superSet
         self.comparison = comparison
     }
-    public var statement: String {
+    open var statement: String {
         let placeholderString = self.superSet.map { transcode($0) }
-            .joinWithSeparator(", ")
+            .joined(separator: ", ")
         return "\(self.key) \(self.comparison.rawValue) (\(placeholderString))"
     }
 }
-public class CompositeFilter: Filter,DictionaryLiteralConvertible {
+open class CompositeFilter: Filter,ExpressibleByDictionaryLiteral {
     public typealias Key = String
     public typealias Value = Binding
-    private var composites: [Filter] = []
+    fileprivate var composites: [Filter] = []
     
     public required init(dictionaryLiteral elements: (Key, Value)...) {
         elements.forEach { (propertyName, value) in
             composites.append(CompareFilter(key: propertyName, value: value,comparison: .Equal))
         }
     }
-    public class func fromDictionary(dic: [String:Binding]) -> CompositeFilter {
+    open class func fromDictionary(_ dic: [String:Binding]) -> CompositeFilter {
         let filter = CompositeFilter()
         dic.forEach { (propertyName, value) in
             filter.equal(propertyName, value: value)
         }
         return filter
     }
-    public var statement: String {
+    open var statement: String {
         if self.composites.count == 0 {
             return "1==1"
         }else{
-            return self.composites.map {$0.statement}.joinWithSeparator(" AND ")
+            return self.composites.map {$0.statement}.joined(separator: " AND ")
         }
     }
-    public func addFilter(filter: Filter) -> CompositeFilter {
+    open func addFilter(_ filter: Filter) -> CompositeFilter {
         composites.append(filter)
         return self
     }
     
-    public func equal(propertyName: String, value: Binding) -> CompositeFilter {
+    open func equal(_ propertyName: String, value: Binding) -> CompositeFilter {
         composites.append(CompareFilter(key: propertyName, value: value, comparison: .Equal))
         return self
     }
@@ -100,7 +100,7 @@ public class CompositeFilter: Filter,DictionaryLiteralConvertible {
      
      - returns:                 `self`, to enable chaining of statements
      */
-    public func less(propertyName: String, value: Binding) -> CompositeFilter {
+    open func less(_ propertyName: String, value: Binding) -> CompositeFilter {
         composites.append(CompareFilter(key: propertyName, value: value, comparison: .Less))
         return self
     }
@@ -112,7 +112,7 @@ public class CompositeFilter: Filter,DictionaryLiteralConvertible {
      
      - returns:                 `self`, to enable chaining of statements
      */
-    public func lessOrEqual(propertyName: String, value: Binding) -> CompositeFilter {
+    open func lessOrEqual(_ propertyName: String, value: Binding) -> CompositeFilter {
         composites.append(CompareFilter(key: propertyName,value: value, comparison: .LessOrEqual))
         return self
     }
@@ -124,7 +124,7 @@ public class CompositeFilter: Filter,DictionaryLiteralConvertible {
      
      - returns:                 `self`, to enable chaining of statements
      */
-    public func greater(propertyName: String, value: Binding) -> CompositeFilter {
+    open func greater(_ propertyName: String, value: Binding) -> CompositeFilter {
         composites.append(CompareFilter(key: propertyName, value: value, comparison: .Greater))
         return self
     }
@@ -136,7 +136,7 @@ public class CompositeFilter: Filter,DictionaryLiteralConvertible {
      
      - returns:                 `self`, to enable chaining of statements
      */
-    public func greaterOrEqual(propertyName: String, value: Binding) -> CompositeFilter {
+    open func greaterOrEqual(_ propertyName: String, value: Binding) -> CompositeFilter {
         composites.append(CompareFilter(key: propertyName, value: value, comparison: .GreaterOrEqual))
         return self
     }
@@ -148,7 +148,7 @@ public class CompositeFilter: Filter,DictionaryLiteralConvertible {
      
      - returns:                 `self`, to enable chaining of statements
      */
-    public func notEqual(propertyName: String, value: Binding) -> CompositeFilter {
+    open func notEqual(_ propertyName: String, value: Binding) -> CompositeFilter {
         composites.append(CompareFilter(key: propertyName, value: value, comparison: .NotEqual))
         return self
     }
@@ -160,7 +160,7 @@ public class CompositeFilter: Filter,DictionaryLiteralConvertible {
      
      - returns:                 `self`, to enable chaining of statements
      */
-    public func contains(propertyName: String, array: [Binding]) -> CompositeFilter {
+    open func contains(_ propertyName: String, array: [Binding]) -> CompositeFilter {
         composites.append(SubsetFilter(key: propertyName, superSet: array, comparison: .In))
         return self
     }
@@ -172,7 +172,7 @@ public class CompositeFilter: Filter,DictionaryLiteralConvertible {
      
      - returns:                 `self`, to enable chaining of statements
      */
-    public func notContains(propertyName: String, array: [Binding]) -> CompositeFilter {
+    open func notContains(_ propertyName: String, array: [Binding]) -> CompositeFilter {
         composites.append(SubsetFilter(key: propertyName, superSet: array, comparison:  .NotIn))
         return self
     }
@@ -194,7 +194,7 @@ public class CompositeFilter: Filter,DictionaryLiteralConvertible {
      
      - returns:                 `self`, to enable chaining of statements
      */
-    public func like(propertyName: String, pattern: String) -> CompositeFilter {
+    open func like(_ propertyName: String, pattern: String) -> CompositeFilter {
         composites.append(CompareFilter(key: propertyName, value: pattern, comparison: .Like))
         return self
     }
@@ -216,7 +216,7 @@ public class CompositeFilter: Filter,DictionaryLiteralConvertible {
      
      - returns:                 `Filter` intance
      */
-    public func notLike(propertyName: String, pattern: String) -> CompositeFilter {
+    open func notLike(_ propertyName: String, pattern: String) -> CompositeFilter {
         composites.append(CompareFilter(key: propertyName, value: pattern, comparison: .NotLike))
         return self
     }
@@ -224,7 +224,7 @@ public class CompositeFilter: Filter,DictionaryLiteralConvertible {
 
 public extension Filter {
     
-    public static func addFilter(filter: Filter) -> CompositeFilter {
+    public static func addFilter(_ filter: Filter) -> CompositeFilter {
         return CompositeFilter().addFilter(filter)
     }
     
@@ -238,7 +238,7 @@ public extension Filter {
     - returns:                  `Filter` intance
     */
     
-    public static func equal(propertyName: String, value: Binding) -> CompositeFilter {
+    public static func equal(_ propertyName: String, value: Binding) -> CompositeFilter {
         return CompositeFilter().equal(propertyName, value: value)
     }
     
@@ -249,7 +249,7 @@ public extension Filter {
      
      - returns:                 `Filter` intance
      */
-    public static func less(propertyName: String, value: Binding) -> CompositeFilter {
+    public static func less(_ propertyName: String, value: Binding) -> CompositeFilter {
         return CompositeFilter().less(propertyName, value: value)
     }
     
@@ -260,7 +260,7 @@ public extension Filter {
      
      - returns:                 `Filter` intance
      */
-    public static func lessOrEqual(propertyName: String, value: Binding) -> CompositeFilter {
+    public static func lessOrEqual(_ propertyName: String, value: Binding) -> CompositeFilter {
         return CompositeFilter().lessOrEqual(propertyName, value: value)
     }
     
@@ -272,7 +272,7 @@ public extension Filter {
      
      - returns:                 `Filter` intance
      */
-    public static func greater(propertyName: String, value: Binding) -> CompositeFilter {
+    public static func greater(_ propertyName: String, value: Binding) -> CompositeFilter {
         return CompositeFilter().greater(propertyName, value: value)
     }
     
@@ -284,7 +284,7 @@ public extension Filter {
      
      - returns:                 `Filter` intance
      */
-    public static func greaterOrEqual(propertyName: String, value: Binding) -> CompositeFilter {
+    public static func greaterOrEqual(_ propertyName: String, value: Binding) -> CompositeFilter {
         return CompositeFilter().greaterOrEqual(propertyName, value: value)
     }
     
@@ -296,7 +296,7 @@ public extension Filter {
      
      - returns:                 `Filter` intance
      */
-    public static func notEqual(propertyName: String, value: Binding) -> CompositeFilter {
+    public static func notEqual(_ propertyName: String, value: Binding) -> CompositeFilter {
         return CompositeFilter().notEqual(propertyName, value: value)
     }
     
@@ -308,7 +308,7 @@ public extension Filter {
      
      - returns:                 `Filter` intance
      */
-    public static func contains(propertyName: String, array: [Binding]) -> CompositeFilter {
+    public static func contains(_ propertyName: String, array: [Binding]) -> CompositeFilter {
         return CompositeFilter().contains(propertyName, array: array)
     }
     
@@ -320,7 +320,7 @@ public extension Filter {
      
      - returns:                 `Filter` intance
      */
-    public static func notContains(propertyName: String, array: [Binding]) -> CompositeFilter {
+    public static func notContains(_ propertyName: String, array: [Binding]) -> CompositeFilter {
         return CompositeFilter().notContains(propertyName, array: array)
     }
     
@@ -341,7 +341,7 @@ public extension Filter {
      
      - returns:                 `Filter` intance
      */
-    public static func like(propertyName: String, pattern: String) -> CompositeFilter {
+    public static func like(_ propertyName: String, pattern: String) -> CompositeFilter {
         return CompositeFilter().like(propertyName, pattern: pattern)
     }
     
@@ -362,7 +362,7 @@ public extension Filter {
      
      - returns:                 `Filter` intance
      */
-    public static func notLike(propertyName: String, pattern: String) -> CompositeFilter {
+    public static func notLike(_ propertyName: String, pattern: String) -> CompositeFilter {
         return CompositeFilter().notLike(propertyName, pattern: pattern)
     }
 }

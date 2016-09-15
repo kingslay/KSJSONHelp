@@ -41,7 +41,7 @@ class Person1: NSObject, Storable, Model {
     }
     init(name: String,age: Int) {
         self.name = name
-        self.age = age
+        self.age = age as NSNumber?
     }
 }
 class Person2: Person {
@@ -63,7 +63,7 @@ class KSJSONHelpTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-    func dicEqual(dic1: [String: AnyObject], _ dic2: [String: AnyObject]){
+    func dicEqual(_ dic1: [String: AnyObject], _ dic2: [String: AnyObject]){
         assert((dic1 as NSDictionary) == (dic2 as NSDictionary))
     }
     func testAggregate() {
@@ -72,7 +72,7 @@ class KSJSONHelpTests: XCTestCase {
         let person = Person(name: "wang", age: 30)
         person.sex = true
         let dic = person.dictionary
-        assert(person.age == (dic["age"] as! NSNumber).longLongValue)
+        assert(person.age == (dic["age"] as! NSNumber).int64Value)
         Person.loadValues(from: [dic])
         let personNew = Person(from: dic)
         print(dic)
@@ -127,7 +127,7 @@ class KSJSONHelpTests: XCTestCase {
     }
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock {
+        self.measure {
             // Put the code you want to measure the time of here.
         }
     }

@@ -24,7 +24,7 @@ internal struct PropertyData {
         self.name = property.label
         let mirror = Mirror(reflecting: property.value)
         self.type = mirror.subjectType
-        isOptional = mirror.displayStyle == .Optional
+        isOptional = mirror.displayStyle == .optional
         if isOptional {
             if mirror.children.count == 1 {
                 self.value = mirror.children.first!.value
@@ -37,12 +37,12 @@ internal struct PropertyData {
         bindingType = typeForMirror(mirror)
     }
     
-    internal func typeForMirror(mirror: Mirror) -> Binding.Type? {
+    internal func typeForMirror(_ mirror: Mirror) -> Binding.Type? {
         if !isOptional {
-            if mirror.displayStyle == .Collection {
+            if mirror.displayStyle == .collection {
                 return NSArray.self
             }
-            if mirror.displayStyle == .Dictionary {
+            if mirror.displayStyle == .dictionary {
                 return NSDictionary.self
             }
             return mirror.subjectType as? Binding.Type
@@ -56,9 +56,9 @@ internal struct PropertyData {
         case is Optional<NSString>.Type:    return NSString.self
         case is Optional<Character>.Type:   return Character.self
             
-        case is Optional<NSDate>.Type:      return NSDate.self
+        case is Optional<Date>.Type:      return Date.self
         case is Optional<NSNumber>.Type:    return NSNumber.self
-        case is Optional<NSData>.Type:      return NSData.self
+        case is Optional<Data>.Type:      return Data.self
             
         case is Optional<Bool>.Type:        return Bool.self
             
@@ -91,18 +91,18 @@ internal struct PropertyData {
      
      */
     
-    private func toBinding(value: Any) -> Binding? {
+    fileprivate func toBinding(_ value: Any) -> Binding? {
         let mirror = Mirror(reflecting: value)
         
-        if mirror.displayStyle == .Collection {
-            return NSKeyedArchiver.archivedDataWithRootObject(value as! NSArray)
+        if mirror.displayStyle == .collection {
+            return NSKeyedArchiver.archivedData(withRootObject: value as! NSArray)
         }
-        if mirror.displayStyle == .Dictionary {
-            return NSKeyedArchiver.archivedDataWithRootObject(value as! NSDictionary)
+        if mirror.displayStyle == .dictionary {
+            return NSKeyedArchiver.archivedData(withRootObject: value as! NSDictionary)
         }
         
         /* Raw value */
-        if mirror.displayStyle != .Optional {
+        if mirror.displayStyle != .optional {
             return value as? Binding
         }
         
@@ -116,18 +116,18 @@ internal struct PropertyData {
 }
 
 extension PropertyData {
-    internal static func validPropertyDataForObject (object: Any) -> [PropertyData] {
+    internal static func validPropertyDataForObject (_ object: Any) -> [PropertyData] {
         var ignoredProperties = Set<String>()
         return validPropertyDataForMirror(Mirror(reflecting: object), ignoredProperties: &ignoredProperties)
     }
-    private static func validPropertyDataForMirror(mirror: Mirror, inout ignoredProperties: Set<String>) -> [PropertyData] {
+    fileprivate static func validPropertyDataForMirror(_ mirror: Mirror, ignoredProperties: inout Set<String>) -> [PropertyData] {
         if mirror.subjectType is IgnoredPropertieProtocol.Type {
             ignoredProperties = ignoredProperties.union((mirror.subjectType as! IgnoredPropertieProtocol.Type).ignoredProperties())
         }
         
         var propertyData: [PropertyData] = []
         
-        if let superclassMirror = mirror.superclassMirror() {
+        if let superclassMirror = mirror.superclassMirror {
             propertyData += validPropertyDataForMirror(superclassMirror, ignoredProperties: &ignoredProperties)
         }
         

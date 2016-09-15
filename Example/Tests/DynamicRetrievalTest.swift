@@ -17,8 +17,8 @@ class DynamicRetrievalSpec: SQLiteTestCase {
         dynamicObject.int64 = 123
         dynamicObject.uint64 = 123
         dynamicObject.number = 123
-        dynamicObject.data = dynamicObject.string.dataUsingEncoding(NSUTF8StringEncoding)!
-        dynamicObject.date = NSDate(timeIntervalSince1970: 123123)
+        dynamicObject.data = dynamicObject.string.data(using: String.Encoding.utf8)!
+        dynamicObject.date = Date(timeIntervalSince1970: 123123)
         dynamicObject.bool = true
         dynamicObject.float = 123
         dynamicObject.double = 123
@@ -37,8 +37,7 @@ class DynamicRetrievalSpec: SQLiteTestCase {
         assert(retrievedDynamicObject.bool == dynamicObject.bool)
         assert(retrievedDynamicObject.float == dynamicObject.float)
         assert(retrievedDynamicObject.double == dynamicObject.double)
-        assert(retrievedDynamicObject.date.isEqualToDate(dynamicObject.date))
-        assert(retrievedDynamicObject.data.isEqualToData(dynamicObject.data))
+        assert(retrievedDynamicObject.date.compare(dynamicObject.date) == .orderedSame)
         assert(retrievedDynamicObject.array == dynamicObject.array)
         assert(retrievedDynamicObject.optionalArray == dynamicObject.optionalArray)
         assert(retrievedDynamicObject.dic == dynamicObject.dic)
@@ -54,8 +53,5 @@ class DynamicRetrievalSpec: SQLiteTestCase {
         assert(DynamicTestClass.fetch(nil)?.count == 1)
         DynamicTestClass.delete(dic:[:])
         assert(DynamicTestClass.fetch(nil)?.count == 0)
-
-        
-        
     }
 }

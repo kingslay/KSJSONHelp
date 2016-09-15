@@ -15,7 +15,7 @@ struct StructTestModel: Storable,Model {
     init() {
         favorite = false
     }
-    func setValue(value: AnyObject?, forKey key: String) {
+    func setValue(_ value: Any?, forKey key: String) {
         
     }
 }

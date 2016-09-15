@@ -8,5 +8,5 @@ public protocol Driver {
 	func exists(table table: String, filter: Filter?) -> Bool
 	func count(table table: String, filter: Filter?) -> Int
     func createTableWith(model: Model)
-    func execute(SQL: String)
+    func execute(sql: String)
 }

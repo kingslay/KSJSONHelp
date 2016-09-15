@@ -25,7 +25,7 @@ public protocol IgnoredPropertieProtocol {
     static func ignoredProperties() -> Set<String>
 }
 public protocol DefaultValueProtocol {
-    static func defaultValueFor(property: String) -> AnyObject?
+    static func defaultValueFor(_ property: String) -> AnyObject?
 }
 ///属性对应。用于json转为对象的时候
 public protocol ReplacePropertyProtocol {
@@ -45,7 +45,7 @@ public protocol Model: Serialization {
 }
 extension Model {
     public static var tableName: String {
-        return String(self)
+        return String(describing: self)
     }
     
     public var serialize: [String: Binding?] {
@@ -72,21 +72,21 @@ extension Model {
         return data
     }
     
-    public static func saveValuesToDefaults(objectArray: [Self], forKey defaultName: String = Self.tableName) {
-        NSUserDefaults.standardUserDefaults().setValue(objectArray.map{$0.dictionary}, forKey: defaultName)
+    public static func saveValuesToDefaults(_ objectArray: [Self], forKey defaultName: String = Self.tableName) {
+        UserDefaults.standard.setValue(objectArray.map{$0.dictionary}, forKey: defaultName)
     }
     public var serialization: AnyObject {
-        return self.dictionary
+        return self.dictionary as AnyObject
     }
 }
 ///从数据库的表取出对象。从字典转为对象
 public protocol Storable {
     /** Used to initialize an object to get information about its properties */
     init()
-    func setValue(value: AnyObject?, forKey key: String)
+    func setValue(_ value: Any?, forKey key: String)
 }
 extension Storable {
-    internal func setValuesForKeysWithDictionary(keyedValues: [String : AnyObject]) {
+    internal func setValuesForKeysWithDictionary(_ keyedValues: [String : AnyObject]) {
         keyedValues.forEach { (key, value) -> () in
             self.setValue(value, forKey: key)
         }
@@ -124,9 +124,11 @@ extension Storable {
             self.init(from: $0)
         }
     }
-    
-    public static func loadValuesFromDefaults(forKey defaultName: String = String(Self)) -> [Self]? {
-        if let objectArray = NSUserDefaults.standardUserDefaults().arrayForKey(defaultName) {
+    private static var defaultName: String {
+        return String(describing: self)
+    }
+    public static func loadValuesFromDefaults(forKey defaultName: String = Self.defaultName) -> [Self]? {
+        if let objectArray = UserDefaults.standard.array(forKey: defaultName) {
             return objectArray.map {
                 self.init(from: $0 as! [String : AnyObject])
             }
@@ -136,20 +138,20 @@ extension Storable {
     }
 }
 extension NSCoding where Self: Model,Self: Storable {
-    public func encodeWithCoder(aCoder: NSCoder) {
+    public func encodeWithCoder(_ aCoder: NSCoder) {
         for (key,value) in self.dictionary{
-            aCoder.encodeObject(value, forKey: key)
+            aCoder.encode(value, forKey: key)
         }
     }
     public init?(coder aDecoder: NSCoder) {
         self.init()
         PropertyData.validPropertyDataForObject(self).forEach{ (propertyData) -> () in
-            if let name = propertyData.name, var value = aDecoder.decodeObjectForKey(name) {
+            if let name = propertyData.name, var value = aDecoder.decodeObject(forKey: name) {
                 if !(value is NSNull || "\(value)" == "nil"){
                     if let deserialization = value as? Deserialization {
                         value = deserialization.deserialization(propertyData.type)
                     }
-                    setValue(value, forKey: name)
+                    setValue(value as AnyObject?, forKey: name)
                     
                 }
             }

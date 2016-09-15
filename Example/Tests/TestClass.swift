@@ -16,9 +16,9 @@ class DynamicTestClass: NSObject,NSCoding,Storable,Model {
     var optionalString: String?
     var optionalNSString: NSString?
     
-    var optionalDate: NSDate?
+    var optionalDate: Date?
     var optionalNumber: NSNumber?
-    var optionalData: NSData?
+    var optionalData: Data?
     
     var optionalArray: NSArray?
     var optionalDictionary: NSDictionary?
@@ -27,9 +27,9 @@ class DynamicTestClass: NSObject,NSCoding,Storable,Model {
     var string: String      = "string"
     var nsstring: NSString  = "nsstring"
     
-    var date: NSDate        = NSDate()
+    var date: Date        = Date()
     var number: NSNumber    = 1
-    var data: NSData        = String("Test").dataUsingEncoding(NSUTF8StringEncoding)! //Empty data is treated as NULL by sqlite3
+    var data: Data        = String("Test").data(using: String.Encoding.utf8)! //Empty data is treated as NULL by sqlite3
     
     var int: Int            = 1
     var uint: UInt          = 1
@@ -49,7 +49,7 @@ class DynamicTestClass: NSObject,NSCoding,Storable,Model {
     }
     required init?(coder aDecoder: NSCoder) {
     }
-    internal func encodeWithCoder(aCoder: NSCoder)
+    internal func encode(with aCoder: NSCoder)
     {}
 }
 
@@ -69,9 +69,9 @@ class TestClass: Model {
     var optionalNSString: NSString?
     var optionalCharacter: Character?
     
-    var optionalDate: NSDate?
+    var optionalDate: Date?
     var optionalNumber: NSNumber?
-    var optionalData: NSData?
+    var optionalData: Data?
     
     var optionalInt: Int?
     var optionalInt8: Int8?
@@ -94,9 +94,9 @@ class TestClass: Model {
     var character: Character = "c"
     var nsstring: NSString  = "nsstring"
     
-    var date: NSDate        = NSDate()
+    var date: Date        = Date()
     var number: NSNumber    = 1
-    var data: NSData        = String("Test").dataUsingEncoding(NSUTF8StringEncoding)! //Empty data is treated as NULL by sqlite3
+    var data: Data        = String("Test").data(using: String.Encoding.utf8)! //Empty data is treated as NULL by sqlite3
 
     var int: Int            = 1
     var int8: Int8          = 1

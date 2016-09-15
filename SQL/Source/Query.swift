@@ -1,40 +1,40 @@
-public class Query<T: Model> {
-    public let table: String = T.tableName
+open class Query<T: Model> {
+    open let table: String = T.tableName
 
-	public var filter: Filter?
+	open var filter: Filter?
 
-	public func update(data: [String: Binding?]) {
+	open func update(_ data: [String: Binding?]) {
 		Database.driver.update(table: self.table, filter: self.filter, data: data)
 	}
 
-	public func insert(data: [String: Binding?]) {
+	open func insert(_ data: [String: Binding?]) {
 		Database.driver.insert(table: self.table, items: [data])
 	}
 
-	public func upsert(data: [[String: Binding?]]) {
+	open func upsert(_ data: [[String: Binding?]]) {
 		Database.driver.upsert(table: self.table, items: data)
 	}
 
-	public func upsert(data: [String: Binding?]) {
+	open func upsert(_ data: [String: Binding?]) {
 		Database.driver.upsert(table: self.table, items: [data])
 	}
 
-	public func insert(data: [[String: Binding?]]) {
+	open func insert(_ data: [[String: Binding?]]) {
 		Database.driver.insert(table: self.table, items: data)
 	}
 
-	public func delete() {
+	open func delete() {
 		Database.driver.delete(table: self.table, filter: self.filter)
 	}
 
-	public var exists: Bool{
+	open var exists: Bool{
 		return Database.driver.exists(table: self.table, filter: self.filter)
 	}
 
-	public var count: Int {
+	open var count: Int {
 		return Database.driver.count(table: self.table, filter: self.filter)
 	}
-    public func fetchOne(filter: Filter?) -> T? {
+    open func fetchOne(_ filter: Filter?) -> T? {
         if let S = T.self as? Storable.Type , let serialized = Database.driver.fetchOne(table: self.table, filter: filter) {
             return S.init(serialized: serialized) as? T
         } else {
@@ -42,7 +42,7 @@ public class Query<T: Model> {
         }
     }
     
-    public func fetch(filter: Filter?) -> [T]? {
+    open func fetch(_ filter: Filter?) -> [T]? {
         if let S = T.self as? Storable.Type, let serializeds = Database.driver.fetch(table: self.table, filter: filter) {
             return serializeds.map({ (serialized) -> T in
                 S.init(serialized: serialized) as! T
@@ -54,13 +54,13 @@ public class Query<T: Model> {
 
 	/* Internal Casts */
 	///Inserts or updates the entity in the database.
-	func save(model: T) {
-        Database.driver.createTableWith(model)
+	func save(_ model: T) {
+        Database.driver.createTableWith(model: model)
         self.upsert(model.serialize)
 	}
 
 	///Deletes the entity from the database.
-	func delete(model: T) {
+	func delete(_ model: T) {
         if let primaryKeysType = T.self as? PrimaryKeyProtocol.Type {
             let data = model.serialize
             let filter = CompositeFilter()
@@ -84,26 +84,26 @@ extension Model {
     public func delete() {
         Query().delete(self)
     }
-    public static func delete(dic dic: [String:Binding]) {
+    public static func delete(dic: [String:Binding]) {
         delete(CompositeFilter.fromDictionary(dic))
     }
-    public static func delete(filter: Filter) {
+    public static func delete(_ filter: Filter) {
         Database.driver.delete(table: self.tableName, filter: filter)
     }
 }
 extension Storable where Self: Model {
 //    public typealias ValueType = Self
-    public static func fetchOne(dic dic: [String:Binding]) -> Self? {
+    public static func fetchOne(dic: [String:Binding]) -> Self? {
         return fetchOne(CompositeFilter.fromDictionary(dic))
     }
-    public static func fetch(dic dic: [String:Binding]) -> [Self]? {
+    public static func fetch(dic: [String:Binding]) -> [Self]? {
         return fetch(CompositeFilter.fromDictionary(dic))
     }
-    public static func fetchOne(filter: Filter?) -> Self? {
+    public static func fetchOne(_ filter: Filter?) -> Self? {
         return Query().fetchOne(filter)
     }
     
-    public static func fetch(filter: Filter?) -> [Self]? {
+    public static func fetch(_ filter: Filter?) -> [Self]? {
         return Query().fetch(filter)
     }
 }

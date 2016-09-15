@@ -28,17 +28,15 @@ public struct Blob {
     public init(bytes: [UInt8]) {
         self.bytes = bytes
     }
-
-    public init(bytes: UnsafePointer<Void>, length: Int) {
-        self.init(bytes: [UInt8](UnsafeBufferPointer(
-            start: UnsafePointer(bytes), count: length
-        )))
+    public init(ptr: UnsafeRawPointer,count:Int) {
+        let data = Data(bytes: unsafeBitCast(ptr, to: UnsafePointer<UInt8>.self), count: count)
+        self.init(bytes:data.toArray(type: UInt8.self))
     }
 
     public func toHex() -> String {
         return bytes.map {
             ($0 < 16 ? "0" : "") + String($0, radix: 16, uppercase: false)
-        }.joinWithSeparator("")
+        }.joined(separator: "")
     }
 
 }
@@ -59,25 +57,26 @@ extension Blob : Binding {
     
     public static let declaredDatatype = "BLOB"
     
-    public static func toAnyObject(datatypeValue: Binding) -> AnyObject {
-        return NSData.toAnyObject(datatypeValue)
+    public static func toAnyObject(_ datatypeValue: Binding) -> AnyObject {
+        return Data.toAnyObject(datatypeValue)
     }
     public var datatypeValue: Binding {
         return self
     }
 }
-extension NSData : Binding {
+extension Data : Binding {
     
-    public class var declaredDatatype: String {
+    public static var declaredDatatype: String {
         return Blob.declaredDatatype
     }
-    
-    public class func toAnyObject(dataValue: Binding) -> AnyObject {
-        return NSData(bytes: (dataValue as! Blob).bytes, length: (dataValue as! Blob).bytes.count)
+
+    public static func toAnyObject(_ dataValue: Binding) -> AnyObject {
+        let bytes = (dataValue as! Blob).bytes
+        return Data(bytes: bytes) as AnyObject
     }
     
     public var datatypeValue: Binding {
-        return Blob(bytes: bytes, length: length)
+        return Blob(bytes: self.toArray(type: UInt8.self))
     }
 }
 extension NSArray : Binding, Serialization, Deserialization{
@@ -85,32 +84,32 @@ extension NSArray : Binding, Serialization, Deserialization{
     public class var declaredDatatype: String {
         return Blob.declaredDatatype
     }
-    
-    public class func toAnyObject(dataValue: Binding) -> AnyObject {
-        return NSKeyedUnarchiver.unarchiveObjectWithData(NSData(bytes: (dataValue as! Blob).bytes, length: (dataValue as! Blob).bytes.count)) as! NSArray
+
+    public class func toAnyObject(_ dataValue: Binding) -> AnyObject {
+        return NSKeyedUnarchiver.unarchiveObject(with:Data(bytes: (dataValue as! Blob).bytes)) as! NSArray
     }
     
     public var datatypeValue: Binding {
-        return NSKeyedArchiver.archivedDataWithRootObject(self)
+        return NSKeyedArchiver.archivedData(withRootObject: self)
     }
     public var serialization: AnyObject {
         return self.map { value -> AnyObject in
             if let serialization = value as? Serialization {
                 return serialization.serialization
             }else{
-                return value
+                return value as AnyObject
             }
-        }
+        } as AnyObject
     }
-    public func deserialization(type: Any.Type) -> AnyObject {
-        let genericType = generic(type)
+    public func deserialization(_ type: Any.Type) -> AnyObject {
+        let genericType = generic(type: type)
         return self.map { value -> AnyObject in
             if let deserialization = value as? Deserialization {
                 return deserialization.deserialization(genericType)
             }else{
-                return value
+                return value as AnyObject
             }
-        }
+        } as AnyObject
     }
     private func generic(type: Any.Type) -> Any.Type {
         let clsString = "\(type)".replacingOccurrencesOfString("Array<", withString: "").replacingOccurrencesOfString("Optional<", withString: "").replacingOccurrencesOfString(">", withString: "")
@@ -127,7 +126,7 @@ extension Array: Serialization {
             }else{
                 return value as! AnyObject
             }
-        }
+        } as AnyObject
     }
 }
 
@@ -136,14 +135,14 @@ extension NSDictionary: Binding, Deserialization {
     public class var declaredDatatype: String {
         return Blob.declaredDatatype
     }
-    public class func toAnyObject(dataValue: Binding) -> AnyObject {
-        return NSKeyedUnarchiver.unarchiveObjectWithData(NSData(bytes: (dataValue as! Blob).bytes, length: (dataValue as! Blob).bytes.count)) as! NSDictionary
+    public class func toAnyObject(_ dataValue: Binding) -> AnyObject {
+        return NSKeyedUnarchiver.unarchiveObject(with: Data(bytes: (dataValue as! Blob).bytes)) as! NSDictionary
     }
     
     public var datatypeValue: Binding {
-        return NSKeyedArchiver.archivedDataWithRootObject(self)
+        return NSKeyedArchiver.archivedData(withRootObject: self)
     }
-    public func deserialization(type: Any.Type) -> AnyObject {
+    public func deserialization(_ type: Any.Type) -> AnyObject {
         if let dic = self as? [String : AnyObject], let storable = type as? Storable.Type {
             return storable.init(from: dic) as! AnyObject
         }else {
@@ -156,4 +155,28 @@ extension NSDictionary: Binding, Deserialization {
 
 public func ==(lhs: Blob, rhs: Blob) -> Bool {
     return lhs.bytes == rhs.bytes
+}
+extension Data {
+
+    init<T>(from value: T) {
+        var value = value
+        self.init(buffer: UnsafeBufferPointer(start: &value, count: 1))
+    }
+
+    func to<T>(type: T.Type) -> T {
+        return self.withUnsafeBytes { $0.pointee }
+    }
+}
+extension Data {
+
+    init<T>(fromArray values: [T]) {
+        var values = values
+        self.init(buffer: UnsafeBufferPointer(start: &values, count: values.count))
+    }
+
+    func toArray<T>(type: T.Type) -> [T] {
+        return self.withUnsafeBytes {
+            [T](UnsafeBufferPointer(start: $0, count: self.count/MemoryLayout<T>.size))
+        }
+    }
 }
