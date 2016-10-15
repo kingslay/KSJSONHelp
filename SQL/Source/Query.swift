@@ -2,7 +2,9 @@ open class Query<T: Model> {
     open let table: String = T.tableName
 
 	open var filter: Filter?
+    public init() {
 
+    }
 	open func update(_ data: [String: Binding?]) {
 		Database.driver.update(table: self.table, filter: self.filter, data: data)
 	}
@@ -52,15 +54,14 @@ open class Query<T: Model> {
         }
     }
 
-	/* Internal Casts */
 	///Inserts or updates the entity in the database.
-	func save(_ model: T) {
+	open func save(_ model: T) {
         Database.driver.createTableWith(model: model)
         self.upsert(model.serialize)
 	}
 
 	///Deletes the entity from the database.
-	func delete(_ model: T) {
+	open func delete(_ model: T) {
         if let primaryKeysType = T.self as? PrimaryKeyProtocol.Type {
             let data = model.serialize
             let filter = CompositeFilter()
