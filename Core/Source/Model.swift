@@ -124,7 +124,7 @@ extension Storable {
             self.init(from: $0)
         }
     }
-    private static var defaultName: String {
+    public static var defaultName: String {
         return String(describing: self)
     }
     public static func loadValuesFromDefaults(forKey defaultName: String = Self.defaultName) -> [Self]? {

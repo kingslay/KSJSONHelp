@@ -1,6 +1,6 @@
 {
   "name": "KSJSONHelp",
-  "version": "0.7.0",
+  "version": "2.0.0",
   "summary": "swift's MJExtension",
   "description": "KSJSONHelp is a lightweight and pure Swift implemented library for\nconversion between JSON and model\nSimple ActiveRecord implementation for working with your database",
   "homepage": "https://github.com/kingslay/KSJSONHelp",
@@ -10,7 +10,7 @@
   },
   "source": {
     "git": "https://github.com/kingslay/KSJSONHelp.git",
-    "tag": "0.7.0"
+    "tag": "2.0.0"
   },
   "platforms": {
     "ios": "8.0",
